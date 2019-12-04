@@ -121,60 +121,80 @@ CharLanguages = list(dict.fromkeys(CharLanguages))
 
 ##############################
 
-
 def CharacterStats():
-
     if CharClass == "Barbarian":
         CharStats = {"Strength":1,"Dexterity":3,"Constitution":2,"Intelligence":6,"Wisdom":4,"Charisma":5}
         HitDie = "1d12"
         HitPoints = 12
+        SavProf1 = "Strength"
+        SavProf2 = "Constitution"
     if CharClass == "Bard":
         CharStats = {"Strength":6,"Dexterity":2,"Constitution":3,"Intelligence":5,"Wisdom":4,"Charisma":1}
         HitDie = "1d8"
         HitPoints = 8
+        SavProf1 = "Dexterity"
+        SavProf2 = "Charisma"
     if CharClass == "Cleric":
         CharStats = {"Strength":3,"Dexterity":4,"Constitution":2,"Intelligence":6,"Wisdom":1,"Charisma":5}
         HitDie = "1d8"
         HitPoints = 8
+        SavProf1 = "Intelligence"
+        SavProf2 = "Wisdom"
     if CharClass == "Druid":
         CharStats = {"Strength":5,"Dexterity":3,"Constitution":2,"Intelligence":4,"Wisdom":1,"Charisma":6}
         HitDie = "1d8"
         HitPoints = 8
+        SavProf1 = "Intelligence"
+        SavProf2 = "Wisdom"
     if CharClass == "Fighter":
         CharStats = {"Strength":1,"Dexterity":3,"Constitution":2,"Intelligence":6,"Wisdom":4,"Charisma":5}
         HitDie = "1d10"
         HitPoints = 10
+        SavProf1 = "Strength"
+        SavProf2 = "Constitution"
     if CharClass == "Monk":
         CharStats = {"Strength":4,"Dexterity":1,"Constitution":3,"Intelligence":5,"Wisdom":2,"Charisma":6}
         HitDie = "1d8"
         HitPoints = 8
+        SavProf1 = "Strength"
+        SavProf2 = "Dexterity"
     if CharClass == "Paladin":
         CharStats = {"Strength":1,"Dexterity":5,"Constitution":3,"Intelligence":6,"Wisdom":4,"Charisma":2}
         HitDie = "1d10"
         HitPoints = 10
+        SavProf1 = "Wisdom"
+        SavProf2 = "Charisma"
     if CharClass == "Ranger":
         CharStats = {"Strength":4,"Dexterity":1,"Constitution":3,"Intelligence":5,"Wisdom":2,"Charisma":6}
         HitDie = "1d10"
         HitPoints = 10
+        SavProf1 = "Strength"
+        SavProf2 = "Dexterity"
     if CharClass == "Rogue":
         CharStats = {"Strength":6,"Dexterity":1,"Constitution":3,"Intelligence":5,"Wisdom":4,"Charisma":2}
         HitDie = "1d8"
         HitPoints = 8
+        SavProf1 = "Dexterity"
+        SavProf2 = "Constitution"
     if CharClass == "Sorcerer":
         CharStats = {"Strength":6,"Dexterity":3,"Constitution":2,"Intelligence":5,"Wisdom":4,"Charisma":1}
         HitDie = "1d6"
         HitPoints = 6
+        SavProf1 = "Constitution"
+        SavProf2 = "Charisma"
     if CharClass == "Warlock":
         CharStats = {"Strength":6,"Dexterity":3,"Constitution":2,"Intelligence":5,"Wisdom":4,"Charisma":1}
         HitDie = "1d8"
         HitPoints = 8
+        SavProf1 = "Wisdom"
+        SavProf2 = "Charisma"
     if CharClass == "Wizard":
         CharStats = {"Strength":6,"Dexterity":3,"Constitution":2,"Intelligence":1,"Wisdom":4,"Charisma":5}
         HitDie = "1d6"
         HitPoints = 6
-
+        SavProf1 = "Intelligence"
+        SavProf2 = "Wisdom"
     StatList = StatRoller()
-
     #print (StatList)
     for key, value in CharStats.items():
         CharStats[key] = StatList[value-1]
@@ -187,15 +207,18 @@ def CharacterStats():
         CharMods[key] = round(((CharMods[key]+1.1) /2)-6)
     #print ("Stat Modifiers:  ", CharMods)
     #print (StatRoller(""))
-
-    return CharStats,CharMods,HitDie,HitPoints
-
+    return CharStats,CharMods,HitDie,HitPoints, SavProf1, SavProf2
 #Assign the rolled stats and rolled modifiers to global data types
 CharStatsAndMods = CharacterStats()
 CharStats = CharStatsAndMods[0]
 CharMods = CharStatsAndMods[1]
 HitDie = CharStatsAndMods[2]
 HitPoints = CharStatsAndMods[3]
+SavProf1 = CharStatsAndMods[4]
+SavProf2 = CharStatsAndMods[5]
+SThrows = CharMods.copy()
+SThrows[SavProf1] += 2
+SThrows[SavProf2] += 2
 
 #List of Weapons that can be attacked with - used to populate attack section later
 WeaponsStrBased = {"Club": "1d4 B", "Great Club": "1d8 B", "Handaxe": "1d6 S", "Javelin": "1d6 p",
@@ -540,6 +563,15 @@ can.drawString(50, 451, str(format(CharMods.get("Constitution"), '+.00f'))) #Con
 can.drawString(50, 379, str(format(CharMods.get("Intelligence"), '+.00f'))) #Int
 can.drawString(50, 307, str(format(CharMods.get("Wisdom"), '+.00f'))) #Wis
 can.drawString(50, 237, str(format(CharMods.get("Charisma"), '+.00f'))) #Cha
+
+#Populate Saving Throws
+can.setFont('Helvetica',8)
+can.drawString(118, 578, str(SThrows.get("Strength")))
+can.drawString(118, 565, str(SThrows.get("Dexterity")))
+can.drawString(118, 551, str(SThrows.get("Constitution")))
+can.drawString(118, 538, str(SThrows.get("Intelligence")))
+can.drawString(118, 524, str(SThrows.get("Wisdom")))
+can.drawString(118, 511, str(SThrows.get("Charisma")))
 
 can.setFont('Helvetica',10)
 can.drawString(101, 611, "+2") #proficiency bonus
