@@ -566,12 +566,12 @@ can.drawString(50, 237, str(format(CharMods.get("Charisma"), '+.00f'))) #Cha
 
 #Populate Saving Throws
 can.setFont('Helvetica',8)
-can.drawString(118, 578, str(SThrows.get("Strength")))
-can.drawString(118, 565, str(SThrows.get("Dexterity")))
-can.drawString(118, 551, str(SThrows.get("Constitution")))
-can.drawString(118, 538, str(SThrows.get("Intelligence")))
-can.drawString(118, 524, str(SThrows.get("Wisdom")))
-can.drawString(118, 511, str(SThrows.get("Charisma")))
+can.drawString(116, 578, str('{0:+d}'.format(SThrows.get("Strength"))))
+can.drawString(116, 565, str('{0:+d}'.format(SThrows.get("Dexterity"))))
+can.drawString(116, 551, str('{0:+d}'.format(SThrows.get("Constitution"))))
+can.drawString(116, 538, str('{0:+d}'.format(SThrows.get("Intelligence"))))
+can.drawString(116, 524, str('{0:+d}'.format(SThrows.get("Wisdom"))))
+can.drawString(116, 511, str('{0:+d}'.format(SThrows.get("Charisma"))))
 
 can.setFont('Helvetica',10)
 can.drawString(101, 611, "+2") #proficiency bonus
