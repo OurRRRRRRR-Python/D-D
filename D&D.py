@@ -624,28 +624,26 @@ for items in Equips:
 
 #Need to add proficiencies!
 #Need to fix the problem with five javelins etc!
-#Need to finish the printing part of the weapon attack and damage mod
+
 #Search through inventory, add weapons to list of attack options along with hit modifier, damage modifier, and damage bonus
 for number,items in enumerate(WeaponsOwned, start=1):
     can.drawString(225,408 - int(number)*20, items)  # Attacks
-    can.drawString(331,408 - int(number)*20, WeaponsOwned[items])  # Damage
-    print(items,WeaponsOwned[items])
+    WeaponDmg = WeaponsOwned[items]
+    WeaponDmg = WeaponDmg[:-1]
+    WeaponDmgType = WeaponsOwned[items]
+    WeaponDmgType = WeaponDmgType[-1]
+
     if items in WeaponsStrBased:
-        print(CharMods["Strength"])
+        WeaponDmgMod = CharMods["Strength"]
     if items in WeaponsDexBased:
-        print(CharMods["Dexterity"])
+        WeaponDmgMod = CharMods["Dexterity"]
     if items in WeaponsFinesse:
-        print("Finesse")
-
-        print(CharMods["Strength"])
-
         if CharMods["Strength"] > CharMods["Dexterity"]:
-            print(CharMods["Strength"])
-        """
+            WeaponDmgMod = CharMods["Strength"]
         else:
-            print(CharMods["Dexterity"])
-        """
+            WeaponDmgMod = CharMods["Dexterity"]
 
+    can.drawString(331,408 - int(number)*20, WeaponDmg+format(CharMods.get("Strength"), '+.00f')+" "+WeaponDmgType)  # Damage
 
 
 for number,items in enumerate(Equips, start=1):
