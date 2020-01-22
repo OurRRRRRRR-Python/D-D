@@ -30,6 +30,34 @@ CharLanguagesFull =("Abyssal",	"Celestial",	"Draconic",	"Deep Speech",	"Infernal
 CharLanguagesExotic =("Abyssal",	"Celestial",	"Draconic",	"Deep Speech",	"Infernal",	"Primordial",	"Sylvan",	"Undercommon",	"Druidic")
 CharLanguagesStandard = ("Dwarvish",	"Elvish",	"Giant",	"Gnomish",	"Goblin",	"Halfling",	"Orc")
 
+#List of Weapons that can be attacked with - used to populate attack section later
+WeaponsStrBased = {"Club": "1d4 B", "Great Club": "1d8 B", "Handaxe": "1d6 S", "Javelin": "1d6 p",
+                   "Light Hammer": "1d4 B",
+                   "Mace": "1d6 B", "Quarterstaff": "1d6 B", "Sickle": "1d4 S", "Spear": "1d6 p", "Battle Axe": "1d8 S",
+                   "Flail": "1d8 B", "Glaive": "1d10 S", "Greataxe": "1d12 S", "Halberd": "1d10 S", "Lance": "1d12 P",
+                   "Maul": "2d6 B", "Morning Star": "1d8 P", "Pike": "1d10 P", "Trident": "1d6 P", "War Pick": "1d8 P",
+                   "Warhammer": "1d8 B", "Longsword": "1d8 S"}
+WeaponsDexBased = {"Light Crossbow": "1d8 p", "Dart": "1d4 P", "Shortbow": "1d6 P", "Sling": "1d4 B", "Blowgun": "1 P",
+                   "Hand Crossbow": "1d6 P", "Heavy Crossbow": "1d10 P", "Longbow": "1d8 P"}
+WeaponsFinesse = {"Dagger": "1d4  P", "Rapier": "1d8 P", "Scimitar": "1d6 S", "Shortsword": "1d6 P", "Whip": "1d4 S"}
+
+# List of each type of weapon
+WeaponsSimpleMelee = (
+"Club", "Dagger", "Great Club", "Handaxe", "Javelin", "Light Hammer", "Mace", "Quarterstaff", "Sickle", "Spear")
+WeaponsSimpleRanged = ("Light Crossbow", "20 Darts", "Shortbow", "Sling")
+WeaponsMartialMelee = (
+"Battle Axe", "Flail", "Glaive", "Greataxe", "Greatsword", "Halberd", "Lance", "Longsword", "Maul",
+"Morning Star", "Pike", "Rapier", "Scimitar", "Shortsword", "Trident", "War Pick", "WarHammer", "Whip")
+WeaponsMartialRanged = ("Blowgun", "Hand Crossbow", "Heavy Crossbow", "Longbow", "Net")
+
+MusicalInstruments = (
+"Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan flute", "Shawm", "Viol", "Cowbell", "Harp")
+
+ArmorLight = {"Leather Armor":11, "Padded Armor":11, "Studded Armor":11}
+ArmorMedium = {"Breastplate":14, "Chain Shirt":13, "Half Plate":15, "Hide Armor":12, "Scale Mail":14}
+ArmorHeavy = {"Chainmail":16 , "Plate Armor":18 , "Ring Mail":14 , "Splint Mail":17 }
+
+
 
 #Choose a class, race, alignment, background
 CharClass = random.choice(CharClasses)
@@ -121,6 +149,9 @@ CharLanguages = list(dict.fromkeys(CharLanguages))
 
 ##############################
 
+
+
+
 def CharacterStats():
     if CharClass == "Barbarian":
         CharStats = {"Strength":1,"Dexterity":3,"Constitution":2,"Intelligence":6,"Wisdom":4,"Charisma":5}
@@ -128,72 +159,165 @@ def CharacterStats():
         HitPoints = 12
         SavProf1 = "Strength"
         SavProf2 = "Constitution"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += ArmorMedium
+        CharProficiencies.append("Shield")
+        CharProficiencies += WeaponsMartialMelee
+        CharProficiencies += WeaponsMartialRanged
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
     if CharClass == "Bard":
         CharStats = {"Strength":6,"Dexterity":2,"Constitution":3,"Intelligence":5,"Wisdom":4,"Charisma":1}
         HitDie = "1d8"
         HitPoints = 8
         SavProf1 = "Dexterity"
         SavProf2 = "Charisma"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
+        CharProficiencies.append("Hand Crossbow")
+        CharProficiencies.append("Longsword")
+        CharProficiencies.append("Rapier")
+        CharProficiencies.append("Shortsword")
     if CharClass == "Cleric":
         CharStats = {"Strength":3,"Dexterity":4,"Constitution":2,"Intelligence":6,"Wisdom":1,"Charisma":5}
         HitDie = "1d8"
         HitPoints = 8
         SavProf1 = "Intelligence"
         SavProf2 = "Wisdom"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += ArmorMedium
+        CharProficiencies.append("Shield")
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
     if CharClass == "Druid":
         CharStats = {"Strength":5,"Dexterity":3,"Constitution":2,"Intelligence":4,"Wisdom":1,"Charisma":6}
         HitDie = "1d8"
         HitPoints = 8
         SavProf1 = "Intelligence"
         SavProf2 = "Wisdom"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies.append("Hide")
+        CharProficiencies.append("Scale")
+        CharProficiencies.append("Shield")
+        CharProficiencies.append("Club")
+        CharProficiencies.append("Dagger")
+        CharProficiencies.append("Javelin")
+        CharProficiencies.append("Mace")
+        CharProficiencies.append("Quarterstaff")
+        CharProficiencies.append("Scimitar")
+        CharProficiencies.append("Sickle")
+        CharProficiencies.append("Sling")
+        CharProficiencies.append("Spear")
     if CharClass == "Fighter":
         CharStats = {"Strength":1,"Dexterity":3,"Constitution":2,"Intelligence":6,"Wisdom":4,"Charisma":5}
         HitDie = "1d10"
         HitPoints = 10
         SavProf1 = "Strength"
         SavProf2 = "Constitution"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += ArmorMedium
+        CharProficiencies += ArmorHeavy
+        CharProficiencies.append("Shield")
+        CharProficiencies += WeaponsMartialMelee
+        CharProficiencies += WeaponsMartialRanged
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
     if CharClass == "Monk":
         CharStats = {"Strength":4,"Dexterity":1,"Constitution":3,"Intelligence":5,"Wisdom":2,"Charisma":6}
         HitDie = "1d8"
         HitPoints = 8
         SavProf1 = "Strength"
         SavProf2 = "Dexterity"
+
+        CharProficiencies = []
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
+        CharProficiencies.append("Shortsword")
     if CharClass == "Paladin":
         CharStats = {"Strength":1,"Dexterity":5,"Constitution":3,"Intelligence":6,"Wisdom":4,"Charisma":2}
         HitDie = "1d10"
         HitPoints = 10
         SavProf1 = "Wisdom"
         SavProf2 = "Charisma"
+
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += ArmorMedium
+        CharProficiencies += ArmorHeavy
+        CharProficiencies.append("Shield")
+        CharProficiencies += WeaponsMartialMelee
+        CharProficiencies += WeaponsMartialRanged
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
     if CharClass == "Ranger":
         CharStats = {"Strength":4,"Dexterity":1,"Constitution":3,"Intelligence":5,"Wisdom":2,"Charisma":6}
         HitDie = "1d10"
         HitPoints = 10
         SavProf1 = "Strength"
         SavProf2 = "Dexterity"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += ArmorMedium
+        CharProficiencies.append("Shield")
+        CharProficiencies += WeaponsMartialMelee
+        CharProficiencies += WeaponsMartialRanged
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
     if CharClass == "Rogue":
         CharStats = {"Strength":6,"Dexterity":1,"Constitution":3,"Intelligence":5,"Wisdom":4,"Charisma":2}
         HitDie = "1d8"
         HitPoints = 8
         SavProf1 = "Dexterity"
         SavProf2 = "Constitution"
+
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
+        CharProficiencies.append("Longsword")
+        CharProficiencies.append("Hand Crossbow")
+        CharProficiencies.append("Rapier")
+        CharProficiencies.append("Shortsword")
     if CharClass == "Sorcerer":
         CharStats = {"Strength":6,"Dexterity":3,"Constitution":2,"Intelligence":5,"Wisdom":4,"Charisma":1}
         HitDie = "1d6"
         HitPoints = 6
         SavProf1 = "Constitution"
         SavProf2 = "Charisma"
+        CharProficiencies = []
+        CharProficiencies.append("Dagger")
+        CharProficiencies.append("Dart")
+        CharProficiencies.append("Sling")
+        CharProficiencies.append("Quarterstaff")
+        CharProficiencies.append("Light Crossbow")
     if CharClass == "Warlock":
         CharStats = {"Strength":6,"Dexterity":3,"Constitution":2,"Intelligence":5,"Wisdom":4,"Charisma":1}
         HitDie = "1d8"
         HitPoints = 8
         SavProf1 = "Wisdom"
         SavProf2 = "Charisma"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
     if CharClass == "Wizard":
         CharStats = {"Strength":6,"Dexterity":3,"Constitution":2,"Intelligence":1,"Wisdom":4,"Charisma":5}
         HitDie = "1d6"
         HitPoints = 6
         SavProf1 = "Intelligence"
         SavProf2 = "Wisdom"
+        CharProficiencies = []
+        CharProficiencies.append("Dagger")
+        CharProficiencies.append("Dart")
+        CharProficiencies.append("Sling")
+        CharProficiencies.append("Quarterstaff")
+        CharProficiencies.append("Light Crossbow")
     StatList = StatRoller()
     #print (StatList)
     for key, value in CharStats.items():
@@ -207,7 +331,7 @@ def CharacterStats():
         CharMods[key] = round(((CharMods[key]+1.1) /2)-6)
     #print ("Stat Modifiers:  ", CharMods)
     #print (StatRoller(""))
-    return CharStats,CharMods,HitDie,HitPoints, SavProf1, SavProf2
+    return CharStats,CharMods,HitDie,HitPoints, SavProf1, SavProf2, CharProficiencies
 #Assign the rolled stats and rolled modifiers to global data types
 CharStatsAndMods = CharacterStats()
 CharStats = CharStatsAndMods[0]
@@ -219,29 +343,11 @@ SavProf2 = CharStatsAndMods[5]
 SThrows = CharMods.copy()
 SThrows[SavProf1] += 2
 SThrows[SavProf2] += 2
-
-#List of Weapons that can be attacked with - used to populate attack section later
-WeaponsStrBased = {"Club": "1d4 B", "Great Club": "1d8 B", "Handaxe": "1d6 S", "Javelin": "1d6 p",
-                   "Light Hammer": "1d4 B",
-                   "Mace": "1d6 B", "Quarterstaff": "1d6 B", "Sickle": "1d4 S", "Spear": "1d6 p", "Battle Axe": "1d8 S",
-                   "Flail": "1d8 B", "Glaive": "1d10 S", "Greataxe": "1d12 S", "Halberd": "1d10 S", "Lance": "1d12 P",
-                   "Maul": "2d6 B", "Morning Star": "1d8 P", "Pike": "1d10 P", "Trident": "1d6 P", "War Pick": "1d8 P",
-                   "Warhammer": "1d8 B", "Longsword": "1d8 S"}
-WeaponsDexBased = {"Light Crossbow": "1d8 p", "Dart": "1d4 P", "Shortbow": "1d6 P", "Sling": "1d4 B", "Blowgun": "1 P",
-                   "Hand Crossbow": "1d6 P", "Heavy Crossbow": "1d10 P", "Longbow": "1d8 P"}
-WeaponsFinesse = {"Dagger": "1d4  P", "Rapier": "1d8 P", "Scimitar": "1d6 S", "Shortsword": "1d6 P", "Whip": "1d4 S"}
+CharProficiencies = CharStatsAndMods[6]
 
 
 #Create the equipment section of the character sheet
 def Equipment():
-    #List of each type of weapon
-    WeaponsSimpleMelee = ("Club", "Dagger", "Great Club", "Handaxe", "Javelin", "Light Hammer", "Mace", "Quarterstaff", "Sickle", "Spear")
-    WeaponsSimpleRanged = ("Light Crossbow", "20 Darts", "Shortbow", "Sling")
-    WeaponsMartialMelee = ("Battle Axe", "Flail", "Glaive", "Greataxe", "Greatsword", "Halberd", "Lance", "Longsword", "Maul",
-    "Morning Star", "Pike", "Rapier", "Scimitar", "Shortsword", "Trident", "War Pick", "WarHammer", "Whip")
-    WeaponsMartialRanged = ("Blowgun", "Hand Crossbow", "Heavy Crossbow", "Longbow", "Net")
-
-    MusicalInstruments = ("Bagpipes","Drum","Dulcimer","Flute","Lute","Lyre","Horn","Pan flute","Shawm","Viol","Cowbell","Harp")
 
     #Per the 5e player's handbook, populate the equipment section by class.  Result will be a list (CharEquips), which is returned.
     if CharClass == "Barbarian":
@@ -300,7 +406,7 @@ def Equipment():
         if Case2 == 2:
             CharEquips.append("Leather Armor")
         if Case2 == 3:
-            CharEquips.append("Chain mail")
+            CharEquips.append("Chainmail")
         if Case3 < 3:
             CharEquips.append("Light Crossbow")
             CharEquips.append("20 bolts")
@@ -328,6 +434,9 @@ def Equipment():
             CharEquips.append("Wooden Shield")
         if Case2 == 2:
             CharEquips.append(random.choice(WeaponsSimpleMelee))
+        CharEquips.append("Leather Armor")
+        CharEquips.append("Druidic Focus")
+        CharEquips.append("Explorer's Pack")
     if CharClass == "Fighter":
         CharEquips = []
         Case1 = randint(1,2)
@@ -337,7 +446,7 @@ def Equipment():
         if Case1 == 1 :
             CharEquips.append("Chainmail")
         if Case1 == 2 :
-            CharEquips.append("Leather armor")
+            CharEquips.append("Leather Armor")
             CharEquips.append("Longbow")
             CharEquips.append("quiver with 20 arrows")
         if Case2 < 3 :
@@ -524,7 +633,7 @@ Traits = ["I idolize a particular hero of my faith and constantly refer to that 
 ]
 Ideals = ["Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well.",	"Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld.",	"Charity. I always try to help those in need, no matter what the personal cost.",	"Change. We must help bring about the changes the gods are constantly working in the world.",	"Power. I hope to one day rise to the top of my faith's religious hierarchy.",	"Aspiration. I seek to prove my self worthy of my god's favor by matching my actions against his or her teachings.",	"Independence. I am a free spirit--no one tells me what to do.",	"Fairness. I never target people who can't afford to lose a few coins.",	"Charity. I distribute money I acquire to the people who really need it.",	"Creativity. I never run the same con twice.",	"Friendship. Material goods come and go. Bonds of friendship last forever.",	"Aspiration. I'm determined to make something of myself.",	"Honor. I don't steal from others in the trade.",	"Freedom. Chains are meant to be broken, as are those who would forge them.",	"Charity. I steal from the wealthy so that I can help people in need.",	"Greed. I will do whatever it takes to become wealthy.",	"People. I'm loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care.",	"Redemption. There's a spark of good in everyone.",	"Beauty. When I perform, I make the world better than it was.",	"Tradition. The stories, legends, and songs of the past must never be forgotten.",	"Creativity. The world is in need of new ideas and bold action.",	"Greed. I'm only in it for the money and fame.",	"People. I like seeing the smiles on people's faces when I perform. That's all that matters.",	"Honesty. Art should reflect the soul; it should come from within and reveal who we really are.",	"Respect. People deserve to be treated with dignity and respect.",	"Fairness. No one should get preferential treatment before the law, and no one is above the law.",	"Freedom. Tyrants must not be allowed to oppress the people.",	"Might. If I become strong, I can take what I want--what I deserve.",	"Sincerity. There's no good pretending to be something I'm not.",	"Destiny. Nothing and no one can steer me away from my higher calling.",	"Community. It is the duty of all civilized people to strengthen the bonds of community and the security of civilization.",	"Generosity. My talents were given to me so that I could use them to benefit the world.",	"Freedom. Everyone should be free to pursue his or her livelihood.",	"Greed. I'm only in it for the money.",	"People. I'm committed to the people I care about, not to ideals.",	"Aspiration. I work hard to be the best there is at my craft.",	"Greater Good. My gifts are meant to be shared with all, not used for my own benefit.",	"Logic. Emotions must not cloud our sense of what is right and true, or our logical thinking.",	"Free Thinking. Inquiry and curiosity are the pillars of progress.",	"Power. Solitude and contemplation are paths toward mystical or magical power.",	"Live and Let Live. Meddling in the affairs of others only causes trouble.",	"Self-Knowledge. If you know yourself, there're nothing left to know.",	"Respect. Respect is due to me because of my position, but all people regardless of station deserve to be treated with dignity.",	"Responsibility. It is my duty to respect the authority of those above me, just as those below me must respect mine.",	"Independence. I must prove that I can handle myself without the coddling of my family.",	"Power. If I can attain more power, no one will tell me what to do.",	"Family. Blood runs thicker than water.",	"Noble Obligation. It is my duty to protect and care for the people beneath me.",	"Change. Life is like the seasons, in constant change, and we must change with it.",	"Greater Good. It is each person's responsibility to make the most happiness for the whole tribe.",	"Honor. If I dishonor myself, I dishonor my whole clan.",	"Might. The strongest are meant to rule.",	"Nature. The natural world is more important than all the constructs of civilization.",	"Glory. I must earn glory in battle, for myself and my clan.",	"Knowledge. The path to power and self-improvement is through knowledge.",	"Beauty. What is beautiful points us beyond itself toward what is true.",	"Logic. Emotions must not cloud our logical thinking.",	"No Limits. Nothing should fetter the infinite possibility inherent in all existence.",	"Power. Knowledge is the path to power and domination.",	"Self-improvement. The goal of a life of study is the betterment of oneself.",	"Respect. The thing that keeps a ship together is mutual respect between captain and crew.",	"Fairness. We all do the work, so we all share in the rewards.",	"Freedom. The sea is freedom--the freedom to go anywhere and do anything.",	"Master. I'm a predator, and the other ships on the sea are my prey.",	"People. I'm committed to my crewmates, not to ideals.",	"Aspiration. Someday I'll own my own ship and chart my own destiny.",	"Greater Good. Our lot is to lay down our lives in defense of others.",	"Responsibility. I do what I must and obey just authority.",	"Independence. When people follow orders blindly they embrace a kind of tyranny.",	"Might. In life as in war, the stronger force wins.",	"Ideals aren't worth killing for or going to war for.",	"Nation. My city, nation, or people are all that matter.",	"Respect. All people, rich or poor, deserve respect.",	"Community. We have to take care of each other, because no one else is going to do it.",	"Change. The low are lifted up, and the high and mighty are brought down. Change is the nature of things.",	"Retribution. The rich need to be shown what life and death are like in the gutters.",	"People. I help people who help me--that's what keeps us alive.",	"Aspiration. I'm going to prove that I'm worthy of a better life."
 ]
-Flaws = [" judge others harshly, and myself even more severely.",	"I put too much trust in those who wield power within my temple's hierarchy.",	"My piety sometimes leads me to blindly trust those that profess faith in my god.",	"I am inflexible in my thinking.",	"I am suspicious of strangers and suspect the worst of them.",	"Once I pick a goal, I become obsessed with it to the detriment of everything else in my life.",	"I can't resist a pretty face.",	"I'm always in debt. I spend my ill-gotten gains on decadent luxuries faster than I bring them in.",	"I'm convinced that no one could ever fool me in the way I fool others.",	"I'm too greedy for my own good. I can't resist taking a risk if there's money involved.",	"I can't resist swindling people who are more powerful than me.",	"I hate to admit it and will hate myself for it, but I'll run and preserve my own hide if the going gets tough.",	"When I see something valuable, I can't think about anything but how to steal it.",	"When faced with a choice between money and my friends, I usually choose the money.",	"If there's a plan, I'll forget it. If I don't forget it, I'll ignore it.",	"I have a 'tell' that reveals when I'm lying.",	"I turn tail and run when things go bad.",	"An innocent person is in prison for a crime that I committed. I'm okay with that.",	"I'll do anything to win fame and renown.",	"I'm a sucker for a pretty face.",	"A scandal prevents me from ever going home again. That kind of trouble seems to follow me around.",	"I once satirized a noble who still wants my head. It was a mistake that I will likely repeat.",	"I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble.",	"Despite my best efforts, I am unreliable to my friends.",	"The tyrant who rules my land will stop at nothing to see me killed.",	"I'm convinced of the significance of my destiny, and blind to my shortcomings and the risk of failure.",	"The people who knew me when I was young know my shameful secret, so I can never go home again.",	"I have a weakness for the vices of the city, especially hard drink.",	"Secretly, I believe that things would be better if I were a tyrant lording over the land.",	"I have trouble trusting in my allies.",	"I'll do anything to get my hands on something rare or priceless.",	"I'm quick to assume that someone is trying to cheat me.",	"No one must ever learn that I once stole money from guild coffers.",	"I'm never satisfied with what I have--I always want more.",	"I would kill to acquire a noble title.",	"I'm horribly jealous of anyone who outshines my handiwork. Everywhere I go, I'm surrounded by rivals.",	"Now that I've returned to the world, I enjoy its delights a little too much.",	"I harbor dark bloodthirsty thoughts that my isolation failed to quell.",	"I am dogmatic in my thoughts and philosophy.",	"I let my need to win arguments overshadow friendships and harmony.",	"I'd risk too much to uncover a lost bit of knowledge.",	"I like keeping secrets and won't share them with anyone.",	"I secretly believe that everyone is beneath me.",	"I hide a truly scandalous secret that could ruin my family forever.",	"I too often hear veiled insults and threats in every word addressed to me, and I'm quick to anger.",	"I have an insatiable desire for carnal pleasures.",	"In fact, the world does revolve around me.",	"By my words and actions, I often bring shame to my family.",	"I am too enamored of ale, wine, and other intoxicants.",	"There's no room for caution in a life lived to the fullest.",	"I remember every insult I've received and nurse a silent resentment toward anyone who's ever wronged me.",	"I am slow to trust members of other races",	"Violence is my answer to almost any challenge.",	"Don't expect me to save those who can't save themselves. It is nature's way that the strong thrive and the weak perish.",	"I am easily distracted by the promise of information.",	"Most people scream and run when they see a demon. I stop and take notes on its anatomy.",	"Unlocking an ancient mystery is worth the price of a civilization.",	"I overlook obvious solutions in favor of complicated ones.",	"I speak without really thinking through my words, invariably insulting others.",	"I can't keep a secret to save my life, or anyone else's.",	"I follow orders, even if I think they're wrong.",	"I'll say anything to avoid having to do extra work.",	"Once someone questions my courage, I never back down no matter how dangerous the situation.",	"Once I start drinking, it's hard for me to stop.",	"I can't help but pocket loose coins and other trinkets I come across.",	"My pride will probably lead to my destruction",	"The monstrous enemy we faced in battle still leaves me quivering with fear.",	"I have little respect for anyone who is not a proven warrior.",	"I made a terrible mistake in battle that cost many lives--and I would do anything to keep that mistake secret.",	"My hatred of my enemies is blind and unreasoning.",	"I obey the law, even if the law causes misery.",	"I'd rather eat my armor than admit when I'm wrong.",	"If I'm outnumbered, I always run away from a fight.",	"Gold seems like a lot of money to me, and I'll do just about anything for more of it.",	"I will never fully trust anyone other than myself.",	"I'd rather kill someone in their sleep than fight fair.",	"It's not stealing if I need it more than someone else.",	"People who don't take care of themselves get what they deserve."
+Flaws = [" judge others harshly, and myself even more severely.",	"I put too much trust in those who wield power within my temple's hierarchy.",	"My piety sometimes leads me to blindly trust those that profess faith in my god.",	"I am inflexible in my thinking.",	"I am suspicious of strangers and suspect the worst of them.",	"Once I pick a goal, I become obsessed with it to the detriment of everything else in my life.",	"I can't resist a pretty face.",	"I'm always in debt. I spend my ill-gotten gains on decadent luxuries faster than I bring them in.",	"I'm convinced that no one could ever fool me in the way I fool others.",	"I'm too greedy for my own good. I can't resist taking a risk if there's money involved.",	"I can't resist swindling people who are more powerful than me.",	"I hate to admit it and will hate myself for it, but I'll run and preserve my own hide if the going gets tough.",	"When I see something valuable, I can't think about anything but how to steal it.",	"When faced with a choice between money and my friends, I usually choose the money.",	"If there's a plan, I'll forget it. If I don't forget it, I'll ignore it.",	"I have a 'tell' that reveals when I'm lying.",	"I turn tail and run when things go bad.",	"An innocent person is in prison for a crime that I committed. I'm okay with that.",	"I'll do anything to win fame and renown.",	"I'm a sucker for a pretty face.",	"A scandal prevents me from ever going home again. That kind of trouble seems to follow me around.",	"I once satirized a noble who still wants my head. It was a mistake that I will likely repeat.",	"I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble.",	"Despite my best efforts, I am unreliable to my friends.",	"The tyrant who rules my land will stop at nothing to see me killed.",	"I'm convinced of the significance of my destiny, and blind to my shortcomings and the risk of failure.",	"The people who knew me when I was young know my shameful secret, so I can never go home again.",	"I have a weakness for the vices of the city, especially hard drink.",	"Secretly, I believe that things would be better if I were a tyrant lording over the land.",	"I have trouble trusting in my allies.",	"I'll do anything to get my hands on something rare or priceless.",	"I'm quick to assume that someone is trying to cheat me.",	"No one must ever learn that I once stole money from guild coffers.",	"I'm never satisfied with what I have--I always want more.",	"I would kill to acquire a noble title.",	"I'm horribly jealous of anyone who outshines my handiwork. Everywhere I go, I'm surrounded by rivals.",	"Now that I've returned to the world, I enjoy its delights a little too much.",	"I harbor dark bloodthirsty thoughts that my isolation failed to quell.",	"I am dogmatic in my thoughts and philosophy.",	"I let my need to win arguments overshadow friendships and harmony.",	"I'd risk too much to uncover a lost bit of knowledge.",	"I like keeping secrets and won't share them with anyone.",	"I secretly believe that everyone is beneath me.",	"I hide a truly scandalous secret that could ruin my family forever.",	"I too often hear veiled insults and threats in every word addressed to me, and I'm quick to anger.",	"I have an insatiable desire for carnal pleasures.",	"In fact, the world does revolve around me.",	"By my words and actions, I often bring shame to my family.",	"I am too enamored of ale, wine, and other intoxicants.",	"There's no room for caution in a life lived to the fullest.",	"I remember every insult I've received and nurse a silent resentment toward anyone who's ever wronged me.",	"I am slow to trust members of other races",	"Violence is my answer to almost any challenge.",	"Don't expect me to save those who can't save themselves. It is nature's way that the strong thrive and the weak perish.",	"I am easily distracted by the promise of information.",	"Most people scream and run when they see a demon. I stop and take notes on its anatomy.",	"Unlocking an ancient mystery is worth the price of a civilization.",	"I overlook obvious solutions in favor of complicated ones.",	"I speak without really thinking through my words, invariably insulting others.",	"I can't keep a secret to save my life, or anyone else's.",	"I follow orders, even if I think they're wrong.",	"I'll say anything to avoid having to do extra work.",	"Once someone questions my courage, I never back down no matter how dangerous the situation.",	"Once I start drinking, it's hard for me to stop.",	"I can't help but pocket loose coins and other trinkets I come across.",	"My pride will probably lead to my destruction",	"The monstrous enemy we faced in battle still leaves me quivering with fear.",	"I have little respect for anyone who is not a proven warrior.",	"I made a terrible mistake in battle that cost many lives--and I would do anything to keep that mistake secret.",	"My hatred of my enemies is blind and unreasoning.",	"I obey the law, even if the law causes misery.",	"I'd rather eat my armor than admit when I'm wrong.",	"If I'm outnumbered, I always run away from a fight.",	"Gold seems like a lot of money to me, and I'll do just about anything for more of it.",	"I will never fully trust anyone other than myself.",	"I'd rather kill someone in their sleep than fight fair.",	"It's not stealing if I need it more than someone else.",	"People who don't take care of themselves get what they deserve."
 ]
 Bonds = ["I would die to recover an ancient artifact of my faith that was lost long ago.",	"I will someday get revenge on the corrupt temple hierarchy who branded me a heretic.",	"I owe me life to the priest who took me in when my parents died.",	"Everything I do is for the common people.",	"I will do anything to protect the temple where I served.",	"I seek to preserve a sacred text that my enemies consider heretical and seek to destroy.",	"I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about.",	"I owe everything to my mentor--a horrible person who's probably rotting in jail somewhere.",	"Somewhere out there I have a child who doesn't know me. I'm making the world better for him or her.",	"I come from a noble family, and one day I'll reclaim my lands and title from those who stole them from me.",	"A powerful person killed someone I love. Some day soon, I'll have my revenge.",	"I swindled and ruined a person who didn't deserve it. I seek to atone for my misdeeds but might never be able to forgive myself.",	"I'm trying to pay off an old debt I owe to a generous benefactor.",	"My ill-gotten gains go to support my family.",	"Something important was taken from me, and I aim to steal it back.",	"I will become the greatest thief that ever lived.",	"I'm guilty of a terrible crime. I hope I can redeem myself for it.",	"Someone I loved died because of a mistake I made. That will never happen again.",	"My instrument is my most treasured possession, and it reminds me of someone I love.",	"Someone stole my precious instrument, and someday I'll get it back.",	"I want to be famous, whatever it takes.",	"I idolize a hero of the old tales and measure my deeds against that person's.",	"I will do anything to prove myself superior to me hated rival.",	"I would do anything for the other members of my old troupe.",	"I have a family, but I have no idea where they are. One day, I hope to see them again.",	"I worked the land, I love the land, and I will protect the land.",	"A proud noble once gave me a horrible beating, and I will take my revenge on any bully I encounter.",	"My tools are symbols of my past life, and I carry them so that I will never forget my roots.",	"I protect those who cannot protect themselves.",	"I wish my childhood sweetheart had come with me to pursue my destiny.",	"The workshop where I learned my trade is the most important place in the world to me.",	"I created a great work for someone, and then found them unworthy to receive it. I'm still looking for someone worthy.",	"I owe my guild a great debt for forging me into the person I am today.",	"I pursue wealth to secure someone's love.",	"One day I will return to my guild and prove that I am the greatest artisan of them all.",	"I will get revenge on the evil forces that destroyed my place of business and ruined my livelihood.",	"Nothing is more important than the other members of my hermitage, order, or association.",	"I entered seclusion to hide from the ones who might still be hunting me. I must someday confront them.",	"I'm still seeking the enlightenment I pursued in my seclusion, and it still eludes me.",	"I entered seclusion because I loved someone I could not have.",	"Should my discovery come to light, it could bring ruin to the world.",	"My isolation gave me great insight into a great evil that only I can destroy.",	"I will face any challenge to win the approval of my family.",	"My house's alliance with another noble family must be sustained at all costs.",	"Nothing is more important that the other members of my family.",	"I am in love with the heir of a family that my family despises.",	"My loyalty to my sovereign is unwavering.",	"The common folk must see me as a hero of the people.",	"My family, clan, or tribe is the most important thing in my life, even when they are far from me.",	"An injury to the unspoiled wilderness of my home is an injury to me.",	"I will bring terrible wrath down on the evildoers who destroyed my homeland.",	"I am the last of my tribe, and it is up to me to ensure their names enter legend.",	"I suffer awful visions of a coming disaster and will do anything to prevent it.",	"It is my duty to provide children to sustain my tribe.",	"It is my duty to protect my students.",	"I have an ancient text that holds terrible secrets that must not fall into the wrong hands.",	"I work to preserve a library, university, scriptorium, or monastery.",	"My life's work is a series of tomes related to a specific field of lore.",	"I've been searching my whole life for the answer to a certain question.",	"I sold my soul for knowledge. I hope to do great deeds and win it back.",	"I'm loyal to my captain first, everything else second.",	"The ship is most important--crewmates and captains come and go.",	"I'll always remember my first ship.",	"In a harbor town, I have a paramour whose eyes nearly stole me from the sea.",	"I was cheated of my fair share of the profits, and I want to get my due.",	"Ruthless pirates murdered my captain and crewmates, plundered our ship, and left me to die. Vengeance will be mine.",	"I would lay down my life for the people I served with.",	"Someone saved my life on the battlefield. To this day, I will never leave a friend behind.",	"My honor is my life.",	"I'll never forget the crushing defeat my company suffered or the enemies who dealt it.",	"Those who fight beside me are those worth dying for.",	"I fight for those who cannot fight for themselves.",	"My town or city is my home, and I'll fight to defend it.",	"I sponsor an orphanage to keep others from enduring what I was forced to endure.",	"I owe my survival to another urchin who taught me to live on the streets.",	"I owe a debt I can never repay to the person who took pity on me.",	"I escaped my life of poverty by robbing an important person, and I'm wanted for it.",	"No one else is going to have to endure the hardships I've been through."
 ]
@@ -622,8 +731,9 @@ for items in Equips:
 
 #print (WeaponsOwned)
 
-#Need to add proficiencies!
+
 #Need to fix the problem with five javelins etc!
+
 
 #Search through inventory, add weapons to list of attack options along with hit modifier, damage modifier, and damage bonus
 for number,items in enumerate(WeaponsOwned, start=1):
@@ -643,9 +753,42 @@ for number,items in enumerate(WeaponsOwned, start=1):
         else:
             WeaponDmgMod = CharMods["Dexterity"]
 
-    can.drawString(331,408 - int(number)*20, WeaponDmg+format(CharMods.get("Strength"), '+.00f')+" "+WeaponDmgType)  # Damage
+    ProficiencyBonus = 0
+    if items in CharProficiencies:
+        ProficiencyBonus = 2
+    can.drawString(301,408 - int(number)*20, format(WeaponDmgMod+ProficiencyBonus, '+.00f'))  # Hit
+    can.drawString(331,408 - int(number)*20, WeaponDmg+format(WeaponDmgMod, '+.00f')+" "+WeaponDmgType)  # Damage
 
 
+#Set armor class with no armor.  If character has armor, this will be overwritten later
+
+ArmorClass = 10 + CharMods.get("Dexterity")
+
+#Search through inventory, find heaviest armor, add to AC bonus.  Also, add shield AC bonus where needed.
+
+#ArmorLight = {"Leather Armor":1, "Padded Armor":1, "Studded Armor":2}
+
+
+for items in Equips:
+    if items in ArmorLight.keys():
+        ArmorClass = ArmorLight.get(items)
+        ArmorClass += CharMods.get("Dexterity")
+    if items in ArmorMedium.keys():
+        MediumArmorDexBonus = CharMods.get("Dexterity")
+        if MediumArmorDexBonus > 2:
+            MediumArmorDexBonus = 2
+        ArmorClass = ArmorMedium.get(items)
+        ArmorClass += MediumArmorDexBonus
+
+    if items in ArmorHeavy.keys():
+        ArmorClass = ArmorHeavy.get(items)
+
+if "Shield" in Equips:
+    ArmorClass += 2
+
+
+
+#List Equipment
 for number,items in enumerate(Equips, start=1):
     can.drawString(274, 199 - int(number)*10, items)  # equipment
 
@@ -681,4 +824,4 @@ outputStream = open(NewFileName, "wb")
 output.write(outputStream)
 outputStream.close()
 
-print("New Character "+CharName+" generated")
+print("New character "+CharName+" the "+CharClass+" created")
