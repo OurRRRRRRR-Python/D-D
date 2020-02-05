@@ -2,8 +2,6 @@ from random import randint
 import random
 #from collections import defaultdict
 
-
-
 #Roll 4d6 drop 1 six times, add those 6 numbers to a list, sort and return the list
 def StatRoller():
     i=1
@@ -150,9 +148,6 @@ CharLanguages = CharLanguages + BackgroundLanguages
 CharLanguages = list(dict.fromkeys(CharLanguages))
 
 ##############################
-
-
-
 
 def CharacterStats():
     if CharClass == "Barbarian":
@@ -805,9 +800,17 @@ CharLanguages = str(CharLanguages)
 CharLanguages = CharLanguages.replace('[','')
 CharLanguages = CharLanguages.replace(']','')
 CharLanguages = CharLanguages.replace("'","")
-wrap_text = textwrap.wrap("Languages: "+(CharLanguages), width=41)
+#messing with this
+CharProficiencies = str(CharProficiencies)
+CharProficiencies = CharProficiencies.replace('[','')
+CharProficiencies = CharProficiencies.replace(']','')
+CharProficiencies = CharProficiencies.replace("'","")
+
+can.setFont('Helvetica',7)
+
+wrap_text = textwrap.wrap("Languages: "+(CharLanguages+ "  Weapon/Armor: "+CharProficiencies), width=48)
 for number,items in enumerate(wrap_text, start=1):
-    can.drawString(37, 169 - int(number)*12, items)  # Flaws
+    can.drawString(37, 167 - int(number)*9, items)  # Flaws
 #for number,items in enumerate(CharLanguages, start=1):
     #can.drawString(36, 169 - int(number)*12, items)  # Languages
 
