@@ -20,15 +20,14 @@ def StatRoller():
     return StatList
 
 #Create lists of various things
-CharClasses = ("Barbarian","Bard","Cleric","Druid","Fighter","Monk","Paladin","Ranger","Rogue","Sorcerer","Warlock","Wizard")
-CharRaces = ("Dragonborn","Dwarf","Elf","Gnome","Half Elf","Half Orc","Halfling","Half Orc","Human","Tiefling")
-CharAlignments = ("Lawful Good",	"Neutral Good",	"Chaotic Good",	"Lawful Neutral",	"True Neutral",	"Chaotic Neutral",	"Lawful Evil",	"Neutral Evil",	"Chaotic Evil")
+CharRaces = ["Dragonborn","Dwarf","Elf","Gnome","Half Elf","Half Orc","Halfling","Half Orc","Human","Tiefling"]
 CharBackgrounds =("Acolyte",	"Anthropologist",	"Archaeologist",	"Adopted",	"Black Fist Double Agent",	"Caravan Specialist",	"Charlatan",	"City Watch",	"Clan Crafter",	"Cloistered Scholar",	"Cormanthor Refugee",	"Courtier",	"Criminal",	"Dragon Casualty",	"Earthspur Miner",	"Entertainer",	"Faction Agent",	"Far Traveler",	"Folk Hero",	"Gate Urchin",	"Gladiator",	"Guild Artisan",	"Guild Merchant",	"Harborfolk",	"Haunted One",	"Hermit",	"Hillsfar Merchant",	"Hillsfar Smuggler",	"House Agent",	"Inheritor",	"Initiate",	"Inquisitor",	"Investigator",	"Iron Route Bandit",	"Knight",	"Knight of the Order",	"Mercenary Veteran",	"Mulmaster Aristocrat",	"Noble",	"Outlander",	"Phlan Insurgent",	"Phlan Refugee",	"Pirate",	"Sage",	"Sailor",	"Secret Identity",	"Shade Fanatic",	"Soldier",	"Spy",	"Stojanow Prisoner",	"Ticklebelly Nomad",	"Trade Sheriff",	"Urban Bounty Hunter",	"Urchin",	"Uthgardt Tribe Member",	"Vizier",	"Waterdhavian Noble")
 CharBackgroundsLanguages = {"Acolyte":"Any x2",	"Anthropologist":"Any x2",	"Archaeologist":"Any x1",	"Adopted":"Any x2",	"Black Fist Double Agent":"None",	"Caravan Specialist":"Any x1",	"Charlatan":"None",	"City Watch":"Any x2",	"Clan Crafter":"Any x1",	"Cloistered Scholar":"Any x2",	"Cormanthor Refugee":"Elvish",	"Courtier":"Any x2",	"Criminal":"None",	"Dragon Casualty":"Draconic",	"Earthspur Miner":"Dwarvish, Undercommon",	"Entertainer":"None",	"Faction Agent":"Any x2",	"Far Traveler":"Any x1",	"Folk Hero":"None",	"Gate Urchin":"None",	"Gladiator":"None",	"Guild Artisan":"Any x1",	"Guild Merchant":"Any x1",	"Harborfolk":"None",	"Haunted One":"Exotic x1",	"Hermit":"Any x1",	"Hillsfar Merchant":"None",	"Hillsfar Smuggler":"Any x1",	"House Agent":"None",	"Inheritor":"None",	"Initiate":"None",	"Inquisitor":"None",	"Investigator":"Any x2",	"Iron Route Bandit":"None",	"Knight":"Any x1",	"Knight of the Order":"Any x1",	"Mercenary Veteran":"None",	"Mulmaster Aristocrat":"None",	"Noble":"Any x1",	"Outlander":"Any x1",	"Phlan Insurgent":"None",	"Phlan Refugee":"Any x1",	"Pirate":"None",	"Sage":"Any x2",	"Sailor":"None",	"Secret Identity":"None",	"Shade Fanatic":"Netherese",	"Soldier":"None",	"Spy":"None",	"Stojanow Prisoner":"None",	"Ticklebelly Nomad":"Giant",	"Trade Sheriff":"Elvish",	"Urban Bounty Hunter":"None",	"Urchin":"None",	"Uthgardt Tribe Member":"Any x1",	"Vizier":"None",	"Waterdhavian Noble":"Any x1"}
-
+CharGenders = ("Male","Female")
 CharLanguagesFull =("Abyssal",	"Celestial",	"Draconic",	"Deep Speech",	"Infernal",	"Primordial",	"Sylvan",	"Undercommon",	"Druidic",	"Dwarvish",	"Elvish",	"Giant",	"Gnomish",	"Goblin",	"Halfling",	"Orc",	"Dwarvish",	"Elvish",	"Giant",	"Gnomish",	"Goblin",	"Halfling",	"Orc")
 CharLanguagesExotic =("Abyssal",	"Celestial",	"Draconic",	"Deep Speech",	"Infernal",	"Primordial",	"Sylvan",	"Undercommon",	"Druidic")
 CharLanguagesStandard = ("Dwarvish",	"Elvish",	"Giant",	"Gnomish",	"Goblin",	"Halfling",	"Orc")
+
 
 #List of Weapons that can be attacked with - used to populate attack section later
 WeaponsStrBased = {"Club": "1d4 B", "Great Club": "1d8 B", "Handaxe": "1d6 S", "Javelin": "1d6 p",
@@ -60,10 +59,75 @@ ArmorHeavy = {"Chainmail":16 , "Plate Armor":18 , "Ring Mail":14 , "Splint Mail"
 
 
 #Choose a class, race, alignment, background
-CharClass = random.choice(CharClasses)
 CharRace = random.choice(CharRaces)
-CharAlignment = random.choice(CharAlignments)
 CharBackground = random.choice(CharBackgrounds)
+CharGender = random.choice(CharGenders)
+
+#Defining probabilities of possible class associated with race
+Class=["Fighter","Rogue","Warlock","Wizard","Cleric","Barbarian","Ranger","Sorcerer","Paladin","Monk","Bard","Druid"]
+Humanclassweights=[0.25,0.09,0.05,0.17,0.13,0.01,0.05,0.01,0.09,0.13,0.01,0.01]
+Elfclassweights=[0.03,0.13,0.03,0.15,0.07,0.01,0.21,0.07,0.01,0.11,0.01,0.17]
+Halfelfclassweights=[0.01,0.13,0.17,0.03,0.03,0.01,0.11,0.15,0.07,0.01,0.21,0.07]
+Tieflingclassweights=[0.01,0.13,0.19,0.11,0.05,0.01,0.01,0.17,0.09,0.03,0.15,0.05]
+Dwarfclassweights=[0.15,0.01,0.01,0.03,0.23,0.17,0.05,0.01,0.13,0.05,0.05,0.11]
+Dragonbornclassweights=[0.13,0.01,0.11,0.01,0.07,0.15,0.01,0.17,0.21,0.07,0.01,0.05]
+Halflingclassweights=[0.01,0.29,0.01,0.03,0.03,0.03,0.13,0.03,0.01,0.15,0.17,0.11]
+Halforcclassweights=[0.17,0.01,0.03,0.01,0.09,0.25,0.03,0.01,0.15,0.13,0.03,0.09]
+Gnomeclassweights=[0.01,0.13,0.05,0.27,0.11,0.01,0.05,0.05,0.01,0.01,0.13,0.17]
+
+#Determining character alignment and saving the output as "CharAlignment"
+from numpy.random import choice
+Alignment =["Lawful good", "Lawful neutral","Lawful evil","Neutral","Chaotic"]
+Alignmentweights=[0.4,0.2,0.1,0.2,0.1]
+CharAlignment=(choice(Alignment, p=Alignmentweights))
+
+#Determining character class based on its race
+if CharRace=="Human":
+    CharClass =choice(Class, p=Humanclassweights)
+elif CharRace=="Elf":
+   CharClass=choice(Class, p=Elfclassweights)
+elif CharRace=="Half-Elf":
+    CharClass=choice(Class, p=Halfelfclassweights)
+elif CharRace=="Tiefling":
+    CharClass =choice(Class, p=Tieflingclassweights)
+elif CharRace=="Dwarf":
+    CharClass=choice(Class, p=Dwarfclassweights)
+elif CharRace=="Dragonborn":
+    CharClass=choice(Class, p=Dragonbornclassweights)
+elif CharRace=="Halfling":
+    CharClass =choice(Class, p=Halflingclassweights)
+elif CharRace=="Half Orc":
+    CharClass=choice(Class, p=Halforcclassweights)
+elif CharRace=="Gnome":
+    CharClass =choice(Class, p=Gnomeclassweights)
+else:
+    CharClass ="Error: Race not on the approved list"
+
+#Importing character names
+import pandas as pd
+df = pd.read_excel (r'C:\Users\yk0413\Desktop\Python\D&D_race x class.xlsx',sheet_name='Names')
+
+
+#Creating unique character name query
+FirstNameLookUp = str(CharRace) +"_"+ str(CharGender)
+LastNameLookUp = str(CharRace) +"_Last"
+
+
+#Selecting which name column to import
+FirstNameColNum=random.randint(1,10)
+FirstNameCol="Name"+str(FirstNameColNum)
+LastNameColNum=random.randint(1,10)
+LastNameCol="Name"+str(LastNameColNum)
+
+
+#Looking up the name query from the Excel data frame
+CharFirstName = df[df['Race_Gender'] == FirstNameLookUp][FirstNameCol].sum()
+CharLastName = df[df['Race_Gender'] == LastNameLookUp][LastNameCol].sum()
+
+CharName = str(CharFirstName) +" " +str(CharLastName)
+
+
+
 
 
 #Prioritize stats by class, then replace the prioritization values with the actual values rolled in the StatRoller function
@@ -620,10 +684,6 @@ def Equipment():
 
     return CharEquips
 
-
-#Choose character name from a list (should make this better and race specific
-CharNameList = ("Bob the Builder","Joe Montana","Yankee Doodle","Sarah McClachlan","Michael Jordan","Peggy Sue","Janice Joplin","Sarah Conner","David Robinson")
-CharName = random.choice(CharNameList)
 
 #Lists of traits, etc taken from online
 Traits = ["I idolize a particular hero of my faith and constantly refer to that person's deeds and example.",	"I can find common ground between the fiercest enemies, empathizing with them and always working toward peace.",	"I see omens in every event and action. The gods try to speak to us, we just need to listen.",	"Nothing can shake my optimistic attitude.",	"I quote (or misquote) the sacred texts and proverbs in almost every situation.",	"I am tolerant (or intolerant) of other faiths and respect (or condemn) the worship of other gods.",	"I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me.",	"I've spent so long in the temple that I have little practical experience dealing with people in the outside world.",	"I fall in and out of love easily, and am always pursuing someone.",	"I have a joke for every occasion, especially occasions where humor is inappropriate.",	"Flattery is my preferred trick for getting what I want.",	"I'm a born gambler who can't resist taking a risk for a potential payoff.",	"I lie about almost everything, even when there's no good reason to.",	"Sarcasm and insults are my weapons of choice.",	"I keep multiple holy symbols on me and invoke whatever deity might come in useful at any given moment.",	"I pocket anything I see that might have some value.",	"I always have plan for what to do when things go wrong.",	"I am always calm, no matter what the situation. I never raise my voice or let my emotions control me.",	"The first thing I do in a new place is note the locations of everything valuable--or where such things could be hidden.",	"I would rather make a new friend than a new enemy.",	"I am incredibly slow to trust. Those who seem the fairest often have the most to hide.",	"I don't pay attention to the risks in a situation. Never tell me the odds.",	"The best way to get me to do something is to tell me I can't do it.",	"I blow up at the slightest insult.",	"I know a story relevant to almost every situation.",	"Whenever I come to a new place, I collect local rumors and spread gossip.",	"I'm a hopeless romantic, always searching for that 'special someone'.",	"Nobody stays angry at me or around me for long, since I can defuse any amount of tension.",	"I love a good insult, even one directed at me.",	"I get bitter if I'm not the center of attention.",	"I'll settle for nothing less than perfection.",	"I change my mood or my mind as quickly as I change key in a song.",	"I judge people by their actions, not their words.",	"If someone is in trouble, I'm always willing to lend help.",	"When I set my mind to something, I follow through no matter what gets in my way.",	"I have a strong sense of fair play and always try to find the most equitable solution to arguments.",	"I'm confident in my own abilities and do what I can to instill confidence in others.",	"Thinking is for other people. I prefer action.",	"I misuse long words in an attempt to sound smarter.",	"I get bored easily. When am I going to get on with my destiny.",	"I believe that everything worth doing is worth doing right. I can't help it--I'm a perfectionist.",	"I'm a snob who looks down on those who can't appreciate fine art.",	"I always want to know how things work and what makes people tick.",	"I'm full of witty aphorisms and have a proverb for every occasion.",	"I'm rude to people who lack my commitment to hard work and fair play.",	"I like to talk at length about my profession.",	"I don't part with my money easily and will haggle tirelessly to get the best deal possible.",	"I'm well known for my work, and I want to make sure everyone appreciates it. I'm always taken aback when people haven't heard of me.",	"I've been isolated for so long that I rarely speak, preferring gestures and the occasional grunt.",	"I am utterly serene, even in the face of disaster.",	"The leader of my community has something wise to say on every topic, and I am eager to share that wisdom.",	"I feel tremendous empathy for all who suffer.",	"I'm oblivious to etiquette and social expectations.",	"I connect everything that happens to me to a grand cosmic plan.",	"I often get lost in my own thoughts and contemplations, becoming oblivious to my surroundings.",	"I am working on a grand philosophical theory and love sharing my ideas.",	"My eloquent flattery makes everyone I talk to feel like the most wonderful and important person in the world.",	"The common folk love me for my kindness and generosity.",	"No one could doubt by looking at my regal bearing that I am a cut above the unwashed masses.",	"I take great pains to always look my best and follow the latest fashions.",	"I don't like to get my hands dirty, and I won't be caught dead in unsuitable accommodations.",	"Despite my birth, I do not place myself above other folk. We all have the same blood.",	"My favor, once lost, is lost forever.",	"If you do me an injury, I will crush you, ruin your name, and salt your fields.",	"I'm driven by a wanderlust that led me away from home.",	"I watch over my friends as if they were a litter of newborn pups.",	"I once ran twenty-five miles without stopping to warn my clan of an approaching orc horde. I'd do it again if I had to.",	"I have a lesson for every situation, drawn from observing nature.",	"I place no stock in wealthy or well-mannered folk. Money and manners won't save you from a hungry owlbear.",	"I'm always picking things up, absently fiddling with them, and sometimes accidentally breaking them.",	"I feel far more comfortable around animals than people.",	"I was, in fact, raised by wolves.",	"I use polysyllabic words to convey the impression of great erudition.",	"I've read every book in the world's greatest libraries--or like to boast that I have.",	"I'm used to helping out those who aren't as smart as I am, and I patiently explain anything and everything to others.",	"There's nothing I like more than a good mystery.",	"I'm willing to listen to every side of an argument before I make my own judgment.",	"I...speak...slowly...when talking...to idiots...which...almost...everyone...is...compared...to me.",	"I am horribly, horribly awkward in social situations.",	"I'm convinced that people are always trying to steal my secrets.",	"My friends know they can rely on me, no matter what.",	"I work hard so that I can play hard when the work is done.",	"I enjoy sailing into new ports and making new friends over a flagon of ale.",	"I stretch the truth for the sake of a good story.",	"To me, a tavern brawl is a nice way to get to know a new city.",	"I never pass up a friendly wager.",	"My language is as foul as an otyugh nest.",	"I like a job well done, especially if I can convince someone else to do it.",	"I'm always polite and respectful.",	"I'm haunted by memories of war. I can't get the images of violence out of my mind.",	"I've lost too many friends, and I'm slow to make new ones.",	"I'm full of inspiring and cautionary tales from my military experience relevant to almost every combat situation.",	"I can stare down a hellhound without flinching.",	"I enjoy being strong and like breaking things.",	"I have a crude sense of humor.",	"I face problems head-on. A simple direct solution is the best path to success.",	"I hide scraps of food and trinkets away in my pockets.",	"I ask a lot of questions.",	"I like to squeeze into small places where no one else can get to me.",	"I sleep with my back to a wall or tree, with everything I own wrapped in a bundle in my arms.",	"I eat like a pig and have bad manners.",	"I think anyone who's nice to me is hiding evil intent.",	"I don't like to bathe.",	"I bluntly say what other people are hinting or hiding."
