@@ -105,7 +105,6 @@ else:
 
 #Importing character names
 import pandas as pd
-
 df = pd.read_excel(r"D&D_race x class.xlsx",sheet_name='Names')
 
 #Creating unique character name query
@@ -134,82 +133,7 @@ CharName = str(CharFirstName) +" " +str(CharLastName)
 #Return a dictionary containing the stats and a dictionary containing the modifiers calculated off the stats
 
 
-#################
-#Populate Languages, and speed depending on which race is rolled
-def RaceStuff():
-    Languages = []
-    if CharRace == "Dragonborn":
-        Languages.append("Common")
-        Languages.append("Draconic")
-        Speed = 30
-    if CharRace == "Dwarf":
-        Languages.append("Common")
-        Languages.append("Dwarvish")
-        Speed = 25
-    if CharRace == "Elf":
-        Languages.append("Common")
-        Languages.append("Elvish")
-        Speed = 30
-    if CharRace == "Gnome":
-        Languages.append("Common")
-        Languages.append("Gnomish")
-        Speed = 25
-    if CharRace == "Half Elf":
-        Languages.append("Common")
-        Languages.append("Elvish")
-        Languages.append(random.choice(CharLanguagesFull))
-        #Figure out a way to prevent duplication of Elvish!!!
-        Speed = 30
-    if CharRace == "Halfling":
-        Languages.append("Common")
-        Languages.append("Halfling")
-        Speed = 25
-    if CharRace == "Half Orc":
-        Languages.append("Common")
-        Languages.append("Orc")
-        Speed = 30
-    if CharRace == "Human":
-        Languages.append("Common")
-        Languages.append(random.choice(CharLanguagesFull))
-        Speed = 30
-    if CharRace == "Tiefling":
-        Languages.append("Common")
-        Languages.append("Infernal")
-        Speed = 30
 
-    return Languages,Speed
-
-#parse the returned values from the above function to separate variables
-CharRaceStuff = RaceStuff()
-CharLanguages = CharRaceStuff[0]
-CharSpeed = CharRaceStuff[1]
-
-#make a separate list of character languages based on
-BackgroundLanguages = []
-if (str(CharBackgroundsLanguages.get(CharBackground))) == "Any x2":
-    BackgroundLanguages.append(random.choice(CharLanguagesFull))
-    BackgroundLanguages.append(random.choice(CharLanguagesFull))
-    #Need to remove duplicates!
-if (str(CharBackgroundsLanguages.get(CharBackground))) == "Any x1":
-    BackgroundLanguages.append(random.choice(CharLanguagesFull))
-if (str(CharBackgroundsLanguages.get(CharBackground))) == "Exotic x1":
-    BackgroundLanguages.append(random.choice(CharLanguagesExotic))
-if (str(CharBackgroundsLanguages.get(CharBackground))) == "Elvish":
-    BackgroundLanguages.append("Elvish")
-if (str(CharBackgroundsLanguages.get(CharBackground))) == "Draconic":
-    BackgroundLanguages.append("Draconic")
-if (str(CharBackgroundsLanguages.get(CharBackground))) == "Netherese":
-    BackgroundLanguages.append("Netherese")
-if (str(CharBackgroundsLanguages.get(CharBackground))) == "Giant":
-    BackgroundLanguages.append("Giant")
-if (str(CharBackgroundsLanguages.get(CharBackground))) == "Dwarvish, Undercommon":
-    BackgroundLanguages.append("Dwarvish")
-    BackgroundLanguages.append("Undercommon")
-
-#Add Background-granted languages to race-granted languages
-CharLanguages = CharLanguages + BackgroundLanguages
-#remove duplicate languages by converting CharLanguages to Dict (automatically removes duplicates) then back to List
-CharLanguages = list(dict.fromkeys(CharLanguages))
 
 ##############################
 
@@ -405,6 +329,87 @@ SThrows = CharMods.copy()
 SThrows[SavProf1] += 2
 SThrows[SavProf2] += 2
 CharProficiencies = CharStatsAndMods[6]
+
+
+#################
+
+##Youna to add racial attribute bonuses, add "extra" column from racial bonus spreadsheet to "features & traits" on character sheet
+#reminder to copy textwrap code
+#Populate Languages, and speed depending on which race is rolled
+def RaceStuff():
+    Languages = []
+    if CharRace == "Dragonborn":
+        Languages.append("Common")
+        Languages.append("Draconic")
+        Speed = 30
+    if CharRace == "Dwarf":
+        Languages.append("Common")
+        Languages.append("Dwarvish")
+        Speed = 25
+    if CharRace == "Elf":
+        Languages.append("Common")
+        Languages.append("Elvish")
+        Speed = 30
+    if CharRace == "Gnome":
+        Languages.append("Common")
+        Languages.append("Gnomish")
+        Speed = 25
+    if CharRace == "Half Elf":
+        Languages.append("Common")
+        Languages.append("Elvish")
+        Languages.append(random.choice(CharLanguagesFull))
+        #Figure out a way to prevent duplication of Elvish!!!
+        Speed = 30
+    if CharRace == "Halfling":
+        Languages.append("Common")
+        Languages.append("Halfling")
+        Speed = 25
+    if CharRace == "Half Orc":
+        Languages.append("Common")
+        Languages.append("Orc")
+        Speed = 30
+    if CharRace == "Human":
+        Languages.append("Common")
+        Languages.append(random.choice(CharLanguagesFull))
+        Speed = 30
+    if CharRace == "Tiefling":
+        Languages.append("Common")
+        Languages.append("Infernal")
+        Speed = 30
+
+    return Languages,Speed
+
+#parse the returned values from the above function to separate variables
+CharRaceStuff = RaceStuff()
+CharLanguages = CharRaceStuff[0]
+CharSpeed = CharRaceStuff[1]
+
+#make a separate list of character languages based on
+BackgroundLanguages = []
+if (str(CharBackgroundsLanguages.get(CharBackground))) == "Any x2":
+    BackgroundLanguages.append(random.choice(CharLanguagesFull))
+    BackgroundLanguages.append(random.choice(CharLanguagesFull))
+    #Need to remove duplicates!
+if (str(CharBackgroundsLanguages.get(CharBackground))) == "Any x1":
+    BackgroundLanguages.append(random.choice(CharLanguagesFull))
+if (str(CharBackgroundsLanguages.get(CharBackground))) == "Exotic x1":
+    BackgroundLanguages.append(random.choice(CharLanguagesExotic))
+if (str(CharBackgroundsLanguages.get(CharBackground))) == "Elvish":
+    BackgroundLanguages.append("Elvish")
+if (str(CharBackgroundsLanguages.get(CharBackground))) == "Draconic":
+    BackgroundLanguages.append("Draconic")
+if (str(CharBackgroundsLanguages.get(CharBackground))) == "Netherese":
+    BackgroundLanguages.append("Netherese")
+if (str(CharBackgroundsLanguages.get(CharBackground))) == "Giant":
+    BackgroundLanguages.append("Giant")
+if (str(CharBackgroundsLanguages.get(CharBackground))) == "Dwarvish, Undercommon":
+    BackgroundLanguages.append("Dwarvish")
+    BackgroundLanguages.append("Undercommon")
+
+#Add Background-granted languages to race-granted languages
+CharLanguages = CharLanguages + BackgroundLanguages
+#remove duplicate languages by converting CharLanguages to Dict (automatically removes duplicates) then back to List
+CharLanguages = list(dict.fromkeys(CharLanguages))
 
 
 #Create the equipment section of the character sheet
