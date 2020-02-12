@@ -105,8 +105,8 @@ else:
 
 #Importing character names
 import pandas as pd
-df = pd.read_excel (r'C:\Users\yk0413\Desktop\Python\D&D_race x class.xlsx',sheet_name='Names')
 
+df = pd.read_excel(r"D&D_race x class.xlsx",sheet_name='Names')
 
 #Creating unique character name query
 FirstNameLookUp = str(CharRace) +"_"+ str(CharGender)
