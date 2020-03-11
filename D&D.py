@@ -826,8 +826,6 @@ ArmorClass = 10 + CharMods.get("Dexterity")
 
 #Search through inventory, find heaviest armor, add to AC bonus.  Also, add shield AC bonus where needed.
 
-#ArmorLight = {"Leather Armor":1, "Padded Armor":1, "Studded Armor":2}
-
 
 for items in Equips:
     if items in ArmorLight.keys():
@@ -845,8 +843,8 @@ for items in Equips:
 
 if "Shield" in Equips:
     ArmorClass += 2
-
-#Need to fix the problem with five javelins etc!
+elif "Wooden Shield" in Equips:
+    ArmorClass +=2
 
 
 #Search through inventory, add weapons to list of attack options along with hit modifier, damage modifier, and damage bonus
