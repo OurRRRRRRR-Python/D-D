@@ -20,7 +20,7 @@ def StatRoller():
     return StatList
 
 #Create lists of various things
-CharRaces = ["Dragonborn","Dwarf","Elf","Gnome","Half Elf","Half Orc","Halfling","Half Orc","Human","Tiefling"]
+CharRaces = ["Dragonborn","Dwarf","Elf","Gnome","Half-Elf","Half Orc","Halfling","Half Orc","Human","Tiefling"]
 CharBackgrounds =("Acolyte",	"Anthropologist",	"Archaeologist",	"Adopted",	"Black Fist Double Agent",	"Caravan Specialist",	"Charlatan",	"City Watch",	"Clan Crafter",	"Cloistered Scholar",	"Cormanthor Refugee",	"Courtier",	"Criminal",	"Dragon Casualty",	"Earthspur Miner",	"Entertainer",	"Faction Agent",	"Far Traveler",	"Folk Hero",	"Gate Urchin",	"Gladiator",	"Guild Artisan",	"Guild Merchant",	"Harborfolk",	"Haunted One",	"Hermit",	"Hillsfar Merchant",	"Hillsfar Smuggler",	"House Agent",	"Inheritor",	"Initiate",	"Inquisitor",	"Investigator",	"Iron Route Bandit",	"Knight",	"Knight of the Order",	"Mercenary Veteran",	"Mulmaster Aristocrat",	"Noble",	"Outlander",	"Phlan Insurgent",	"Phlan Refugee",	"Pirate",	"Sage",	"Sailor",	"Secret Identity",	"Shade Fanatic",	"Soldier",	"Spy",	"Stojanow Prisoner",	"Ticklebelly Nomad",	"Trade Sheriff",	"Urban Bounty Hunter",	"Urchin",	"Uthgardt Tribe Member",	"Vizier",	"Waterdhavian Noble")
 CharBackgroundsLanguages = {"Acolyte":"Any x2",	"Anthropologist":"Any x2",	"Archaeologist":"Any x1",	"Adopted":"Any x2",	"Black Fist Double Agent":"None",	"Caravan Specialist":"Any x1",	"Charlatan":"None",	"City Watch":"Any x2",	"Clan Crafter":"Any x1",	"Cloistered Scholar":"Any x2",	"Cormanthor Refugee":"Elvish",	"Courtier":"Any x2",	"Criminal":"None",	"Dragon Casualty":"Draconic",	"Earthspur Miner":"Dwarvish, Undercommon",	"Entertainer":"None",	"Faction Agent":"Any x2",	"Far Traveler":"Any x1",	"Folk Hero":"None",	"Gate Urchin":"None",	"Gladiator":"None",	"Guild Artisan":"Any x1",	"Guild Merchant":"Any x1",	"Harborfolk":"None",	"Haunted One":"Exotic x1",	"Hermit":"Any x1",	"Hillsfar Merchant":"None",	"Hillsfar Smuggler":"Any x1",	"House Agent":"None",	"Inheritor":"None",	"Initiate":"None",	"Inquisitor":"None",	"Investigator":"Any x2",	"Iron Route Bandit":"None",	"Knight":"Any x1",	"Knight of the Order":"Any x1",	"Mercenary Veteran":"None",	"Mulmaster Aristocrat":"None",	"Noble":"Any x1",	"Outlander":"Any x1",	"Phlan Insurgent":"None",	"Phlan Refugee":"Any x1",	"Pirate":"None",	"Sage":"Any x2",	"Sailor":"None",	"Secret Identity":"None",	"Shade Fanatic":"Netherese",	"Soldier":"None",	"Spy":"None",	"Stojanow Prisoner":"None",	"Ticklebelly Nomad":"Giant",	"Trade Sheriff":"Elvish",	"Urban Bounty Hunter":"None",	"Urchin":"None",	"Uthgardt Tribe Member":"Any x1",	"Vizier":"None",	"Waterdhavian Noble":"Any x1"}
 CharGenders = ("Male","Female")
@@ -333,6 +333,29 @@ SThrows[SavProf1] += 2
 SThrows[SavProf2] += 2
 CharProficiencies = CharStatsAndMods[6]
 
+#Determine Skills Bonus START
+Skillsbonus = {"Acrobatics":0,"Animal Handling":0,"Arcana":0,"Athletics":0,"Deception":0,"History":0,"Insight":0,"Intimidation":0,"Investigation":0,"Medicine":0,"Nature":0,"Perception":0,"Performance":0,"Persuasion":0,"Religion":0,"Sleight of Hand":0,"Stealth":0,"Survival":0}
+
+#Want to make a separate Skills like.  Trying to copy from CharMods list
+Skillsbonus["Acrobatics"] += CharMods["Dexterity"]
+Skillsbonus["Animal Handling"] += CharMods["Wisdom"]
+Skillsbonus["Arcana"] += CharMods["Intelligence"]
+Skillsbonus["Athletics"] += CharMods["Strength"]
+Skillsbonus["Deception"] += CharMods["Charisma"]
+Skillsbonus["History"] += CharMods["Intelligence"]
+Skillsbonus["Insight"] += CharMods["Wisdom"]
+Skillsbonus["Intimidation"] += CharMods["Charisma"]
+Skillsbonus["Investigation"] += CharMods["Intelligence"]
+Skillsbonus["Medicine"] += CharMods["Wisdom"]
+Skillsbonus["Nature"] += CharMods["Intelligence"]
+Skillsbonus["Perception"] += CharMods["Wisdom"]
+Skillsbonus["Performance"] += CharMods["Charisma"]
+Skillsbonus["Persuasion"] += CharMods["Charisma"]
+Skillsbonus["Religion"] += CharMods["Intelligence"]
+Skillsbonus["Sleight of Hand"] += CharMods["Dexterity"]
+Skillsbonus["Stealth"] += CharMods["Dexterity"]
+Skillsbonus["Survival"] += CharMods["Wisdom"]
+#Determine Skills Bonus END
 
 #################
 
@@ -357,7 +380,7 @@ def RaceStuff():
         Languages.append("Common")
         Languages.append("Gnomish")
         Speed = 25
-    if CharRace == "Half Elf":
+    if CharRace == "Half-Elf":
         Languages.append("Common")
         Languages.append("Elvish")
         Languages.append(random.choice(CharLanguagesFull))
@@ -752,6 +775,34 @@ can.drawString(116, 551, str('{0:+d}'.format(SThrows.get("Constitution"))))
 can.drawString(116, 538, str('{0:+d}'.format(SThrows.get("Intelligence"))))
 can.drawString(116, 524, str('{0:+d}'.format(SThrows.get("Wisdom"))))
 can.drawString(116, 511, str('{0:+d}'.format(SThrows.get("Charisma"))))
+
+#Add dot to Bonus Saving Throws
+
+DotPlacer = {"Strength":578,"Dexterity":565,"Constitution":551,"Intelligence":538,"Wisdom":524,"Charisma":511}
+can.setFont('Helvetica',24)
+can.drawString(100, DotPlacer.get(SavProf1)-6, "•")
+can.drawString(100, DotPlacer.get(SavProf2)-6, "•")
+
+#Populate Skills
+can.setFont('Helvetica',8)
+can.drawString(116, 463, str('{0:+d}'.format(Skillsbonus.get("Acrobatics"))))
+can.drawString(116, 449, str('{0:+d}'.format(Skillsbonus.get("Animal Handling"))))
+can.drawString(116, 436, str('{0:+d}'.format(Skillsbonus.get("Arcana"))))
+can.drawString(116, 422, str('{0:+d}'.format(Skillsbonus.get("Athletics"))))
+can.drawString(116, 409, str('{0:+d}'.format(Skillsbonus.get("Deception"))))
+can.drawString(116, 395, str('{0:+d}'.format(Skillsbonus.get("History"))))
+can.drawString(116, 382, str('{0:+d}'.format(Skillsbonus.get("Insight"))))
+can.drawString(116, 368, str('{0:+d}'.format(Skillsbonus.get("Intimidation"))))
+can.drawString(116, 355, str('{0:+d}'.format(Skillsbonus.get("Investigation"))))
+can.drawString(116, 341, str('{0:+d}'.format(Skillsbonus.get("Medicine"))))
+can.drawString(116, 328, str('{0:+d}'.format(Skillsbonus.get("Nature"))))
+can.drawString(116, 314, str('{0:+d}'.format(Skillsbonus.get("Perception"))))
+can.drawString(116, 301, str('{0:+d}'.format(Skillsbonus.get("Performance"))))
+can.drawString(116, 287, str('{0:+d}'.format(Skillsbonus.get("Persuasion"))))
+can.drawString(116, 273, str('{0:+d}'.format(Skillsbonus.get("Religion"))))
+can.drawString(116, 260, str('{0:+d}'.format(Skillsbonus.get("Sleight of Hand"))))
+can.drawString(116, 247, str('{0:+d}'.format(Skillsbonus.get("Stealth"))))
+can.drawString(116, 233, str('{0:+d}'.format(Skillsbonus.get("Survival"))))
 
 can.setFont('Helvetica',10)
 can.drawString(101, 611, "+2") #proficiency bonus
