@@ -741,6 +741,24 @@ import textwrap
 
 #Stole this code form online...I don't understand the io or canvas stuff
 packet = io.BytesIO()
+
+
+#Commands for writing to page 2; logically placed above commands for writing to page 1
+
+packet2 = io.BytesIO()
+
+can2 = canvas.Canvas(packet2, pagesize=letter)
+
+
+##These are example/practice written commands - delete them
+can2.setFont('Helvetica',30)
+can2.drawString(272, 705, CharRace) #Race
+can2.drawString(272, 731, CharClass) #Class
+
+
+
+
+#commands for writing to page 1
 # create a new PDF with Reportlab
 can = canvas.Canvas(packet, pagesize=letter)
 can.setFont('Helvetica',12)
@@ -952,11 +970,15 @@ for number,items in enumerate(wrap_text, start=1):
     #can.drawString(36, 169 - int(number)*12, items)  # Languages
 
 can.save()
+can2.save()
 
 #move to the beginning of the StringIO buffer
 packet.seek(0)
 new_pdf = PdfFileReader(packet)
 
+
+packet2.seek(0)
+new_pdf2 = PdfFileReader(packet2)
 
 # read your existing PDF
 existing_pdf = PdfFileReader(open("5E_CharacterSheet_Fillable.pdf", "rb"))
@@ -965,6 +987,10 @@ output = PdfFileWriter()
 page = existing_pdf.getPage(0)
 page.mergePage(new_pdf.getPage(0))
 output.addPage(page)
+
+page2 = existing_pdf.getPage(1)
+page2.mergePage(new_pdf2.getPage(0))
+output.addPage(page2)
 # finally, write "output" to a real file
 NewFileName = "@NewChar_"+CharName+".pdf"
 
