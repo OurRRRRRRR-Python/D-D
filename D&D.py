@@ -126,9 +126,10 @@ LastNameCol="Name"+str(LastNameColNum)
 CharFirstName = df[df['Race_Gender'] == FirstNameLookUp][FirstNameCol].sum()
 CharLastName = df[df['Race_Gender'] == LastNameLookUp][LastNameCol].sum()
 
-CharName = str(CharFirstName) +" " +str(CharLastName)
-
-
+if CharRace == "Half Orc":
+    CharName = str(CharFirstName)
+else:
+    CharName = str(CharFirstName) + " " + str(CharLastName)
 
 
 
