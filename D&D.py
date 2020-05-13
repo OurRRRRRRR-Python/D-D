@@ -1158,7 +1158,7 @@ can.drawString(116, 233, str('{0:+d}'.format(Skillsbonus.get("Survival"))))
 
 can.setFont('Helvetica',10)
 can.drawString(101, 611, "+2") #proficiency bonus
-can.drawString(36, 188, "10") #Passive perception
+can.drawString(36, 188, str(10 + Skillsbonus.get("Perception"))) #Passive perception
 can.setFont('Helvetica',20)
 can.drawString(351, 628, str(CharSpeed)) #Speed
 can.drawString(292, 628, str(format(CharMods.get("Dexterity"), '+.00f'))) #Initiative
