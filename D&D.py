@@ -1128,7 +1128,7 @@ can.drawString(116, 524, str('{0:+d}'.format(SThrows.get("Wisdom"))))
 can.drawString(116, 511, str('{0:+d}'.format(SThrows.get("Charisma"))))
 
 #Add dot to Bonus Saving Throws
-DotPlacer = {"Strength":578,"Dexterity":565,"Constitution":551,"Intelligence":538,"Wisdom":524,"Charisma":511,"Acrobatics":463,"Animal Handling":449,"Arcana":436,"Athletics":422,"Deception":409,"History":395,"Insight":382,"Intimidation":368,"Investigation":355,"Medicine":341,"Nature":328,"Perception":314,"Performance":301,"Persuasion":287,"Religion":273,"Sleight of Hand":260,"Stealth":247,"Survival":233}
+DotPlacer = {"Strength":578,"Dexterity":565,"Constitution":551,"Intelligence":538,"Wisdom":524,"Charisma":511,"Acrobatics":463,"Animal Handling":449,"Arcana":436,"Athletics":422,"Deception":409,"History":395,"Insight":382,"Intimidation":368,"Investigation":355,"Medicine":341,"Nature":328,"Perception":314,"Performance":301,"Persuasion":287,"Religion":274,"Sleight of Hand":260,"Stealth":247,"Survival":233}
 can.setFont('Helvetica',24)
 can.drawString(100, DotPlacer.get(SavProf1)-6, "•")
 can.drawString(100, DotPlacer.get(SavProf2)-6, "•")
@@ -1151,7 +1151,7 @@ can.drawString(116, 328, str('{0:+d}'.format(Skillsbonus.get("Nature"))))
 can.drawString(116, 314, str('{0:+d}'.format(Skillsbonus.get("Perception"))))
 can.drawString(116, 301, str('{0:+d}'.format(Skillsbonus.get("Performance"))))
 can.drawString(116, 287, str('{0:+d}'.format(Skillsbonus.get("Persuasion"))))
-can.drawString(116, 273, str('{0:+d}'.format(Skillsbonus.get("Religion"))))
+can.drawString(116, 274, str('{0:+d}'.format(Skillsbonus.get("Religion"))))
 can.drawString(116, 260, str('{0:+d}'.format(Skillsbonus.get("Sleight of Hand"))))
 can.drawString(116, 247, str('{0:+d}'.format(Skillsbonus.get("Stealth"))))
 can.drawString(116, 233, str('{0:+d}'.format(Skillsbonus.get("Survival"))))
