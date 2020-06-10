@@ -131,6 +131,47 @@ if CharRace == "Half Orc":
 else:
     CharName = str(CharFirstName) + " " + str(CharLastName)
 
+      
+#Defining the base height, #  of sides for height dice, base weight, and # of sides for weight dice of character by race and gender in the nested dictionary
+CharPhysique={
+    'Human_Male':{'BaseHeight_inch':58,"HeightModDice":10,"BaseWeight_lb":120,"WeightModDice":4},
+    'Human_Female': {'BaseHeight_inch': 53, "HeightModDice": 10, "BaseWeight_lb": 85, "WeightModDice": 4},
+    'Dwarf_Male':{'BaseHeight_inch':45,"HeightModDice":4,"BaseWeight_lb":130,"WeightModDice":6},
+    'Dwarf_Female':{'BaseHeight_inch':43,"HeightModDice":4,"BaseWeight_lb":100,"WeightModDice":6},
+    'Elf_Male':{'BaseHeight_inch':53,"HeightModDice":6,"BaseWeight_lb":85,"WeightModDice":6},
+    'Elf_Female':{'BaseHeight_inch':53,"HeightModDice":6,"BaseWeight_lb":80,"WeightModDice":6},
+    'Gnome_Male':{'BaseHeight_inch':36,"HeightModDice":4,"BaseWeight_lb":40,"WeightModDice":1},
+    'Gnome_Female':{'BaseHeight_inch':36,"HeightModDice":4,"BaseWeight_lb":35,"WeightModDice":1},
+    'Halfling_Male':{'BaseHeight_inch':32,"HeightModDice":4,"BaseWeight_lb":30,"WeightModDice":1},
+    'Halfling_Female':{'BaseHeight_inch':30,"HeightModDice":4,"BaseWeight_lb":25,"WeightModDice":1},
+    'Half-Elf_Male':{'BaseHeight_inch':55,"HeightModDice":8,"BaseWeight_lb":120,"WeightModDice":4},
+    'Half-Elf_Female':{'BaseHeight_inch':53,"HeightModDice":8,"BaseWeight_lb":100,"WeightModDice":4},
+    'Half Orc_Male':{'BaseHeight_inch':58,"HeightModDice":12,"BaseWeight_lb":150,"WeightModDice":6},
+    'Half Orc_Female':{'BaseHeight_inch':53,"HeightModDice":12,"BaseWeight_lb":110,"WeightModDice":6},
+    'Tiefling_Male':{'BaseHeight_inch':62,"HeightModDice":8,"BaseWeight_lb":110,"WeightModDice":4},
+    'Tiefling_Female':{'BaseHeight_inch':60,"HeightModDice":8,"BaseWeight_lb":90,"WeightModDice":4},
+    'Dragonborn_Male':{'BaseHeight_inch':66,"HeightModDice":8,"BaseWeight_lb":175,"WeightModDice":6},
+    'Dragonborn_Female':{'BaseHeight_inch':64,"HeightModDice":8,"BaseWeight_lb":155,"WeightModDice":6}
+}
+
+#Determining the character height by summing results of 2 dice rolled to the base height
+HeightDie1 = randint(1,int(CharPhysique[FirstNameLookUp]["HeightModDice"]))
+HeightDie2 = randint(1,int(CharPhysique[FirstNameLookUp]["HeightModDice"]))
+HeightDieSum = HeightDie1+HeightDie2
+TotalHeight_inch= CharPhysique[FirstNameLookUp]["BaseHeight_inch"]+ HeightDieSum
+CharHeight=str(TotalHeight_inch//12)+"'"+str(TotalHeight_inch%12)+'"'
+
+
+#Determining the character weight by adding the weight modifier sum (by rolling 2 weight dice) and multiplying it with the height die sum per the Player's Handbook
+if CharPhysique[FirstNameLookUp]["BaseWeight_lb"] ==1:
+    WeightDieSum=1
+else:
+    WeightDie1 = randint(1,int(CharPhysique[FirstNameLookUp]["WeightModDice"]))
+    WeightDie2 = randint(1,int(CharPhysique[FirstNameLookUp]["WeightModDice"]))
+    WeightDieSum = WeightDie1 + WeightDie2
+
+TotalWeightMod = HeightDieSum * WeightDieSum
+CharWeight = str(CharPhysique[FirstNameLookUp]["BaseWeight_lb"] + TotalWeightMod)+" lb"
 
 
 #Prioritize stats by class, then replace the prioritization values with the actual values rolled in the StatRoller function
@@ -1083,10 +1124,11 @@ packet2 = io.BytesIO()
 can2 = canvas.Canvas(packet2, pagesize=letter)
 
 
-##These are example/practice written commands - delete them
-can2.setFont('Helvetica',30)
-can2.drawString(272, 705, CharRace) #Race
-can2.drawString(272, 731, CharClass) #Class
+##Page 2 Character Height and Weight
+can2.setFont('Helvetica',12)
+can2.drawString(381, 728, str(CharHeight)) #Height
+can2.drawString(478, 728, str(CharWeight)) #Weight
+can2.drawString(65, 713, CharName) #Character name
 
 
 
