@@ -106,25 +106,52 @@ elif CharRace=="Gnome":
 else:
    CharClass ="Error: Race not on the approved list"
 
-#Importing character names
-import pandas as pd
-df = pd.read_excel(r"D&D_race x class.xlsx",sheet_name='Names')
 
 #Creating unique character name query
-FirstNameLookUp = str(CharRace) +"_"+ str(CharGender)
-LastNameLookUp = str(CharRace) +"_Last"
+FirstNameLookUp = str(CharRace) + "_" + str(CharGender)
+LastNameLookUp = str(CharRace) + "_Last"
 
 
-#Selecting which name column to import
-FirstNameColNum=random.randint(1,10)
-FirstNameCol="Name"+str(FirstNameColNum)
-LastNameColNum=random.randint(1,10)
-LastNameCol="Name"+str(LastNameColNum)
+CharFirstNames={
+    'Human_Male':["Anlow","Arando","Bram","Cale","Dalkon","Daylen","Dodd","Dungarth","Dyrk","Eandro","Falken","Feck","Fenton","Gryphero","Hagar","Jeras","Krynt","Lavant","Leyten","Madian","Malfier","Markus","Meklan","Namen","Navaren","Nerle","Nilus","Ningyan","Norris","Quentin","Semil","Sevenson","Steveren","Talfen","Tamond","Taran","Tavon","Tegan","Vanan","Vincent"],
+    'Human_Female':["Azura","Brey","Hallan","Kasaki","Lorelei","Mirabel","Pharana","Remora","Rosalyn","Sachil","Saidi","Tanika","Tura","Tylsa","Vencia","Xandrilla"],
+    'Dwarf_Male':["Agaro","Arnan","Auxlan","Avamir","Baelnar","Balfam","Bariken","Borkûl","Darkûl","Dolmen","Dyrnar","Erag","Ezegan","Ferrek","Garmûl","Glint","Ghorvas","Grimmalk","Haeltar","Halagmar","Halzar","Hlant","Korlag","Krag","Krim","Kurman","Lurtrum","Malagar","Mardam","Maulnar","Melgar","Morak","Orobok","Rogath","Roken","Rozag","Sabakzar","Sharak","Smethykk","Swargar","Thorbalt","Thorin","Tredigar","Vabûl","Vistrum","Wolvar"],
+    'Dwarf_Female':["Beyla","Fenryl","Grenenzel","Krystolari","Lokara","Lurka","Marnia","Praxana","Rokel","Roksana","Thurlfara","Vauldra","Veklani","Vronwe","Zebel"],
+    'Eladrin_Male':["Aialon","Elarahal","Jiardem","Laern","Lelyrian","Lephyrr","Loray","Sayadar","Talonien","Vaerlan","Xoneras","Zaquivir"],
+    'Eladrin_Female':["Allyria","Ayrdra","Deneth","Elseone","Etherea","Istiria","Karanwyn","Lieryn","Ravel","Sinariel","Sydri","Taris","Turue","Vacquiel","Valendra"],
+    'Elf_Male':["Alarcion","Alathar","Ariandar","Arromar","Borel","Bvachan","Carydion","Elgoth","Farlien","Ferel","Gaerlan","Iafalior","Kaelthorn","Laethan","Leliar","Leodor","Lorak","Lorifir","Morian","Oleran","Rylef","Savian","Seylas","Tevior","Veyas"],
+    'Elf_Female':["Aryllan","Atalya","Ayrthwil","Irva","Lyfalia","Ronefel","Thirya","Velene","Venefiq","Zereni"],
+    'Halfling_Male':["Arthan","Carvin","Corby","Cullen","Egen","Ernest","Gedi","Heron","Jeryl","Keffen","Kylem","Kynt","Leskyn","Neff","Orne","Quarrel","Rabbit","Rilkin","Snakebait","Tarfen","Titch","Tuck","Whim"],
+    'Halfling_Female':["Caliope","Emily","Piper","Rixi","Sabretha","Teg","Tilly","Toira","Vexia","Vil","Vzani","Zanthe","Ziza"],
+    'Tiefling_Male':["Ankhus","Arkadi","Armarius","Armillius","Archidius","Balmoloch","Calderax","Cavian","Cenereth","Chorum","Corynax","Dacian","Daelius","Damaceus","Decimeth","Demedor","Demerian","Dynachus","Grassus","Halius","Heleph","Incirion","Kalaradian","Kamien","Kazimir","Kzandro","Machem","Maetheus","Malfias","Marchion","Menerus","Namazeus","Nensis","Prismeus","Pyranikus","Razortail","Sejanus","Severian","Suffer","Syken","Tarkus","Vaius","Xerek","Zeth","Zevon"],
+    'Tiefling_Female':["Affyria","Cataclysmia","Domitia","Dorethau","Excellence","Hacari","Iritra","Lachira","Levatra","Mecretia","Milvia","Nericia","Precious","Rain","Samantia","Sunshine","Tenerife","Traya","Velavia","Zaidi","Zethaya"],
+    'Gnome_Male':["Boddynock","Dimble","Fonkin","Gimble","Glim","Gerbo","Jebeddo","Namfoodle","Roondar","Seebo","Zook","Grobnar"],
+    'Gnome_Female':["Bimpnotten","Caramip","Duvamil","Ellywick","Ellyjobell","Loopmottin","Mardnab","Roywyn","Shamil","Waywocket"],
+    'Dragonborn_Male':["Nakul","Wulwunax","Otiythas","Morvarax","Faerxan","Krivjhan","Eragrax","Krivroth","Wuvarax","Docrath","Ravoroth","Wraseth","Worqiroth","Balxan","Xarvarax","Faerjurn","Tazlin","Sulprax","Wralin","Gherash","Zrarinn","Iorfarn"],
+    'Dragonborn_Female':["Nysyassa","Sosira","Erlipatys","Valqorel","Lilofyire","Therbis","Cristhyra","Kanorae","Valmeila","Lorarinn","Zofshann","Eshsira","Jovyre","Arihime","Malzys","Crismyse","Nagil","Suwophyl","Kahymm"],
+    'Half Orc_Male':["Guruk","Renaburk","Belorim","Grumazall","Ukromarsh","Hunadur","Mokadim","Soragall","Zaranur","Renurimm","Ronorash","Oromak","Zevatar","Atrarsh","Kruogark","Atagul","Grursh","Ganag","Ronoruk"],
+    'Half Orc_Female':["Kotozara","Kotarel","Negum","Tuatar","Merogum","Eligum","Alish","Kerunchu","Sumigur","Gagri","Gryiki","Aruwar","Kotisha","Nozur","Kirizura","Grutar","Rashogur"],
+    'Half-Elf_Male':["Petelumin","Meivoril","Nigelaern","Radsaran","Raymede","Xanred","Leolis","Rodelor","Terneiros","Engovar","Frilfaelor","Higgotin","Stenhomin","Zanovar","Sarqinor","Niclanann","Balphon","Farashor","Humcoril","Reyarat"],
+    'Half-Elf_Female':["Halyraera","Binoa","Carlenas","Lillaya","Alybrae","Hermelana","Genelisa","Cedsyra","Edelshara","Mathrana"]
+}
+
+CharLastNames={
+    'Human_Last':["Arkalis","Armanci","Bilger","Blackstrand","Brightwater","Carnavon","Caskajaro","Coldshore","Coyle","Cresthill","Cuttlescar","Daargen","Dalicarlia","Danamark","Donoghan","Drumwind","Dunhall","Ereghast","Falck","Fallenbridge","Faringray","Fletcher","Fryft","Goldrudder","Grantham","Graylock","Gullscream","Hindergrass","Iscalon","Kreel","Kroft","Lamoth","Leerstrom","Lynchfield","Moonridge","Netheridge","Oakenheart","Pyncion","Ratley","Redraven","Revenmar","Roxley","Sell","Seratolva","Shanks","Shattermast","Shaulfer","Silvergraft","Stavenger","Stormchapel","Strong","Swiller","Talandro","Targana","Towerfall","Umbermoor","VanDevries","VanGandt","VanHyden","Varcona","Varzand","Voortham","Vrye","Webb","Welfer","Wilxes","Wintermere","Wygarthe","Zatchet"],
+    'Dwarf_Last':["Ambershard","Barrelhelm","Copperhearth","Deepmiddens","Drakantal","Evermead","Garkalan","Grimtor","Hackshield","Irongull","Markolak","Ramcrown","Rockharvest","Silvertarn","Skandalor","Zarkanan"],
+    'Eladrin_Last':["Lantherval","Lorhalien","Maldranthe","Shalbarain","Sirothian","Starfeon","Zolerii","Printemptest","Gwaviel","Haeren"],
+    'Elf_Last':["Autumnloft","Balefrost","Briarfell","Evenwind","Graytrails","Mooncairn","Riverwall","Stormwolf","Summergale","Sunshadow","Woodenhawk"],
+    'Halfling_Last':["Angler","Battlestone","Blackwater","Daggersharp","Deepstrider","Hollowpot","Puddle","Raftmite","Skiprock","Silverfin","Tanglestrand","Tricker","Willowrush","Yellowcrane"],
+    'Tiefling_Last':["Amarzian","Carnago","Domarien","Iscitan","Meluzan","Menetrian","Paradas","Romazi","Sarzan","Serechor","Shadowhorn","Szereban","Torzalan","Trelenus","Trevethor","Tryphon","Vadu","Vrago."],
+    'Gnome_Last':["Beren","Daergel","Folkor","Garrick","Nackle","Murnig","Ningel","Raulnor","Scheppen","Turen"],
+    'Dragonborn_Last':["Crincacmir","Yalduash","Uaxal","Kruamrith","Kloldrindead","Creastatorrun","Clerrhon","Nyuuldus","Axor","Thacodimin","Voccith","Numbucmid","Folmac","Lualrur","Amruajad","Klealkiar","Klichuuth","Cralthud","Temmudak"],
+    'Half Orc_Last':["Orcs don't deserve a last name!"],
+    'Half-Elf_Last':["Yllayarus","Famaris","Xilmaer","Loratris","Pasys","Robella","Xyrven","Kelneiros","Enran","Virharice","Xyrcaryn","Xillamin","Ravabalar","Grepeiros","Yllazeiros","Zylthyra","Gresatra","Waesthana","Ulaxidor","Venrel"]
+}
+
+CharFirstName=random.choice(CharFirstNames[FirstNameLookUp])
+CharLastName=random.choice(CharLastNames[LastNameLookUp])
 
 
-#Looking up the name query from the Excel data frame
-CharFirstName = df[df['Race_Gender'] == FirstNameLookUp][FirstNameCol].sum()
-CharLastName = df[df['Race_Gender'] == LastNameLookUp][LastNameCol].sum()
 
 if CharRace == "Half Orc":
     CharName = str(CharFirstName)
