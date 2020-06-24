@@ -1520,7 +1520,7 @@ if '20 Darts' in CharProficiencies:
 
 can.setFont('Helvetica', 7)
 
-wrap_text = textwrap.wrap("LANGUAGES: " + (CharLanguages + "    WEAPON/ARMOR: " + CharProficiencies), width=46)
+wrap_text = textwrap.wrap("LANGUAGES: " + (CharLanguages + "    WEAPON/ARMOR: " + CharProficiencies), width=43)
 for number, items in enumerate(wrap_text, start=1):
     can.drawString(37, 167 - int(number) * 9, items)  # Flaws
 # for number,items in enumerate(CharLanguages, start=1):
