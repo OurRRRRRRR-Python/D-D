@@ -1,419 +1,501 @@
 from random import randint
 import random
-#from collections import defaultdict
 
-#Roll 4d6 drop 1 six times, add those 6 numbers to a list, sort and return the list
+
+# from collections import defaultdict
+
+# Roll 4d6 drop 1 six times, add those 6 numbers to a list, sort and return the list
 def StatRoller():
-   i=1
-   StatList = []
-   while i<7:
-       die1 = randint(1,6)
-       die2 = randint(1,6)
-       die3 = randint(1,6)
-       die4 = randint(1,6)
-       DieRoller = (die1, die2, die3, die4)
-       DieRollerTop3 = sorted(DieRoller,reverse=True)[0:3]
-       DieSum = sum(DieRollerTop3)
-       StatList.append(DieSum)
-       StatList = sorted(StatList, reverse=True)
-       i += 1
-   return StatList
-
-#Create lists of various things
-CharRaces = ["Dragonborn","Dwarf","Elf","Gnome","Half-Elf","Half Orc","Halfling","Half Orc","Human","Tiefling"]
-CharBackgrounds =("Acolyte",   "Anthropologist",  "Archaeologist",   "Adopted", "Black Fist Double Agent", "Caravan Specialist",  "Charlatan",   "City Watch",  "Clan Crafter",    "Cloistered Scholar",  "Cormanthor Refugee",  "Courtier",    "Criminal",    "Dragon Casualty", "Earthspur Miner", "Entertainer", "Faction Agent",   "Far Traveler",    "Folk Hero",   "Gate Urchin", "Gladiator",   "Guild Artisan",   "Guild Merchant",  "Harborfolk",  "Haunted One", "Hermit",  "Hillsfar Merchant",   "Hillsfar Smuggler",   "House Agent", "Inheritor",   "Initiate",    "Inquisitor",  "Investigator",    "Iron Route Bandit",   "Knight",  "Knight of the Order", "Mercenary Veteran",   "Mulmaster Aristocrat",    "Noble",   "Outlander",   "Phlan Insurgent", "Phlan Refugee",   "Pirate",  "Sage",    "Sailor",  "Secret Identity", "Shade Fanatic",   "Soldier", "Spy", "Stojanow Prisoner",   "Ticklebelly Nomad",   "Trade Sheriff",   "Urban Bounty Hunter", "Urchin",  "Uthgardt Tribe Member",   "Vizier",  "Waterdhavian Noble")
-CharBackgroundsLanguages = {"Acolyte":"Any x2",    "Anthropologist":"Any x2", "Archaeologist":"Any x1",  "Adopted":"Any x2",    "Black Fist Double Agent":"None",  "Caravan Specialist":"Any x1", "Charlatan":"None",    "City Watch":"Any x2", "Clan Crafter":"Any x1",   "Cloistered Scholar":"Any x2", "Cormanthor Refugee":"Elvish", "Courtier":"Any x2",   "Criminal":"None", "Dragon Casualty":"Draconic",  "Earthspur Miner":"Dwarvish, Undercommon", "Entertainer":"None",  "Faction Agent":"Any x2",  "Far Traveler":"Any x1",   "Folk Hero":"None",    "Gate Urchin":"None",  "Gladiator":"None",    "Guild Artisan":"Any x1",  "Guild Merchant":"Any x1", "Harborfolk":"None",   "Haunted One":"Exotic x1", "Hermit":"Any x1", "Hillsfar Merchant":"None",    "Hillsfar Smuggler":"Any x1",  "House Agent":"None",  "Inheritor":"None",    "Initiate":"None", "Inquisitor":"None",   "Investigator":"Any x2",   "Iron Route Bandit":"None",    "Knight":"Any x1", "Knight of the Order":"Any x1",    "Mercenary Veteran":"None",    "Mulmaster Aristocrat":"None", "Noble":"Any x1",  "Outlander":"Any x1",  "Phlan Insurgent":"None",  "Phlan Refugee":"Any x1",  "Pirate":"None",   "Sage":"Any x2",   "Sailor":"None",   "Secret Identity":"None",  "Shade Fanatic":"Netherese",   "Soldier":"None",  "Spy":"None",  "Stojanow Prisoner":"None",    "Ticklebelly Nomad":"Giant",   "Trade Sheriff":"Elvish",  "Urban Bounty Hunter":"None",  "Urchin":"None",   "Uthgardt Tribe Member":"Any x1",  "Vizier":"None",   "Waterdhavian Noble":"Any x1"}
-CharGenders = ("Male","Female")
-CharLanguagesFull =("Abyssal", "Celestial",   "Draconic",    "Deep Speech", "Infernal",    "Primordial",  "Sylvan",  "Undercommon", "Druidic", "Dwarvish",    "Elvish",  "Giant",   "Gnomish", "Goblin",  "Halfling",    "Orc", "Dwarvish",    "Elvish",  "Giant",   "Gnomish", "Goblin",  "Halfling",    "Orc")
-CharLanguagesExotic =("Abyssal",   "Celestial",   "Draconic",    "Deep Speech", "Infernal",    "Primordial",  "Sylvan",  "Undercommon", "Druidic")
-CharLanguagesStandard = ("Dwarvish",   "Elvish",  "Giant",   "Gnomish", "Goblin",  "Halfling",    "Orc")
+    i = 1
+    StatList = []
+    while i < 7:
+        die1 = randint(1, 6)
+        die2 = randint(1, 6)
+        die3 = randint(1, 6)
+        die4 = randint(1, 6)
+        DieRoller = (die1, die2, die3, die4)
+        DieRollerTop3 = sorted(DieRoller, reverse=True)[0:3]
+        DieSum = sum(DieRollerTop3)
+        StatList.append(DieSum)
+        StatList = sorted(StatList, reverse=True)
+        i += 1
+    return StatList
 
 
-#List of Weapons that can be attacked with - used to populate attack section later
+# Create lists of various things
+CharRaces = ["Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Half Orc", "Halfling", "Half Orc", "Human", "Tiefling"]
+CharBackgrounds = (
+"Acolyte", "Anthropologist", "Archaeologist", "Adopted", "Black Fist Double Agent", "Caravan Specialist", "Charlatan",
+"City Watch", "Clan Crafter", "Cloistered Scholar", "Cormanthor Refugee", "Courtier", "Criminal", "Dragon Casualty",
+"Earthspur Miner", "Entertainer", "Faction Agent", "Far Traveler", "Folk Hero", "Gate Urchin", "Gladiator",
+"Guild Artisan", "Guild Merchant", "Harborfolk", "Haunted One", "Hermit", "Hillsfar Merchant", "Hillsfar Smuggler",
+"House Agent", "Inheritor", "Initiate", "Inquisitor", "Investigator", "Iron Route Bandit", "Knight",
+"Knight of the Order", "Mercenary Veteran", "Mulmaster Aristocrat", "Noble", "Outlander", "Phlan Insurgent",
+"Phlan Refugee", "Pirate", "Sage", "Sailor", "Secret Identity", "Shade Fanatic", "Soldier", "Spy", "Stojanow Prisoner",
+"Ticklebelly Nomad", "Trade Sheriff", "Urban Bounty Hunter", "Urchin", "Uthgardt Tribe Member", "Vizier",
+"Waterdhavian Noble")
+CharBackgroundsLanguages = {"Acolyte": "Any x2", "Anthropologist": "Any x2", "Archaeologist": "Any x1",
+                            "Adopted": "Any x2", "Black Fist Double Agent": "None", "Caravan Specialist": "Any x1",
+                            "Charlatan": "None", "City Watch": "Any x2", "Clan Crafter": "Any x1",
+                            "Cloistered Scholar": "Any x2", "Cormanthor Refugee": "Elvish", "Courtier": "Any x2",
+                            "Criminal": "None", "Dragon Casualty": "Draconic",
+                            "Earthspur Miner": "Dwarvish, Undercommon", "Entertainer": "None",
+                            "Faction Agent": "Any x2", "Far Traveler": "Any x1", "Folk Hero": "None",
+                            "Gate Urchin": "None", "Gladiator": "None", "Guild Artisan": "Any x1",
+                            "Guild Merchant": "Any x1", "Harborfolk": "None", "Haunted One": "Exotic x1",
+                            "Hermit": "Any x1", "Hillsfar Merchant": "None", "Hillsfar Smuggler": "Any x1",
+                            "House Agent": "None", "Inheritor": "None", "Initiate": "None", "Inquisitor": "None",
+                            "Investigator": "Any x2", "Iron Route Bandit": "None", "Knight": "Any x1",
+                            "Knight of the Order": "Any x1", "Mercenary Veteran": "None",
+                            "Mulmaster Aristocrat": "None", "Noble": "Any x1", "Outlander": "Any x1",
+                            "Phlan Insurgent": "None", "Phlan Refugee": "Any x1", "Pirate": "None", "Sage": "Any x2",
+                            "Sailor": "None", "Secret Identity": "None", "Shade Fanatic": "Netherese",
+                            "Soldier": "None", "Spy": "None", "Stojanow Prisoner": "None", "Ticklebelly Nomad": "Giant",
+                            "Trade Sheriff": "Elvish", "Urban Bounty Hunter": "None", "Urchin": "None",
+                            "Uthgardt Tribe Member": "Any x1", "Vizier": "None", "Waterdhavian Noble": "Any x1"}
+CharGenders = ("Male", "Female")
+CharLanguagesFull = (
+"Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon", "Druidic",
+"Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Dwarvish", "Elvish", "Giant", "Gnomish",
+"Goblin", "Halfling", "Orc")
+CharLanguagesExotic = (
+"Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon", "Druidic")
+CharLanguagesStandard = ("Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc")
+
+# List of Weapons that can be attacked with - used to populate attack section later
 WeaponsStrBased = {"Club": "1d4 B", "Great Club": "1d8 B", "Handaxe": "1d6 S", "Javelin": "1d6 p",
-                  "Light Hammer": "1d4 B",
-                  "Mace": "1d6 B", "Quarterstaff": "1d6 B", "Sickle": "1d4 S", "Spear": "1d6 p", "Battle Axe": "1d8 S",
-                  "Flail": "1d8 B", "Glaive": "1d10 S", "Greataxe": "1d12 S", "Halberd": "1d10 S", "Lance": "1d12 P",
-                  "Maul": "2d6 B", "Morning Star": "1d8 P", "Pike": "1d10 P", "Trident": "1d6 P", "War Pick": "1d8 P",
-                  "Warhammer": "1d8 B", "Longsword": "1d8 S"}
+                   "Light Hammer": "1d4 B",
+                   "Mace": "1d6 B", "Quarterstaff": "1d6 B", "Sickle": "1d4 S", "Spear": "1d6 p", "Battle Axe": "1d8 S",
+                   "Flail": "1d8 B", "Glaive": "1d10 S", "Greataxe": "1d12 S", "Halberd": "1d10 S", "Lance": "1d12 P",
+                   "Maul": "2d6 B", "Morning Star": "1d8 P", "Pike": "1d10 P", "Trident": "1d6 P", "War Pick": "1d8 P",
+                   "Warhammer": "1d8 B", "Longsword": "1d8 S"}
 WeaponsDexBased = {"Light Crossbow": "1d8 p", "Dart": "1d4 P", "Shortbow": "1d6 P", "Sling": "1d4 B", "Blowgun": "1 P",
-                  "Hand Crossbow": "1d6 P", "Heavy Crossbow": "1d10 P", "Longbow": "1d8 P"}
+                   "Hand Crossbow": "1d6 P", "Heavy Crossbow": "1d10 P", "Longbow": "1d8 P"}
 WeaponsFinesse = {"Dagger": "1d4  P", "Rapier": "1d8 P", "Scimitar": "1d6 S", "Shortsword": "1d6 P", "Whip": "1d4 S"}
 
 WeaponsNumbered = ("20 Darts", "Four Javelins", "Five Javelins", "Two Handaxes", "Two Shortswords", "Two Daggers")
 
 # List of each type of weapon
 WeaponsSimpleMelee = (
-"Club", "Dagger", "Great Club", "Handaxe", "Javelin", "Light Hammer", "Mace", "Quarterstaff", "Sickle", "Spear")
+    "Club", "Dagger", "Great Club", "Handaxe", "Javelin", "Light Hammer", "Mace", "Quarterstaff", "Sickle", "Spear")
 WeaponsSimpleRanged = ("Light Crossbow", "20 Darts", "Shortbow", "Sling")
 WeaponsMartialMelee = (
-"Battle Axe", "Flail", "Glaive", "Greataxe", "Greatsword", "Halberd", "Lance", "Longsword", "Maul",
-"Morning Star", "Pike", "Rapier", "Scimitar", "Shortsword", "Trident", "War Pick", "WarHammer", "Whip")
+    "Battle Axe", "Flail", "Glaive", "Greataxe", "Greatsword", "Halberd", "Lance", "Longsword", "Maul",
+    "Morning Star", "Pike", "Rapier", "Scimitar", "Shortsword", "Trident", "War Pick", "Warhammer", "Whip")
 WeaponsMartialRanged = ("Blowgun", "Hand Crossbow", "Heavy Crossbow", "Longbow", "Net")
 
-
 MusicalInstruments = (
-"Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan flute", "Shawm", "Viol", "Cowbell", "Harp")
+    "Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan flute", "Shawm", "Viol", "Cowbell", "Harp")
 
-ArmorLight = {"Leather Armor":11, "Padded Armor":11, "Studded Armor":11}
-ArmorMedium = {"Breastplate":14, "Chain Shirt":13, "Half Plate":15, "Hide Armor":12, "Scale Mail":14}
-ArmorHeavy = {"Chainmail":16 , "Plate Armor":18 , "Ring Mail":14 , "Splint Mail":17 }
+ArmorLight = {"Leather Armor": 11, "Padded Armor": 11, "Studded Armor": 11}
+ArmorMedium = {"Breastplate": 14, "Chain Shirt": 13, "Half Plate": 15, "Hide Armor": 12, "Scale Mail": 14}
+ArmorHeavy = {"Chainmail": 16, "Plate Armor": 18, "Ring Mail": 14, "Splint Mail": 17}
 
-
-
-#Choose a class, race, alignment, background
+# Choose a class, race, alignment, background
 CharRace = random.choice(CharRaces)
 CharBackground = random.choice(CharBackgrounds)
 CharGender = random.choice(CharGenders)
 
-#Defining probabilities of possible class associated with race
-Class=["Fighter","Rogue","Warlock","Wizard","Cleric","Barbarian","Ranger","Sorcerer","Paladin","Monk","Bard","Druid"]
-Humanclassweights=[0.25,0.09,0.05,0.17,0.13,0.01,0.05,0.01,0.09,0.13,0.01,0.01]
-Elfclassweights=[0.03,0.13,0.03,0.15,0.07,0.01,0.21,0.07,0.01,0.11,0.01,0.17]
-Halfelfclassweights=[0.01,0.13,0.17,0.03,0.03,0.01,0.11,0.15,0.07,0.01,0.21,0.07]
-Tieflingclassweights=[0.01,0.13,0.19,0.11,0.05,0.01,0.01,0.17,0.09,0.03,0.15,0.05]
-Dwarfclassweights=[0.15,0.01,0.01,0.03,0.23,0.17,0.05,0.01,0.13,0.05,0.05,0.11]
-Dragonbornclassweights=[0.13,0.01,0.11,0.01,0.07,0.15,0.01,0.17,0.21,0.07,0.01,0.05]
-Halflingclassweights=[0.01,0.29,0.01,0.03,0.03,0.03,0.13,0.03,0.01,0.15,0.17,0.11]
-Halforcclassweights=[0.17,0.01,0.03,0.01,0.09,0.25,0.03,0.01,0.15,0.13,0.03,0.09]
-Gnomeclassweights=[0.01,0.13,0.05,0.27,0.11,0.01,0.05,0.05,0.01,0.01,0.13,0.17]
+# Defining probabilities of possible class associated with race
+Class = ["Fighter", "Rogue", "Warlock", "Wizard", "Cleric", "Barbarian", "Ranger", "Sorcerer", "Paladin", "Monk",
+         "Bard", "Druid"]
+Humanclassweights = [0.25, 0.09, 0.05, 0.17, 0.13, 0.01, 0.05, 0.01, 0.09, 0.13, 0.01, 0.01]
+Elfclassweights = [0.03, 0.13, 0.03, 0.15, 0.07, 0.01, 0.21, 0.07, 0.01, 0.11, 0.01, 0.17]
+Halfelfclassweights = [0.01, 0.13, 0.17, 0.03, 0.03, 0.01, 0.11, 0.15, 0.07, 0.01, 0.21, 0.07]
+Tieflingclassweights = [0.01, 0.13, 0.19, 0.11, 0.05, 0.01, 0.01, 0.17, 0.09, 0.03, 0.15, 0.05]
+Dwarfclassweights = [0.15, 0.01, 0.01, 0.03, 0.23, 0.17, 0.05, 0.01, 0.13, 0.05, 0.05, 0.11]
+Dragonbornclassweights = [0.13, 0.01, 0.11, 0.01, 0.07, 0.15, 0.01, 0.17, 0.21, 0.07, 0.01, 0.05]
+Halflingclassweights = [0.01, 0.29, 0.01, 0.03, 0.03, 0.03, 0.13, 0.03, 0.01, 0.15, 0.17, 0.11]
+Halforcclassweights = [0.17, 0.01, 0.03, 0.01, 0.09, 0.25, 0.03, 0.01, 0.15, 0.13, 0.03, 0.09]
+Gnomeclassweights = [0.01, 0.13, 0.05, 0.27, 0.11, 0.01, 0.05, 0.05, 0.01, 0.01, 0.13, 0.17]
 
-#Determining character alignment and saving the output as "CharAlignment"
+# Determining character alignment and saving the output as "CharAlignment"
 from numpy.random import choice
-Alignment =["Lawful good", "Lawful neutral","Lawful evil","Neutral","Chaotic"]
-Alignmentweights=[0.4,0.2,0.1,0.2,0.1]
-CharAlignment=(choice(Alignment, p=Alignmentweights))
 
-#Determining character class based on its race
-if CharRace=="Human":
-   CharClass =choice(Class, p=Humanclassweights)
-elif CharRace=="Elf":
-  CharClass=choice(Class, p=Elfclassweights)
-elif CharRace=="Half-Elf":
-   CharClass=choice(Class, p=Halfelfclassweights)
-elif CharRace=="Tiefling":
-   CharClass =choice(Class, p=Tieflingclassweights)
-elif CharRace=="Dwarf":
-   CharClass=choice(Class, p=Dwarfclassweights)
-elif CharRace=="Dragonborn":
-   CharClass=choice(Class, p=Dragonbornclassweights)
-elif CharRace=="Halfling":
-   CharClass =choice(Class, p=Halflingclassweights)
-elif CharRace=="Half Orc":
-   CharClass=choice(Class, p=Halforcclassweights)
-elif CharRace=="Gnome":
-   CharClass =choice(Class, p=Gnomeclassweights)
+Alignment = ["Lawful good", "Lawful neutral", "Lawful evil", "Neutral", "Chaotic"]
+Alignmentweights = [0.4, 0.2, 0.1, 0.2, 0.1]
+CharAlignment = (choice(Alignment, p=Alignmentweights))
+
+# Determining character class based on its race
+if CharRace == "Human":
+    CharClass = choice(Class, p=Humanclassweights)
+elif CharRace == "Elf":
+    CharClass = choice(Class, p=Elfclassweights)
+elif CharRace == "Half-Elf":
+    CharClass = choice(Class, p=Halfelfclassweights)
+elif CharRace == "Tiefling":
+    CharClass = choice(Class, p=Tieflingclassweights)
+elif CharRace == "Dwarf":
+    CharClass = choice(Class, p=Dwarfclassweights)
+elif CharRace == "Dragonborn":
+    CharClass = choice(Class, p=Dragonbornclassweights)
+elif CharRace == "Halfling":
+    CharClass = choice(Class, p=Halflingclassweights)
+elif CharRace == "Half Orc":
+    CharClass = choice(Class, p=Halforcclassweights)
+elif CharRace == "Gnome":
+    CharClass = choice(Class, p=Gnomeclassweights)
 else:
-   CharClass ="Error: Race not on the approved list"
+    CharClass = "Error: Race not on the approved list"
 
-
-#Creating unique character name query
+# Creating unique character name query
 FirstNameLookUp = str(CharRace) + "_" + str(CharGender)
 LastNameLookUp = str(CharRace) + "_Last"
 
-
-CharFirstNames={
-    'Human_Male':["Anlow","Arando","Bram","Cale","Dalkon","Daylen","Dodd","Dungarth","Dyrk","Eandro","Falken","Feck","Fenton","Gryphero","Hagar","Jeras","Krynt","Lavant","Leyten","Madian","Malfier","Markus","Meklan","Namen","Navaren","Nerle","Nilus","Ningyan","Norris","Quentin","Semil","Sevenson","Steveren","Talfen","Tamond","Taran","Tavon","Tegan","Vanan","Vincent"],
-    'Human_Female':["Azura","Brey","Hallan","Kasaki","Lorelei","Mirabel","Pharana","Remora","Rosalyn","Sachil","Saidi","Tanika","Tura","Tylsa","Vencia","Xandrilla"],
-    'Dwarf_Male':["Agaro","Arnan","Auxlan","Avamir","Baelnar","Balfam","Bariken","Borkûl","Darkûl","Dolmen","Dyrnar","Erag","Ezegan","Ferrek","Garmûl","Glint","Ghorvas","Grimmalk","Haeltar","Halagmar","Halzar","Hlant","Korlag","Krag","Krim","Kurman","Lurtrum","Malagar","Mardam","Maulnar","Melgar","Morak","Orobok","Rogath","Roken","Rozag","Sabakzar","Sharak","Smethykk","Swargar","Thorbalt","Thorin","Tredigar","Vabûl","Vistrum","Wolvar"],
-    'Dwarf_Female':["Beyla","Fenryl","Grenenzel","Krystolari","Lokara","Lurka","Marnia","Praxana","Rokel","Roksana","Thurlfara","Vauldra","Veklani","Vronwe","Zebel"],
-    'Eladrin_Male':["Aialon","Elarahal","Jiardem","Laern","Lelyrian","Lephyrr","Loray","Sayadar","Talonien","Vaerlan","Xoneras","Zaquivir"],
-    'Eladrin_Female':["Allyria","Ayrdra","Deneth","Elseone","Etherea","Istiria","Karanwyn","Lieryn","Ravel","Sinariel","Sydri","Taris","Turue","Vacquiel","Valendra"],
-    'Elf_Male':["Alarcion","Alathar","Ariandar","Arromar","Borel","Bvachan","Carydion","Elgoth","Farlien","Ferel","Gaerlan","Iafalior","Kaelthorn","Laethan","Leliar","Leodor","Lorak","Lorifir","Morian","Oleran","Rylef","Savian","Seylas","Tevior","Veyas"],
-    'Elf_Female':["Aryllan","Atalya","Ayrthwil","Irva","Lyfalia","Ronefel","Thirya","Velene","Venefiq","Zereni"],
-    'Halfling_Male':["Arthan","Carvin","Corby","Cullen","Egen","Ernest","Gedi","Heron","Jeryl","Keffen","Kylem","Kynt","Leskyn","Neff","Orne","Quarrel","Rabbit","Rilkin","Snakebait","Tarfen","Titch","Tuck","Whim"],
-    'Halfling_Female':["Caliope","Emily","Piper","Rixi","Sabretha","Teg","Tilly","Toira","Vexia","Vil","Vzani","Zanthe","Ziza"],
-    'Tiefling_Male':["Ankhus","Arkadi","Armarius","Armillius","Archidius","Balmoloch","Calderax","Cavian","Cenereth","Chorum","Corynax","Dacian","Daelius","Damaceus","Decimeth","Demedor","Demerian","Dynachus","Grassus","Halius","Heleph","Incirion","Kalaradian","Kamien","Kazimir","Kzandro","Machem","Maetheus","Malfias","Marchion","Menerus","Namazeus","Nensis","Prismeus","Pyranikus","Razortail","Sejanus","Severian","Suffer","Syken","Tarkus","Vaius","Xerek","Zeth","Zevon"],
-    'Tiefling_Female':["Affyria","Cataclysmia","Domitia","Dorethau","Excellence","Hacari","Iritra","Lachira","Levatra","Mecretia","Milvia","Nericia","Precious","Rain","Samantia","Sunshine","Tenerife","Traya","Velavia","Zaidi","Zethaya"],
-    'Gnome_Male':["Boddynock","Dimble","Fonkin","Gimble","Glim","Gerbo","Jebeddo","Namfoodle","Roondar","Seebo","Zook","Grobnar"],
-    'Gnome_Female':["Bimpnotten","Caramip","Duvamil","Ellywick","Ellyjobell","Loopmottin","Mardnab","Roywyn","Shamil","Waywocket"],
-    'Dragonborn_Male':["Nakul","Wulwunax","Otiythas","Morvarax","Faerxan","Krivjhan","Eragrax","Krivroth","Wuvarax","Docrath","Ravoroth","Wraseth","Worqiroth","Balxan","Xarvarax","Faerjurn","Tazlin","Sulprax","Wralin","Gherash","Zrarinn","Iorfarn"],
-    'Dragonborn_Female':["Nysyassa","Sosira","Erlipatys","Valqorel","Lilofyire","Therbis","Cristhyra","Kanorae","Valmeila","Lorarinn","Zofshann","Eshsira","Jovyre","Arihime","Malzys","Crismyse","Nagil","Suwophyl","Kahymm"],
-    'Half Orc_Male':["Guruk","Renaburk","Belorim","Grumazall","Ukromarsh","Hunadur","Mokadim","Soragall","Zaranur","Renurimm","Ronorash","Oromak","Zevatar","Atrarsh","Kruogark","Atagul","Grursh","Ganag","Ronoruk"],
-    'Half Orc_Female':["Kotozara","Kotarel","Negum","Tuatar","Merogum","Eligum","Alish","Kerunchu","Sumigur","Gagri","Gryiki","Aruwar","Kotisha","Nozur","Kirizura","Grutar","Rashogur"],
-    'Half-Elf_Male':["Petelumin","Meivoril","Nigelaern","Radsaran","Raymede","Xanred","Leolis","Rodelor","Terneiros","Engovar","Frilfaelor","Higgotin","Stenhomin","Zanovar","Sarqinor","Niclanann","Balphon","Farashor","Humcoril","Reyarat"],
-    'Half-Elf_Female':["Halyraera","Binoa","Carlenas","Lillaya","Alybrae","Hermelana","Genelisa","Cedsyra","Edelshara","Mathrana"]
+CharFirstNames = {
+    'Human_Male': ["Anlow", "Arando", "Bram", "Cale", "Dalkon", "Daylen", "Dodd", "Dungarth", "Dyrk", "Eandro",
+                   "Falken", "Feck", "Fenton", "Gryphero", "Hagar", "Jeras", "Krynt", "Lavant", "Leyten", "Madian",
+                   "Malfier", "Markus", "Meklan", "Namen", "Navaren", "Nerle", "Nilus", "Ningyan", "Norris", "Quentin",
+                   "Semil", "Sevenson", "Steveren", "Talfen", "Tamond", "Taran", "Tavon", "Tegan", "Vanan", "Vincent"],
+    'Human_Female': ["Azura", "Brey", "Hallan", "Kasaki", "Lorelei", "Mirabel", "Pharana", "Remora", "Rosalyn",
+                     "Sachil", "Saidi", "Tanika", "Tura", "Tylsa", "Vencia", "Xandrilla"],
+    'Dwarf_Male': ["Agaro", "Arnan", "Auxlan", "Avamir", "Baelnar", "Balfam", "Bariken", "Borkûl", "Darkûl", "Dolmen",
+                   "Dyrnar", "Erag", "Ezegan", "Ferrek", "Garmûl", "Glint", "Ghorvas", "Grimmalk", "Haeltar",
+                   "Halagmar", "Halzar", "Hlant", "Korlag", "Krag", "Krim", "Kurman", "Lurtrum", "Malagar", "Mardam",
+                   "Maulnar", "Melgar", "Morak", "Orobok", "Rogath", "Roken", "Rozag", "Sabakzar", "Sharak", "Smethykk",
+                   "Swargar", "Thorbalt", "Thorin", "Tredigar", "Vabûl", "Vistrum", "Wolvar"],
+    'Dwarf_Female': ["Beyla", "Fenryl", "Grenenzel", "Krystolari", "Lokara", "Lurka", "Marnia", "Praxana", "Rokel",
+                     "Roksana", "Thurlfara", "Vauldra", "Veklani", "Vronwe", "Zebel"],
+    'Eladrin_Male': ["Aialon", "Elarahal", "Jiardem", "Laern", "Lelyrian", "Lephyrr", "Loray", "Sayadar", "Talonien",
+                     "Vaerlan", "Xoneras", "Zaquivir"],
+    'Eladrin_Female': ["Allyria", "Ayrdra", "Deneth", "Elseone", "Etherea", "Istiria", "Karanwyn", "Lieryn", "Ravel",
+                       "Sinariel", "Sydri", "Taris", "Turue", "Vacquiel", "Valendra"],
+    'Elf_Male': ["Alarcion", "Alathar", "Ariandar", "Arromar", "Borel", "Bvachan", "Carydion", "Elgoth", "Farlien",
+                 "Ferel", "Gaerlan", "Iafalior", "Kaelthorn", "Laethan", "Leliar", "Leodor", "Lorak", "Lorifir",
+                 "Morian", "Oleran", "Rylef", "Savian", "Seylas", "Tevior", "Veyas"],
+    'Elf_Female': ["Aryllan", "Atalya", "Ayrthwil", "Irva", "Lyfalia", "Ronefel", "Thirya", "Velene", "Venefiq",
+                   "Zereni"],
+    'Halfling_Male': ["Arthan", "Carvin", "Corby", "Cullen", "Egen", "Ernest", "Gedi", "Heron", "Jeryl", "Keffen",
+                      "Kylem", "Kynt", "Leskyn", "Neff", "Orne", "Quarrel", "Rabbit", "Rilkin", "Snakebait", "Tarfen",
+                      "Titch", "Tuck", "Whim"],
+    'Halfling_Female': ["Caliope", "Emily", "Piper", "Rixi", "Sabretha", "Teg", "Tilly", "Toira", "Vexia", "Vil",
+                        "Vzani", "Zanthe", "Ziza"],
+    'Tiefling_Male': ["Ankhus", "Arkadi", "Armarius", "Armillius", "Archidius", "Balmoloch", "Calderax", "Cavian",
+                      "Cenereth", "Chorum", "Corynax", "Dacian", "Daelius", "Damaceus", "Decimeth", "Demedor",
+                      "Demerian", "Dynachus", "Grassus", "Halius", "Heleph", "Incirion", "Kalaradian", "Kamien",
+                      "Kazimir", "Kzandro", "Machem", "Maetheus", "Malfias", "Marchion", "Menerus", "Namazeus",
+                      "Nensis", "Prismeus", "Pyranikus", "Razortail", "Sejanus", "Severian", "Suffer", "Syken",
+                      "Tarkus", "Vaius", "Xerek", "Zeth", "Zevon"],
+    'Tiefling_Female': ["Affyria", "Cataclysmia", "Domitia", "Dorethau", "Excellence", "Hacari", "Iritra", "Lachira",
+                        "Levatra", "Mecretia", "Milvia", "Nericia", "Precious", "Rain", "Samantia", "Sunshine",
+                        "Tenerife", "Traya", "Velavia", "Zaidi", "Zethaya"],
+    'Gnome_Male': ["Boddynock", "Dimble", "Fonkin", "Gimble", "Glim", "Gerbo", "Jebeddo", "Namfoodle", "Roondar",
+                   "Seebo", "Zook", "Grobnar"],
+    'Gnome_Female': ["Bimpnotten", "Caramip", "Duvamil", "Ellywick", "Ellyjobell", "Loopmottin", "Mardnab", "Roywyn",
+                     "Shamil", "Waywocket"],
+    'Dragonborn_Male': ["Nakul", "Wulwunax", "Otiythas", "Morvarax", "Faerxan", "Krivjhan", "Eragrax", "Krivroth",
+                        "Wuvarax", "Docrath", "Ravoroth", "Wraseth", "Worqiroth", "Balxan", "Xarvarax", "Faerjurn",
+                        "Tazlin", "Sulprax", "Wralin", "Gherash", "Zrarinn", "Iorfarn"],
+    'Dragonborn_Female': ["Nysyassa", "Sosira", "Erlipatys", "Valqorel", "Lilofyire", "Therbis", "Cristhyra", "Kanorae",
+                          "Valmeila", "Lorarinn", "Zofshann", "Eshsira", "Jovyre", "Arihime", "Malzys", "Crismyse",
+                          "Nagil", "Suwophyl", "Kahymm"],
+    'Half Orc_Male': ["Guruk", "Renaburk", "Belorim", "Grumazall", "Ukromarsh", "Hunadur", "Mokadim", "Soragall",
+                      "Zaranur", "Renurimm", "Ronorash", "Oromak", "Zevatar", "Atrarsh", "Kruogark", "Atagul", "Grursh",
+                      "Ganag", "Ronoruk"],
+    'Half Orc_Female': ["Kotozara", "Kotarel", "Negum", "Tuatar", "Merogum", "Eligum", "Alish", "Kerunchu", "Sumigur",
+                        "Gagri", "Gryiki", "Aruwar", "Kotisha", "Nozur", "Kirizura", "Grutar", "Rashogur"],
+    'Half-Elf_Male': ["Petelumin", "Meivoril", "Nigelaern", "Radsaran", "Raymede", "Xanred", "Leolis", "Rodelor",
+                      "Terneiros", "Engovar", "Frilfaelor", "Higgotin", "Stenhomin", "Zanovar", "Sarqinor", "Niclanann",
+                      "Balphon", "Farashor", "Humcoril", "Reyarat"],
+    'Half-Elf_Female': ["Halyraera", "Binoa", "Carlenas", "Lillaya", "Alybrae", "Hermelana", "Genelisa", "Cedsyra",
+                        "Edelshara", "Mathrana"]
 }
 
-CharLastNames={
-    'Human_Last':["Arkalis","Armanci","Bilger","Blackstrand","Brightwater","Carnavon","Caskajaro","Coldshore","Coyle","Cresthill","Cuttlescar","Daargen","Dalicarlia","Danamark","Donoghan","Drumwind","Dunhall","Ereghast","Falck","Fallenbridge","Faringray","Fletcher","Fryft","Goldrudder","Grantham","Graylock","Gullscream","Hindergrass","Iscalon","Kreel","Kroft","Lamoth","Leerstrom","Lynchfield","Moonridge","Netheridge","Oakenheart","Pyncion","Ratley","Redraven","Revenmar","Roxley","Sell","Seratolva","Shanks","Shattermast","Shaulfer","Silvergraft","Stavenger","Stormchapel","Strong","Swiller","Talandro","Targana","Towerfall","Umbermoor","VanDevries","VanGandt","VanHyden","Varcona","Varzand","Voortham","Vrye","Webb","Welfer","Wilxes","Wintermere","Wygarthe","Zatchet"],
-    'Dwarf_Last':["Ambershard","Barrelhelm","Copperhearth","Deepmiddens","Drakantal","Evermead","Garkalan","Grimtor","Hackshield","Irongull","Markolak","Ramcrown","Rockharvest","Silvertarn","Skandalor","Zarkanan"],
-    'Eladrin_Last':["Lantherval","Lorhalien","Maldranthe","Shalbarain","Sirothian","Starfeon","Zolerii","Printemptest","Gwaviel","Haeren"],
-    'Elf_Last':["Autumnloft","Balefrost","Briarfell","Evenwind","Graytrails","Mooncairn","Riverwall","Stormwolf","Summergale","Sunshadow","Woodenhawk"],
-    'Halfling_Last':["Angler","Battlestone","Blackwater","Daggersharp","Deepstrider","Hollowpot","Puddle","Raftmite","Skiprock","Silverfin","Tanglestrand","Tricker","Willowrush","Yellowcrane"],
-    'Tiefling_Last':["Amarzian","Carnago","Domarien","Iscitan","Meluzan","Menetrian","Paradas","Romazi","Sarzan","Serechor","Shadowhorn","Szereban","Torzalan","Trelenus","Trevethor","Tryphon","Vadu","Vrago."],
-    'Gnome_Last':["Beren","Daergel","Folkor","Garrick","Nackle","Murnig","Ningel","Raulnor","Scheppen","Turen"],
-    'Dragonborn_Last':["Crincacmir","Yalduash","Uaxal","Kruamrith","Kloldrindead","Creastatorrun","Clerrhon","Nyuuldus","Axor","Thacodimin","Voccith","Numbucmid","Folmac","Lualrur","Amruajad","Klealkiar","Klichuuth","Cralthud","Temmudak"],
-    'Half Orc_Last':["Orcs don't deserve a last name!"],
-    'Half-Elf_Last':["Yllayarus","Famaris","Xilmaer","Loratris","Pasys","Robella","Xyrven","Kelneiros","Enran","Virharice","Xyrcaryn","Xillamin","Ravabalar","Grepeiros","Yllazeiros","Zylthyra","Gresatra","Waesthana","Ulaxidor","Venrel"]
+CharLastNames = {
+    'Human_Last': ["Arkalis", "Armanci", "Bilger", "Blackstrand", "Brightwater", "Carnavon", "Caskajaro", "Coldshore",
+                   "Coyle", "Cresthill", "Cuttlescar", "Daargen", "Dalicarlia", "Danamark", "Donoghan", "Drumwind",
+                   "Dunhall", "Ereghast", "Falck", "Fallenbridge", "Faringray", "Fletcher", "Fryft", "Goldrudder",
+                   "Grantham", "Graylock", "Gullscream", "Hindergrass", "Iscalon", "Kreel", "Kroft", "Lamoth",
+                   "Leerstrom", "Lynchfield", "Moonridge", "Netheridge", "Oakenheart", "Pyncion", "Ratley", "Redraven",
+                   "Revenmar", "Roxley", "Sell", "Seratolva", "Shanks", "Shattermast", "Shaulfer", "Silvergraft",
+                   "Stavenger", "Stormchapel", "Strong", "Swiller", "Talandro", "Targana", "Towerfall", "Umbermoor",
+                   "VanDevries", "VanGandt", "VanHyden", "Varcona", "Varzand", "Voortham", "Vrye", "Webb", "Welfer",
+                   "Wilxes", "Wintermere", "Wygarthe", "Zatchet"],
+    'Dwarf_Last': ["Ambershard", "Barrelhelm", "Copperhearth", "Deepmiddens", "Drakantal", "Evermead", "Garkalan",
+                   "Grimtor", "Hackshield", "Irongull", "Markolak", "Ramcrown", "Rockharvest", "Silvertarn",
+                   "Skandalor", "Zarkanan"],
+    'Eladrin_Last': ["Lantherval", "Lorhalien", "Maldranthe", "Shalbarain", "Sirothian", "Starfeon", "Zolerii",
+                     "Printemptest", "Gwaviel", "Haeren"],
+    'Elf_Last': ["Autumnloft", "Balefrost", "Briarfell", "Evenwind", "Graytrails", "Mooncairn", "Riverwall",
+                 "Stormwolf", "Summergale", "Sunshadow", "Woodenhawk"],
+    'Halfling_Last': ["Angler", "Battlestone", "Blackwater", "Daggersharp", "Deepstrider", "Hollowpot", "Puddle",
+                      "Raftmite", "Skiprock", "Silverfin", "Tanglestrand", "Tricker", "Willowrush", "Yellowcrane"],
+    'Tiefling_Last': ["Amarzian", "Carnago", "Domarien", "Iscitan", "Meluzan", "Menetrian", "Paradas", "Romazi",
+                      "Sarzan", "Serechor", "Shadowhorn", "Szereban", "Torzalan", "Trelenus", "Trevethor", "Tryphon",
+                      "Vadu", "Vrago."],
+    'Gnome_Last': ["Beren", "Daergel", "Folkor", "Garrick", "Nackle", "Murnig", "Ningel", "Raulnor", "Scheppen",
+                   "Turen"],
+    'Dragonborn_Last': ["Crincacmir", "Yalduash", "Uaxal", "Kruamrith", "Kloldrindead", "Creastatorrun", "Clerrhon",
+                        "Nyuuldus", "Axor", "Thacodimin", "Voccith", "Numbucmid", "Folmac", "Lualrur", "Amruajad",
+                        "Klealkiar", "Klichuuth", "Cralthud", "Temmudak"],
+    'Half Orc_Last': ["Orcs don't deserve a last name!"],
+    'Half-Elf_Last': ["Yllayarus", "Famaris", "Xilmaer", "Loratris", "Pasys", "Robella", "Xyrven", "Kelneiros", "Enran",
+                      "Virharice", "Xyrcaryn", "Xillamin", "Ravabalar", "Grepeiros", "Yllazeiros", "Zylthyra",
+                      "Gresatra", "Waesthana", "Ulaxidor", "Venrel"]
 }
 
-CharFirstName=random.choice(CharFirstNames[FirstNameLookUp])
-CharLastName=random.choice(CharLastNames[LastNameLookUp])
-
-
+CharFirstName = random.choice(CharFirstNames[FirstNameLookUp])
+CharLastName = random.choice(CharLastNames[LastNameLookUp])
 
 if CharRace == "Half Orc":
     CharName = str(CharFirstName)
 else:
     CharName = str(CharFirstName) + " " + str(CharLastName)
 
-      
-#Defining the base height, #  of sides for height dice, base weight, and # of sides for weight dice of character by race and gender in the nested dictionary
-CharPhysique={
-    'Human_Male':{'BaseHeight_inch':58,"HeightModDice":10,"BaseWeight_lb":120,"WeightModDice":4},
+# Defining the base height, #  of sides for height dice, base weight, and # of sides for weight dice of character by race and gender in the nested dictionary
+CharPhysique = {
+    'Human_Male': {'BaseHeight_inch': 58, "HeightModDice": 10, "BaseWeight_lb": 120, "WeightModDice": 4},
     'Human_Female': {'BaseHeight_inch': 53, "HeightModDice": 10, "BaseWeight_lb": 85, "WeightModDice": 4},
-    'Dwarf_Male':{'BaseHeight_inch':45,"HeightModDice":4,"BaseWeight_lb":130,"WeightModDice":6},
-    'Dwarf_Female':{'BaseHeight_inch':43,"HeightModDice":4,"BaseWeight_lb":100,"WeightModDice":6},
-    'Elf_Male':{'BaseHeight_inch':53,"HeightModDice":6,"BaseWeight_lb":85,"WeightModDice":6},
-    'Elf_Female':{'BaseHeight_inch':53,"HeightModDice":6,"BaseWeight_lb":80,"WeightModDice":6},
-    'Gnome_Male':{'BaseHeight_inch':36,"HeightModDice":4,"BaseWeight_lb":40,"WeightModDice":1},
-    'Gnome_Female':{'BaseHeight_inch':36,"HeightModDice":4,"BaseWeight_lb":35,"WeightModDice":1},
-    'Halfling_Male':{'BaseHeight_inch':32,"HeightModDice":4,"BaseWeight_lb":30,"WeightModDice":1},
-    'Halfling_Female':{'BaseHeight_inch':30,"HeightModDice":4,"BaseWeight_lb":25,"WeightModDice":1},
-    'Half-Elf_Male':{'BaseHeight_inch':55,"HeightModDice":8,"BaseWeight_lb":120,"WeightModDice":4},
-    'Half-Elf_Female':{'BaseHeight_inch':53,"HeightModDice":8,"BaseWeight_lb":100,"WeightModDice":4},
-    'Half Orc_Male':{'BaseHeight_inch':58,"HeightModDice":12,"BaseWeight_lb":150,"WeightModDice":6},
-    'Half Orc_Female':{'BaseHeight_inch':53,"HeightModDice":12,"BaseWeight_lb":110,"WeightModDice":6},
-    'Tiefling_Male':{'BaseHeight_inch':62,"HeightModDice":8,"BaseWeight_lb":110,"WeightModDice":4},
-    'Tiefling_Female':{'BaseHeight_inch':60,"HeightModDice":8,"BaseWeight_lb":90,"WeightModDice":4},
-    'Dragonborn_Male':{'BaseHeight_inch':66,"HeightModDice":8,"BaseWeight_lb":175,"WeightModDice":6},
-    'Dragonborn_Female':{'BaseHeight_inch':64,"HeightModDice":8,"BaseWeight_lb":155,"WeightModDice":6}
+    'Dwarf_Male': {'BaseHeight_inch': 45, "HeightModDice": 4, "BaseWeight_lb": 130, "WeightModDice": 6},
+    'Dwarf_Female': {'BaseHeight_inch': 43, "HeightModDice": 4, "BaseWeight_lb": 100, "WeightModDice": 6},
+    'Elf_Male': {'BaseHeight_inch': 53, "HeightModDice": 6, "BaseWeight_lb": 85, "WeightModDice": 6},
+    'Elf_Female': {'BaseHeight_inch': 53, "HeightModDice": 6, "BaseWeight_lb": 80, "WeightModDice": 6},
+    'Gnome_Male': {'BaseHeight_inch': 36, "HeightModDice": 4, "BaseWeight_lb": 40, "WeightModDice": 1},
+    'Gnome_Female': {'BaseHeight_inch': 36, "HeightModDice": 4, "BaseWeight_lb": 35, "WeightModDice": 1},
+    'Halfling_Male': {'BaseHeight_inch': 32, "HeightModDice": 4, "BaseWeight_lb": 30, "WeightModDice": 1},
+    'Halfling_Female': {'BaseHeight_inch': 30, "HeightModDice": 4, "BaseWeight_lb": 25, "WeightModDice": 1},
+    'Half-Elf_Male': {'BaseHeight_inch': 55, "HeightModDice": 8, "BaseWeight_lb": 120, "WeightModDice": 4},
+    'Half-Elf_Female': {'BaseHeight_inch': 53, "HeightModDice": 8, "BaseWeight_lb": 100, "WeightModDice": 4},
+    'Half Orc_Male': {'BaseHeight_inch': 58, "HeightModDice": 12, "BaseWeight_lb": 150, "WeightModDice": 6},
+    'Half Orc_Female': {'BaseHeight_inch': 53, "HeightModDice": 12, "BaseWeight_lb": 110, "WeightModDice": 6},
+    'Tiefling_Male': {'BaseHeight_inch': 62, "HeightModDice": 8, "BaseWeight_lb": 110, "WeightModDice": 4},
+    'Tiefling_Female': {'BaseHeight_inch': 60, "HeightModDice": 8, "BaseWeight_lb": 90, "WeightModDice": 4},
+    'Dragonborn_Male': {'BaseHeight_inch': 66, "HeightModDice": 8, "BaseWeight_lb": 175, "WeightModDice": 6},
+    'Dragonborn_Female': {'BaseHeight_inch': 64, "HeightModDice": 8, "BaseWeight_lb": 155, "WeightModDice": 6}
 }
 
-#Determining the character height by summing results of 2 dice rolled to the base height
-HeightDie1 = randint(1,int(CharPhysique[FirstNameLookUp]["HeightModDice"]))
-HeightDie2 = randint(1,int(CharPhysique[FirstNameLookUp]["HeightModDice"]))
-HeightDieSum = HeightDie1+HeightDie2
-TotalHeight_inch= CharPhysique[FirstNameLookUp]["BaseHeight_inch"]+ HeightDieSum
-CharHeight=str(TotalHeight_inch//12)+"'"+str(TotalHeight_inch%12)+'"'
+# Determining the character height by summing results of 2 dice rolled to the base height
+HeightDie1 = randint(1, int(CharPhysique[FirstNameLookUp]["HeightModDice"]))
+HeightDie2 = randint(1, int(CharPhysique[FirstNameLookUp]["HeightModDice"]))
+HeightDieSum = HeightDie1 + HeightDie2
+TotalHeight_inch = CharPhysique[FirstNameLookUp]["BaseHeight_inch"] + HeightDieSum
+CharHeight = str(TotalHeight_inch // 12) + "'" + str(TotalHeight_inch % 12) + '"'
 
-
-#Determining the character weight by adding the weight modifier sum (by rolling 2 weight dice) and multiplying it with the height die sum per the Player's Handbook
-if CharPhysique[FirstNameLookUp]["BaseWeight_lb"] ==1:
-    WeightDieSum=1
+# Determining the character weight by adding the weight modifier sum (by rolling 2 weight dice) and multiplying it with the height die sum per the Player's Handbook
+if CharPhysique[FirstNameLookUp]["BaseWeight_lb"] == 1:
+    WeightDieSum = 1
 else:
-    WeightDie1 = randint(1,int(CharPhysique[FirstNameLookUp]["WeightModDice"]))
-    WeightDie2 = randint(1,int(CharPhysique[FirstNameLookUp]["WeightModDice"]))
+    WeightDie1 = randint(1, int(CharPhysique[FirstNameLookUp]["WeightModDice"]))
+    WeightDie2 = randint(1, int(CharPhysique[FirstNameLookUp]["WeightModDice"]))
     WeightDieSum = WeightDie1 + WeightDie2
 
 TotalWeightMod = HeightDieSum * WeightDieSum
-CharWeight = str(CharPhysique[FirstNameLookUp]["BaseWeight_lb"] + TotalWeightMod)+" lb"
+CharWeight = str(CharPhysique[FirstNameLookUp]["BaseWeight_lb"] + TotalWeightMod) + " lb"
 
 
-#Prioritize stats by class, then replace the prioritization values with the actual values rolled in the StatRoller function
-#Return a dictionary containing the stats and a dictionary containing the modifiers calculated off the stats
-
-
+# Prioritize stats by class, then replace the prioritization values with the actual values rolled in the StatRoller function
+# Return a dictionary containing the stats and a dictionary containing the modifiers calculated off the stats
 
 
 ##############################
 
 def CharacterStats():
-   if CharClass == "Barbarian":
-       CharStats = {"Strength":1,"Dexterity":3,"Constitution":2,"Intelligence":6,"Wisdom":4,"Charisma":5}
-       HitDie = "1d12"
-       HitPoints = 12
-       SavProf1 = "Strength"
-       SavProf2 = "Constitution"
-       CharProficiencies = []
-       CharProficiencies += ArmorLight
-       CharProficiencies += ArmorMedium
-       CharProficiencies.append("Shield")
-       CharProficiencies += WeaponsMartialMelee
-       CharProficiencies += WeaponsMartialRanged
-       CharProficiencies += WeaponsSimpleMelee
-       CharProficiencies += WeaponsSimpleRanged
-       Skillnumber = 2
-       Skillpool = [1, 3, 7, 10, 11, 17]
-   if CharClass == "Bard":
-       CharStats = {"Strength":6,"Dexterity":2,"Constitution":3,"Intelligence":5,"Wisdom":4,"Charisma":1}
-       HitDie = "1d8"
-       HitPoints = 8
-       SavProf1 = "Dexterity"
-       SavProf2 = "Charisma"
-       CharProficiencies = []
-       CharProficiencies += ArmorLight
-       CharProficiencies += WeaponsSimpleMelee
-       CharProficiencies += WeaponsSimpleRanged
-       CharProficiencies.append("Hand Crossbow")
-       CharProficiencies.append("Longsword")
-       CharProficiencies.append("Rapier")
-       CharProficiencies.append("Shortsword")
-       Skillnumber = 3
-       Skillpool = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-   if CharClass == "Cleric":
-       CharStats = {"Strength":3,"Dexterity":4,"Constitution":2,"Intelligence":6,"Wisdom":1,"Charisma":5}
-       HitDie = "1d8"
-       HitPoints = 8
-       SavProf1 = "Intelligence"
-       SavProf2 = "Wisdom"
-       CharProficiencies = []
-       CharProficiencies += ArmorLight
-       CharProficiencies += ArmorMedium
-       CharProficiencies.append("Shield")
-       CharProficiencies += WeaponsSimpleMelee
-       CharProficiencies += WeaponsSimpleRanged
-       Skillnumber = 2
-       Skillpool = [5, 6, 9, 13, 14]
-   if CharClass == "Druid":
-       CharStats = {"Strength":5,"Dexterity":3,"Constitution":2,"Intelligence":4,"Wisdom":1,"Charisma":6}
-       HitDie = "1d8"
-       HitPoints = 8
-       SavProf1 = "Intelligence"
-       SavProf2 = "Wisdom"
-       CharProficiencies = []
-       CharProficiencies += ArmorLight
-       CharProficiencies.append("Hide")
-       CharProficiencies.append("Scale")
-       CharProficiencies.append("Shield")
-       CharProficiencies.append("Club")
-       CharProficiencies.append("Dagger")
-       CharProficiencies.append("Javelin")
-       CharProficiencies.append("Mace")
-       CharProficiencies.append("Quarterstaff")
-       CharProficiencies.append("Scimitar")
-       CharProficiencies.append("Sickle")
-       CharProficiencies.append("Sling")
-       CharProficiencies.append("Spear")
-       Skillnumber = 2
-       Skillpool = [1, 2, 6, 9, 10, 11, 14, 17]
-   if CharClass == "Fighter":
-       CharStats = {"Strength":1,"Dexterity":3,"Constitution":2,"Intelligence":6,"Wisdom":4,"Charisma":5}
-       HitDie = "1d10"
-       HitPoints = 10
-       SavProf1 = "Strength"
-       SavProf2 = "Constitution"
-       CharProficiencies = []
-       CharProficiencies += ArmorLight
-       CharProficiencies += ArmorMedium
-       CharProficiencies += ArmorHeavy
-       CharProficiencies.append("Shield")
-       CharProficiencies += WeaponsMartialMelee
-       CharProficiencies += WeaponsMartialRanged
-       CharProficiencies += WeaponsSimpleMelee
-       CharProficiencies += WeaponsSimpleRanged
-       Skillnumber = 2
-       Skillpool = [0, 1, 3, 5, 6, 7, 11, 17]
-   if CharClass == "Monk":
-       CharStats = {"Strength":4,"Dexterity":1,"Constitution":3,"Intelligence":5,"Wisdom":2,"Charisma":6}
-       HitDie = "1d8"
-       HitPoints = 8
-       SavProf1 = "Strength"
-       SavProf2 = "Dexterity"
+    if CharClass == "Barbarian":
+        CharStats = {"Strength": 1, "Dexterity": 3, "Constitution": 2, "Intelligence": 6, "Wisdom": 4, "Charisma": 5}
+        HitDie = "1d12"
+        HitPoints = 12
+        SavProf1 = "Strength"
+        SavProf2 = "Constitution"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += ArmorMedium
+        CharProficiencies.append("Shield")
+        CharProficiencies += WeaponsMartialMelee
+        CharProficiencies += WeaponsMartialRanged
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
+        Skillnumber = 2
+        Skillpool = [1, 3, 7, 10, 11, 17]
+    if CharClass == "Bard":
+        CharStats = {"Strength": 6, "Dexterity": 2, "Constitution": 3, "Intelligence": 5, "Wisdom": 4, "Charisma": 1}
+        HitDie = "1d8"
+        HitPoints = 8
+        SavProf1 = "Dexterity"
+        SavProf2 = "Charisma"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
+        CharProficiencies.append("Hand Crossbow")
+        CharProficiencies.append("Longsword")
+        CharProficiencies.append("Rapier")
+        CharProficiencies.append("Shortsword")
+        Skillnumber = 3
+        Skillpool = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+    if CharClass == "Cleric":
+        CharStats = {"Strength": 3, "Dexterity": 4, "Constitution": 2, "Intelligence": 6, "Wisdom": 1, "Charisma": 5}
+        HitDie = "1d8"
+        HitPoints = 8
+        SavProf1 = "Intelligence"
+        SavProf2 = "Wisdom"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += ArmorMedium
+        CharProficiencies.append("Shield")
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
+        Skillnumber = 2
+        Skillpool = [5, 6, 9, 13, 14]
+    if CharClass == "Druid":
+        CharStats = {"Strength": 5, "Dexterity": 3, "Constitution": 2, "Intelligence": 4, "Wisdom": 1, "Charisma": 6}
+        HitDie = "1d8"
+        HitPoints = 8
+        SavProf1 = "Intelligence"
+        SavProf2 = "Wisdom"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies.append("Hide")
+        CharProficiencies.append("Scale")
+        CharProficiencies.append("Shield")
+        CharProficiencies.append("Club")
+        CharProficiencies.append("Dagger")
+        CharProficiencies.append("Javelin")
+        CharProficiencies.append("Mace")
+        CharProficiencies.append("Quarterstaff")
+        CharProficiencies.append("Scimitar")
+        CharProficiencies.append("Sickle")
+        CharProficiencies.append("Sling")
+        CharProficiencies.append("Spear")
+        Skillnumber = 2
+        Skillpool = [1, 2, 6, 9, 10, 11, 14, 17]
+    if CharClass == "Fighter":
+        CharStats = {"Strength": 1, "Dexterity": 3, "Constitution": 2, "Intelligence": 6, "Wisdom": 4, "Charisma": 5}
+        HitDie = "1d10"
+        HitPoints = 10
+        SavProf1 = "Strength"
+        SavProf2 = "Constitution"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += ArmorMedium
+        CharProficiencies += ArmorHeavy
+        CharProficiencies.append("Shield")
+        CharProficiencies += WeaponsMartialMelee
+        CharProficiencies += WeaponsMartialRanged
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
+        Skillnumber = 2
+        Skillpool = [0, 1, 3, 5, 6, 7, 11, 17]
+    if CharClass == "Monk":
+        CharStats = {"Strength": 4, "Dexterity": 1, "Constitution": 3, "Intelligence": 5, "Wisdom": 2, "Charisma": 6}
+        HitDie = "1d8"
+        HitPoints = 8
+        SavProf1 = "Strength"
+        SavProf2 = "Dexterity"
 
-       CharProficiencies = []
-       CharProficiencies += WeaponsSimpleMelee
-       CharProficiencies += WeaponsSimpleRanged
-       CharProficiencies.append("Shortsword")
-       Skillnumber = 2
-       Skillpool = [0, 3, 5, 6, 14, 16]
-   if CharClass == "Paladin":
-       CharStats = {"Strength":1,"Dexterity":5,"Constitution":3,"Intelligence":6,"Wisdom":4,"Charisma":2}
-       HitDie = "1d10"
-       HitPoints = 10
-       SavProf1 = "Wisdom"
-       SavProf2 = "Charisma"
+        CharProficiencies = []
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
+        CharProficiencies.append("Shortsword")
+        Skillnumber = 2
+        Skillpool = [0, 3, 5, 6, 14, 16]
+    if CharClass == "Paladin":
+        CharStats = {"Strength": 1, "Dexterity": 5, "Constitution": 3, "Intelligence": 6, "Wisdom": 4, "Charisma": 2}
+        HitDie = "1d10"
+        HitPoints = 10
+        SavProf1 = "Wisdom"
+        SavProf2 = "Charisma"
 
-       CharProficiencies = []
-       CharProficiencies += ArmorLight
-       CharProficiencies += ArmorMedium
-       CharProficiencies += ArmorHeavy
-       CharProficiencies.append("Shield")
-       CharProficiencies += WeaponsMartialMelee
-       CharProficiencies += WeaponsMartialRanged
-       CharProficiencies += WeaponsSimpleMelee
-       CharProficiencies += WeaponsSimpleRanged
-       Skillnumber = 2
-       Skillpool = [3, 6, 7, 9, 13, 14]
-   if CharClass == "Ranger":
-       CharStats = {"Strength":4,"Dexterity":1,"Constitution":3,"Intelligence":5,"Wisdom":2,"Charisma":6}
-       HitDie = "1d10"
-       HitPoints = 10
-       SavProf1 = "Strength"
-       SavProf2 = "Dexterity"
-       CharProficiencies = []
-       CharProficiencies += ArmorLight
-       CharProficiencies += ArmorMedium
-       CharProficiencies.append("Shield")
-       CharProficiencies += WeaponsMartialMelee
-       CharProficiencies += WeaponsMartialRanged
-       CharProficiencies += WeaponsSimpleMelee
-       CharProficiencies += WeaponsSimpleRanged
-       Skillnumber = 3
-       Skillpool = [1, 3, 6, 8, 10, 11, 16, 17]
-   if CharClass == "Rogue":
-       CharStats = {"Strength":6,"Dexterity":1,"Constitution":3,"Intelligence":5,"Wisdom":4,"Charisma":2}
-       HitDie = "1d8"
-       HitPoints = 8
-       SavProf1 = "Dexterity"
-       SavProf2 = "Constitution"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += ArmorMedium
+        CharProficiencies += ArmorHeavy
+        CharProficiencies.append("Shield")
+        CharProficiencies += WeaponsMartialMelee
+        CharProficiencies += WeaponsMartialRanged
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
+        Skillnumber = 2
+        Skillpool = [3, 6, 7, 9, 13, 14]
+    if CharClass == "Ranger":
+        CharStats = {"Strength": 4, "Dexterity": 1, "Constitution": 3, "Intelligence": 5, "Wisdom": 2, "Charisma": 6}
+        HitDie = "1d10"
+        HitPoints = 10
+        SavProf1 = "Strength"
+        SavProf2 = "Dexterity"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += ArmorMedium
+        CharProficiencies.append("Shield")
+        CharProficiencies += WeaponsMartialMelee
+        CharProficiencies += WeaponsMartialRanged
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
+        Skillnumber = 3
+        Skillpool = [1, 3, 6, 8, 10, 11, 16, 17]
+    if CharClass == "Rogue":
+        CharStats = {"Strength": 6, "Dexterity": 1, "Constitution": 3, "Intelligence": 5, "Wisdom": 4, "Charisma": 2}
+        HitDie = "1d8"
+        HitPoints = 8
+        SavProf1 = "Dexterity"
+        SavProf2 = "Constitution"
 
-       CharProficiencies = []
-       CharProficiencies += ArmorLight
-       CharProficiencies += WeaponsSimpleMelee
-       CharProficiencies += WeaponsSimpleRanged
-       CharProficiencies.append("Longsword")
-       CharProficiencies.append("Hand Crossbow")
-       CharProficiencies.append("Rapier")
-       CharProficiencies.append("Shortsword")
-       Skillnumber = 4
-       Skillpool = [0, 3, 4, 6, 7, 8, 11, 12, 13, 15, 16]
-   if CharClass == "Sorcerer":
-       CharStats = {"Strength":6,"Dexterity":3,"Constitution":2,"Intelligence":5,"Wisdom":4,"Charisma":1}
-       HitDie = "1d6"
-       HitPoints = 6
-       SavProf1 = "Constitution"
-       SavProf2 = "Charisma"
-       CharProficiencies = []
-       CharProficiencies.append("Dagger")
-       CharProficiencies.append("Dart")
-       CharProficiencies.append("Sling")
-       CharProficiencies.append("Quarterstaff")
-       CharProficiencies.append("Light Crossbow")
-       Skillnumber = 2
-       Skillpool = [2, 4, 6, 7, 13, 14]
-   if CharClass == "Warlock":
-       CharStats = {"Strength":6,"Dexterity":3,"Constitution":2,"Intelligence":5,"Wisdom":4,"Charisma":1}
-       HitDie = "1d8"
-       HitPoints = 8
-       SavProf1 = "Wisdom"
-       SavProf2 = "Charisma"
-       CharProficiencies = []
-       CharProficiencies += ArmorLight
-       CharProficiencies += WeaponsSimpleMelee
-       CharProficiencies += WeaponsSimpleRanged
-       Skillnumber = 2
-       Skillpool = [2, 4, 5, 7, 8, 10, 14]
-   if CharClass == "Wizard":
-       CharStats = {"Strength":6,"Dexterity":3,"Constitution":2,"Intelligence":1,"Wisdom":4,"Charisma":5}
-       HitDie = "1d6"
-       HitPoints = 6
-       SavProf1 = "Intelligence"
-       SavProf2 = "Wisdom"
-       CharProficiencies = []
-       CharProficiencies.append("Dagger")
-       CharProficiencies.append("Dart")
-       CharProficiencies.append("Sling")
-       CharProficiencies.append("Quarterstaff")
-       CharProficiencies.append("Light Crossbow")
-       Skillnumber = 2
-       Skillpool = [2, 5, 6, 8, 9, 14]
-   StatList = StatRoller()
-   #print (StatList)
-   for key, value in CharStats.items():
-       CharStats[key] = StatList[value-1]
-       #CharStats.append(StatList[value-1])
-       #print('Key: %s' % key)
-       #print('Value: %s' % value)
-   #print ("Character Stats: ", CharStats)
-   CharMods = CharStats.copy()
-   for key, value in CharMods.items():
-       CharMods[key] = round(((CharMods[key]+1.1) /2)-6)
-   #print ("Stat Modifiers:  ", CharMods)
-   #print (StatRoller(""))
-   return CharStats,CharMods,HitDie,HitPoints, SavProf1, SavProf2, CharProficiencies, Skillnumber, Skillpool
-#Assign the rolled stats and rolled modifiers to global data types
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
+        CharProficiencies.append("Longsword")
+        CharProficiencies.append("Hand Crossbow")
+        CharProficiencies.append("Rapier")
+        CharProficiencies.append("Shortsword")
+        Skillnumber = 4
+        Skillpool = [0, 3, 4, 6, 7, 8, 11, 12, 13, 15, 16]
+    if CharClass == "Sorcerer":
+        CharStats = {"Strength": 6, "Dexterity": 3, "Constitution": 2, "Intelligence": 5, "Wisdom": 4, "Charisma": 1}
+        HitDie = "1d6"
+        HitPoints = 6
+        SavProf1 = "Constitution"
+        SavProf2 = "Charisma"
+        CharProficiencies = []
+        CharProficiencies.append("Dagger")
+        CharProficiencies.append("Dart")
+        CharProficiencies.append("Sling")
+        CharProficiencies.append("Quarterstaff")
+        CharProficiencies.append("Light Crossbow")
+        Skillnumber = 2
+        Skillpool = [2, 4, 6, 7, 13, 14]
+    if CharClass == "Warlock":
+        CharStats = {"Strength": 6, "Dexterity": 3, "Constitution": 2, "Intelligence": 5, "Wisdom": 4, "Charisma": 1}
+        HitDie = "1d8"
+        HitPoints = 8
+        SavProf1 = "Wisdom"
+        SavProf2 = "Charisma"
+        CharProficiencies = []
+        CharProficiencies += ArmorLight
+        CharProficiencies += WeaponsSimpleMelee
+        CharProficiencies += WeaponsSimpleRanged
+        Skillnumber = 2
+        Skillpool = [2, 4, 5, 7, 8, 10, 14]
+    if CharClass == "Wizard":
+        CharStats = {"Strength": 6, "Dexterity": 3, "Constitution": 2, "Intelligence": 1, "Wisdom": 4, "Charisma": 5}
+        HitDie = "1d6"
+        HitPoints = 6
+        SavProf1 = "Intelligence"
+        SavProf2 = "Wisdom"
+        CharProficiencies = []
+        CharProficiencies.append("Dagger")
+        CharProficiencies.append("Dart")
+        CharProficiencies.append("Sling")
+        CharProficiencies.append("Quarterstaff")
+        CharProficiencies.append("Light Crossbow")
+        Skillnumber = 2
+        Skillpool = [2, 5, 6, 8, 9, 14]
+    StatList = StatRoller()
+    # print (StatList)
+    for key, value in CharStats.items():
+        CharStats[key] = StatList[value - 1]
+        # CharStats.append(StatList[value-1])
+        # print('Key: %s' % key)
+        # print('Value: %s' % value)
+    # print ("Character Stats: ", CharStats)
+    CharMods = CharStats.copy()
+    for key, value in CharMods.items():
+        CharMods[key] = round(((CharMods[key] + 1.1) / 2) - 6)
+    # print ("Stat Modifiers:  ", CharMods)
+    # print (StatRoller(""))
+    return CharStats, CharMods, HitDie, HitPoints, SavProf1, SavProf2, CharProficiencies, Skillnumber, Skillpool
+
+
+# Assign the rolled stats and rolled modifiers to global data types
 CharStatsAndMods = CharacterStats()
 CharStats = CharStatsAndMods[0]
 CharMods = CharStatsAndMods[1]
@@ -428,11 +510,15 @@ CharProficiencies = CharStatsAndMods[6]
 Skillnumber = CharStatsAndMods[7]
 Skillpool = CharStatsAndMods[8]
 
-#Determine Skills Bonus START
-AllSkills = ["Acrobatics","Animal Handling","Arcana","Athletics","Deception","History","Insight","Intimidation","Investigation","Medicine","Nature","Perception","Performance","Persuasion","Religion","Sleight of Hand","Stealth","Survival"]
-Skillsbonus = {"Acrobatics":0,"Animal Handling":0,"Arcana":0,"Athletics":0,"Deception":0,"History":0,"Insight":0,"Intimidation":0,"Investigation":0,"Medicine":0,"Nature":0,"Perception":0,"Performance":0,"Persuasion":0,"Religion":0,"Sleight of Hand":0,"Stealth":0,"Survival":0}
+# Determine Skills Bonus START
+AllSkills = ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation",
+             "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion",
+             "Sleight of Hand", "Stealth", "Survival"]
+Skillsbonus = {"Acrobatics": 0, "Animal Handling": 0, "Arcana": 0, "Athletics": 0, "Deception": 0, "History": 0,
+               "Insight": 0, "Intimidation": 0, "Investigation": 0, "Medicine": 0, "Nature": 0, "Perception": 0,
+               "Performance": 0, "Persuasion": 0, "Religion": 0, "Sleight of Hand": 0, "Stealth": 0, "Survival": 0}
 
-#Want to make a separate Skills like.  Trying to copy from CharMods list
+# Want to make a separate Skills like.  Trying to copy from CharMods list
 Skillsbonus["Acrobatics"] += CharMods["Dexterity"]
 Skillsbonus["Animal Handling"] += CharMods["Wisdom"]
 Skillsbonus["Arcana"] += CharMods["Intelligence"]
@@ -593,7 +679,7 @@ def Equipment():
         if Case1 == 1:
             CharEquips.append("Mace")
         if Case1 == 2:
-            CharEquips.append("WarHammer")
+            CharEquips.append("Warhammer")
         if Case2 == 1:
             CharEquips.append("Scale Mail")
         if Case2 == 2:
@@ -1142,53 +1228,48 @@ import textwrap
 # Stole this code form online...I don't understand the io or canvas stuff
 packet = io.BytesIO()
 
-
-
-#Commands for writing to page 2; logically placed above commands for writing to page 1
+# Commands for writing to page 2; logically placed above commands for writing to page 1
 
 packet2 = io.BytesIO()
 
 can2 = canvas.Canvas(packet2, pagesize=letter)
 
-
 ##Page 2 Character Height and Weight
-can2.setFont('Helvetica',12)
-can2.drawString(381, 728, str(CharHeight)) #Height
-can2.drawString(478, 728, str(CharWeight)) #Weight
-can2.drawString(65, 713, CharName) #Character name
+can2.setFont('Helvetica', 12)
+can2.drawString(381, 728, str(CharHeight))  # Height
+can2.drawString(478, 728, str(CharWeight))  # Weight
+can2.drawString(65, 713, CharName)  # Character name
 
-
-
-
-#commands for writing to page 1
+# commands for writing to page 1
 # create a new PDF with Reportlab
 can = canvas.Canvas(packet, pagesize=letter)
-can.setFont('Helvetica',12)
-can.drawString(272, 705, CharRace) #Race
-can.drawString(272, 731, CharClass) #Class
-can.drawString(380, 705, str(CharAlignment)) #Alignment
-can.drawString(380, 731, str(CharBackground)) #Background
-#can.drawString(470, 731, "Player Name") #player name
+can.setFont('Helvetica', 12)
+can.drawString(272, 705, CharRace)  # Race
+can.drawString(272, 731, CharClass)  # Class
+can.drawString(380, 705, str(CharAlignment))  # Alignment
+can.drawString(380, 731, str(CharBackground))  # Background
+# can.drawString(470, 731, "Player Name") #player name
 
-#Populate Attibutes
-can.drawString(65, 716, CharName) #Character name
-can.drawString(50, 621, str(CharStats.get("Strength"))) #Str
-can.drawString(50, 548, str(CharStats.get("Dexterity"))) #Dex
-can.drawString(50, 477, str(CharStats.get("Constitution"))) #Con
-can.drawString(50, 405, str(CharStats.get("Intelligence"))) #Int
-can.drawString(50, 334, str(CharStats.get("Wisdom"))) #Wis
-can.drawString(50, 262, str(CharStats.get("Charisma"))) #Cha
+# Populate Attibutes
+can.drawString(65, 716, CharName)  # Character name
+can.drawString(51, 595, str(CharStats.get("Strength")))  # Str
+can.drawString(51, 523, str(CharStats.get("Dexterity")))  # Dex
+can.drawString(51, 451, str(CharStats.get("Constitution")))  # Con
+can.drawString(51, 379, str(CharStats.get("Intelligence")))  # Int
+can.drawString(51, 307, str(CharStats.get("Wisdom")))  # Wis
+can.drawString(51, 237, str(CharStats.get("Charisma")))  # Cha
 
-#Populate Modifiers
-can.drawString(50, 595, str(format(CharMods.get("Strength"), '+.00f'))) #Str
-can.drawString(50, 523, str(format(CharMods.get("Dexterity"), '+.00f'))) #Dex
-can.drawString(50, 451, str(format(CharMods.get("Constitution"), '+.00f'))) #Con
-can.drawString(50, 379, str(format(CharMods.get("Intelligence"), '+.00f'))) #Int
-can.drawString(50, 307, str(format(CharMods.get("Wisdom"), '+.00f'))) #Wis
-can.drawString(50, 237, str(format(CharMods.get("Charisma"), '+.00f'))) #Cha
+# Populate Modifiers
+can.setFont('Helvetica', 14)
+can.drawString(50, 621, str(format(CharMods.get("Strength"), '+.00f')))  # Str
+can.drawString(50, 548, str(format(CharMods.get("Dexterity"), '+.00f')))  # Dex
+can.drawString(50, 477, str(format(CharMods.get("Constitution"), '+.00f')))  # Con
+can.drawString(50, 405, str(format(CharMods.get("Intelligence"), '+.00f')))  # Int
+can.drawString(50, 334, str(format(CharMods.get("Wisdom"), '+.00f')))  # Wis
+can.drawString(50, 262, str(format(CharMods.get("Charisma"), '+.00f')))  # Cha
 
-#Populate Saving Throws
-can.setFont('Helvetica',8)
+# Populate Saving Throws
+can.setFont('Helvetica', 8)
 can.drawString(116, 578, str('{0:+d}'.format(SThrows.get("Strength"))))
 can.drawString(116, 565, str('{0:+d}'.format(SThrows.get("Dexterity"))))
 can.drawString(116, 551, str('{0:+d}'.format(SThrows.get("Constitution"))))
@@ -1196,16 +1277,20 @@ can.drawString(116, 538, str('{0:+d}'.format(SThrows.get("Intelligence"))))
 can.drawString(116, 524, str('{0:+d}'.format(SThrows.get("Wisdom"))))
 can.drawString(116, 511, str('{0:+d}'.format(SThrows.get("Charisma"))))
 
-#Add dot to Bonus Saving Throws
-DotPlacer = {"Strength":578,"Dexterity":565,"Constitution":551,"Intelligence":538,"Wisdom":524,"Charisma":511,"Acrobatics":463,"Animal Handling":449,"Arcana":436,"Athletics":422,"Deception":409,"History":395,"Insight":382,"Intimidation":368,"Investigation":355,"Medicine":341,"Nature":328,"Perception":314,"Performance":301,"Persuasion":287,"Religion":274,"Sleight of Hand":260,"Stealth":247,"Survival":233}
-can.setFont('Helvetica',24)
-can.drawString(100, DotPlacer.get(SavProf1)-6, "•")
-can.drawString(100, DotPlacer.get(SavProf2)-6, "•")
+# Add dot to Bonus Saving Throws
+DotPlacer = {"Strength": 578, "Dexterity": 565, "Constitution": 551, "Intelligence": 538, "Wisdom": 524,
+             "Charisma": 511, "Acrobatics": 463, "Animal Handling": 449, "Arcana": 436, "Athletics": 422,
+             "Deception": 409, "History": 395, "Insight": 382, "Intimidation": 368, "Investigation": 355,
+             "Medicine": 341, "Nature": 328, "Perception": 314, "Performance": 301, "Persuasion": 287, "Religion": 273,
+             "Sleight of Hand": 260, "Stealth": 247, "Survival": 233}
+can.setFont('Helvetica', 24)
+can.drawString(100, DotPlacer.get(SavProf1) - 6, "•")
+can.drawString(100, DotPlacer.get(SavProf2) - 6, "•")
 for skillsb in ChosenSkills:
-   can.drawString(100, DotPlacer.get(AllSkills[skillsb]) - 6, "•")
+    can.drawString(100, DotPlacer.get(AllSkills[skillsb]) - 6, "•")
 
-#Populate Skills
-can.setFont('Helvetica',8)
+# Populate Skills
+can.setFont('Helvetica', 8)
 can.drawString(116, 463, str('{0:+d}'.format(Skillsbonus.get("Acrobatics"))))
 can.drawString(116, 449, str('{0:+d}'.format(Skillsbonus.get("Animal Handling"))))
 can.drawString(116, 436, str('{0:+d}'.format(Skillsbonus.get("Arcana"))))
@@ -1220,166 +1305,234 @@ can.drawString(116, 328, str('{0:+d}'.format(Skillsbonus.get("Nature"))))
 can.drawString(116, 314, str('{0:+d}'.format(Skillsbonus.get("Perception"))))
 can.drawString(116, 301, str('{0:+d}'.format(Skillsbonus.get("Performance"))))
 can.drawString(116, 287, str('{0:+d}'.format(Skillsbonus.get("Persuasion"))))
-can.drawString(116, 274, str('{0:+d}'.format(Skillsbonus.get("Religion"))))
+can.drawString(116, 273, str('{0:+d}'.format(Skillsbonus.get("Religion"))))
 can.drawString(116, 260, str('{0:+d}'.format(Skillsbonus.get("Sleight of Hand"))))
 can.drawString(116, 247, str('{0:+d}'.format(Skillsbonus.get("Stealth"))))
 can.drawString(116, 233, str('{0:+d}'.format(Skillsbonus.get("Survival"))))
 
-can.setFont('Helvetica',10)
-can.drawString(101, 611, "+2") #proficiency bonus
-can.drawString(36, 188, str(10 + Skillsbonus.get("Perception"))) #Passive perception
-can.setFont('Helvetica',20)
-can.drawString(351, 628, str(CharSpeed)) #Speed
-can.drawString(292, 628, str(format(CharMods.get("Dexterity"), '+.00f'))) #Initiative
+can.setFont('Helvetica', 10)
+can.drawString(101, 611, "+2")  # proficiency bonus
+can.drawString(36, 188, str(10 + Skillsbonus.get("Perception")))  # Passive perception
+can.setFont('Helvetica', 20)
+can.drawString(351, 628, str(CharSpeed))  # Speed
+can.drawString(292, 628, str(format(CharMods.get("Dexterity"), '+.00f')))  # Initiative
 
-can.drawString(236, 557, str(HitPoints + CharMods.get("Constitution"))) #HitPointsMax
-can.setFont('Helvetica',10)
-can.drawString(292, 586, str(HitPoints + CharMods.get("Constitution"))) #HitPointsCurrent
+can.drawString(236, 557, str(HitPoints + CharMods.get("Constitution")))  # HitPointsMax
+can.setFont('Helvetica', 10)
+can.drawString(292, 586, str(HitPoints + CharMods.get("Constitution")))  # HitPointsCurrent
 
-can.setFont('Helvetica',12)
-can.drawString(235, 447, str(HitDie)) #Hit Die
-can.setFont('Helvetica',8)
+can.setFont('Helvetica', 12)
+can.drawString(235, 447, str(HitDie))  # Hit Die
+can.setFont('Helvetica', 8)
 wrap_text = textwrap.wrap(random.choice(Traits), width=41)
-for number,items in enumerate(wrap_text, start=1):
-   can.drawString(420, 654 - int(number)*10, items)  # Traits
+for number, items in enumerate(wrap_text, start=1):
+    can.drawString(420, 654 - int(number) * 10, items)  # Traits
 
 wrap_text = textwrap.wrap(random.choice(Ideals), width=41)
-for number,items in enumerate(wrap_text, start=1):
-   can.drawString(420, 584 - int(number)*10, items)  # Ideals
+for number, items in enumerate(wrap_text, start=1):
+    can.drawString(420, 584 - int(number) * 10, items)  # Ideals
 
 wrap_text = textwrap.wrap(random.choice(Bonds), width=41)
-for number,items in enumerate(wrap_text, start=1):
-   can.drawString(420, 529 - int(number)*10, items)  # Bonds
+for number, items in enumerate(wrap_text, start=1):
+    can.drawString(420, 529 - int(number) * 10, items)  # Bonds
 
 wrap_text = textwrap.wrap(random.choice(Flaws), width=41)
-for number,items in enumerate(wrap_text, start=1):
-   can.drawString(420, 474 - int(number)*10, items)  # Flaws
+for number, items in enumerate(wrap_text, start=1):
+    can.drawString(420, 474 - int(number) * 10, items)  # Flaws
 
-
-#can.drawString(420, 570, "Get better at python") # ideals
-#can.drawString(420, 515, "Fixated on this silly project") # bonds
-#can.drawString(420, 459, "Obsessive") # flaws
-can.setFont('Helvetica',8)
+# can.drawString(420, 570, "Get better at python") # ideals
+# can.drawString(420, 515, "Fixated on this silly project") # bonds
+# can.drawString(420, 459, "Obsessive") # flaws
+can.setFont('Helvetica', 8)
 Equips = Equipment()
 
 # loop through equips to see which ones are weapons.  Add those to the attacks list
 WeaponsOwned = {}
 for items in Equips:
 
-   if items in WeaponsStrBased:
-       WeaponsOwned[items] = (WeaponsStrBased[items])
-   if items in WeaponsDexBased:
-       WeaponsOwned[items] = (WeaponsDexBased[items])
-   if items in WeaponsFinesse:
-       WeaponsOwned[items] = (WeaponsFinesse[items])
+    if items in WeaponsStrBased:
+        WeaponsOwned[items] = (WeaponsStrBased[items])
+    if items in WeaponsDexBased:
+        WeaponsOwned[items] = (WeaponsDexBased[items])
+    if items in WeaponsFinesse:
+        WeaponsOwned[items] = (WeaponsFinesse[items])
 
-#this code below isn't working
-   if items in WeaponsNumbered:
-       if items == '20 Darts':
-           WeaponsOwned['Dart']=(WeaponsDexBased['Dart'])
-       if items == 'Four Javelins':
-           WeaponsOwned['Javelin'] = (WeaponsStrBased['Javelin'])
-       if items == 'Five Javelins':
-           WeaponsOwned['Javelin'] = (WeaponsStrBased['Javelin'])
-       if items == "Two Handaxes":
-           WeaponsOwned['Handaxe'] = (WeaponsStrBased['Handaxe'])
-       if items == "Two Shortswords":
-           WeaponsOwned['Shortsword'] = (WeaponsFinesse['Shortsword'])
-       if items == "Two Daggers":
-           WeaponsOwned['Dagger'] = (WeaponsFinesse['Dagger'])
+    # this code below wasn't working at some point.  I think it works now.
+    if items in WeaponsNumbered:
+        if items == '20 Darts':
+            WeaponsOwned['Dart'] = (WeaponsDexBased['Dart'])
+        if items == 'Four Javelins':
+            WeaponsOwned['Javelin'] = (WeaponsStrBased['Javelin'])
+        if items == 'Five Javelins':
+            WeaponsOwned['Javelin'] = (WeaponsStrBased['Javelin'])
+        if items == "Two Handaxes":
+            WeaponsOwned['Handaxe'] = (WeaponsStrBased['Handaxe'])
+        if items == "Two Shortswords":
+            WeaponsOwned['Shortsword'] = (WeaponsFinesse['Shortsword'])
+        if items == "Two Daggers":
+            WeaponsOwned['Dagger'] = (WeaponsFinesse['Dagger'])
 
-
-
-#print (WeaponsOwned)
-
-#Set armor class with no armor.  If character has armor, this will be overwritten later
+# Set armor class with no armor.  If character has armor, this will be overwritten later
 
 ArmorClass = 10 + CharMods.get("Dexterity")
 
-#Search through inventory, find heaviest armor, add to AC bonus.  Also, add shield AC bonus where needed.
+# Search through inventory, find heaviest armor, add to AC bonus.  Also, add shield AC bonus where needed.
 
 
 for items in Equips:
-   if items in ArmorLight.keys():
-       ArmorClass = ArmorLight.get(items)
-       ArmorClass += CharMods.get("Dexterity")
-   if items in ArmorMedium.keys():
-       MediumArmorDexBonus = CharMods.get("Dexterity")
-       if MediumArmorDexBonus > 2:
-           MediumArmorDexBonus = 2
-       ArmorClass = ArmorMedium.get(items)
-       ArmorClass += MediumArmorDexBonus
+    if items in ArmorLight.keys():
+        ArmorClass = ArmorLight.get(items)
+        ArmorClass += CharMods.get("Dexterity")
+    if items in ArmorMedium.keys():
+        MediumArmorDexBonus = CharMods.get("Dexterity")
+        if MediumArmorDexBonus > 2:
+            MediumArmorDexBonus = 2
+        ArmorClass = ArmorMedium.get(items)
+        ArmorClass += MediumArmorDexBonus
 
-   if items in ArmorHeavy.keys():
-       ArmorClass = ArmorHeavy.get(items)
+    if items in ArmorHeavy.keys():
+        ArmorClass = ArmorHeavy.get(items)
 
 if "Shield" in Equips:
-   ArmorClass += 2
+    ArmorClass += 2
 elif "Wooden Shield" in Equips:
-   ArmorClass +=2
+    ArmorClass += 2
 
+# Add Class Features and traits, including basic spell stuff
 
-#Search through inventory, add weapons to list of attack options along with hit modifier, damage modifier, and damage bonus
-for number,items in enumerate(WeaponsOwned, start=1):
-   can.drawString(225,408 - int(number)*20, items)  # Attacks
-   WeaponDmg = WeaponsOwned[items]
-   WeaponDmg = WeaponDmg[:-1]
-   WeaponDmgType = WeaponsOwned[items]
-   WeaponDmgType = WeaponDmgType[-1]
+if CharClass == "Barbarian":
+    wrap_text = textwrap.wrap(
+        "Two rages per long rest at level 1. RAGE: \"If not wearing heavy armor, for one minute you have advantage on Strength checks and Strength Saving throws.  You have resistance (receive half damage rounded down) to bludgeoning, piercing and slashing damage.  When you make a melee weapon attack using Strength, add +2 to damage roll\" (increases with level - see PHB).          UNARMORED DEFENSE:  AC = 10 + Dex mod + Con mod if not wearing body armor.  AC is not calculated this way in this sheet - adjust if desired.",
+        width=41)
+    for number, items in enumerate(wrap_text, start=1):
+        can.drawString(415, 405 - int(number) * 10, items)
+if CharClass == "Bard":
+    wrap_text = textwrap.wrap(
+        "BARDIC INSPIRATION: X times per day (X = CHA modifier or 1 if X would be less than 1), you can use a bonus action to choose one creature other than yourself within 60 feet who can hear you to gain a d6 to be added to one ability check, attack roll, or saving throw in the next 10 minutes (can wait until after D20 roll, but before DM says whether roll succeeds).    SPELLCASTING: You know two cantrips and four level 1 spells. You have two level 1 spell slots.  BARD CANTRIPS:  Dancing Lights, Light, Mage Hand, Mending, Message, Minor Illusion, Prestidigitation, True Strike, Vicious Mockery.    BARD LEVEL 1 SPELLS: Animal Friendship, Bane, Charm Person, Comprehend Languages, Cure Wounds, Detect Magic, Disguise Self, Faerie Fire, Feather Fall, Healing Word, Heroism, Hideous Laughter, Identify, Illusory Script, Longstrider, Silent Image, Sleep, Speak with Animals, Thunderwave, Unseen Servant",
+        width=41)
+    for number, items in enumerate(wrap_text, start=1):
+        can.drawString(415, 405 - int(number) * 10, items)
+if CharClass == "Cleric":
+    wrap_text = textwrap.wrap(
+        "SPELLCASTING: You know 3 cantrips.  You can prepare X level 1 spells (X = CHA modifier or 1 if X would be less than 1).  You have 2 level 1 spell slots.  DIVINE DOMAIN: You are part of one Divine Domain;  choose from the domains: Knowledge, Life, Light, Nature, Tempest, Trickery, or War.  Life and Light domains are recommended for new players.  Read PHB pgs 59-63 for cleric domains.   CLERIC CANTRIPS: Guidance, Light, Mending, Resistance, Sacred Flame, Spare the Dying, and Thaumaturgy.    CLERIC LEVEL 1 SPELLS:  Bane, Bless, Command, Create or Destroy Water, Cure Wounds, Detect Evil and Good, Detect Magic, Detect Poison and Disease, Guiding Bolt, Healing Word, Inflict Wounds, Protection from Evil and Good, Purify Food and Drink, Sanctuary, Shield of Faith.",
+        width=41)
+    for number, items in enumerate(wrap_text, start=1):
+        can.drawString(415, 405 - int(number) * 10, items)
+if CharClass == "Druid":
+    wrap_text = textwrap.wrap(
+        "SPELLCASTING: You know 2 cantrips.  You can prepare X level 1 spells (X = WIS modifier + Druid level or 1 if X would be less than 1).  You have 2 level 1 spell slots.   DRUIDIC LANGUAGE: You know the druidic language.  Read PHB pg 66 for druid language info.  DRUID CANTRIPS: Druidcraft, Guidance, Mending, Poison Spray, Produce Flame, Resistance, Shillelagh.    DRUID LEVEL 1 SPELLS: Animal Friendship, Charm Person, Create or Destroy Water, Cure Wounds, Detect Magic,Detect Poison and Disease, Entangle, Faerie Fire, Fog Cloud, Goodberry, Healing Word, Jump, Longstrider, Purify Food and Drink, Speak with Animals, Thunderwave.",
+        width=41)
+    for number, items in enumerate(wrap_text, start=1):
+        can.drawString(415, 405 - int(number) * 10, items)
+if CharClass == "Fighter":
+    wrap_text = textwrap.wrap(
+        "FIGHTING STYLE: choose 1 of Archery, Defense, Dueling, Great weapon fighting, protection, two-weapon fighting.  See PHB pg 72 for fighting style info.      SECOND WIND:  Once per short or long rest - On your turn, use a bonus action to regain hit points equal to 1d10 + fighter level.",
+        width=41)
+    for number, items in enumerate(wrap_text, start=1):
+        can.drawString(415, 405 - int(number) * 10, items)
+if CharClass == "Monk":
+    wrap_text = textwrap.wrap(
+        "UNARMORED DEFENSE:  if no shield or armor, AC = 10 + Dex mod + Wis mod.  AC is not calculated this way in this sheet - adjust if desired.       MARTIAL ARTS: While unarmed or weilding monk weapons (Shortsword, club, dagger, handaxe, javelin, light hammer, mace, quarterstaff, sickle, spear), you can optionally use dex instead of str for attack and damage rolls, you can roll a d4 in place of the normal damage die (useful only with unarmed strikes at level 1).  You can also make one unarmed strike as a bonus action.",
+        width=41)
+    for number, items in enumerate(wrap_text, start=1):
+        can.drawString(415, 405 - int(number) * 10, items)
+if CharClass == "Paladin":
+    wrap_text = textwrap.wrap(
+        "DIVINE SENSE: You an use Divine Sense X times per long rest (X = CHA modifier + 1):  As an action, open your awareness to detect powerful good or evil forces.  Until the end of your next turn, you know the location of any celestial, fiend or undead within 60 feet of you that is not behind total cover.  You know the type of detected presences, but not the identity of the beings.        LAY ON HANDS:  As an action, restore health to self or target using special \"lay on hands HP pool\" (Max HP in pool: paladin level x 5 HP, refills after long rest).  Alternatively, spend from pool 5 HP per ailment to remove disease or poison from one or more targets. ",
+        width=41)
+    for number, items in enumerate(wrap_text, start=1):
+        can.drawString(415, 405 - int(number) * 10, items)
+if CharClass == "Ranger":
+    wrap_text = textwrap.wrap(
+        "FAVORED ENEMY: Choose a type of favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, or undead. Alternatively, you can select two races of humanoid (such as gnolls and orcs) as favored enemies.  You have advantage on Wisdom (Survival) checks to track your favored enemies as well as on Intelligence checks to recall info about them.  Also gain one language of your choice spoken by your favored enemies if they speak one.     NATURAL EXPLORER: Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, swamp, or the Underdark.  When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you’re proficient in. While traveling for an hour or more in your favoredterrain, you gain the following benefits: Difficult terrain doesn’t slow your group’s travel. Your group can’t become lost except by magical means. Even when you are engaged in another activity while traveling (such as foraging, navigating, or tracking), you remain alert to danger. If you are traveling alone, you can move stealthily ata normal pace.• When you forage, you find twice as much food as younormally would.• While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.",
+        width=41)
+    for number, items in enumerate(wrap_text, start=1):
+        can.drawString(415, 405 - int(number) * 10, items)
+if CharClass == "Rogue":
+    wrap_text = textwrap.wrap(
+        "EXPERTISE:  choose two skill proficiencies or one skill proficiency and proficiency with thieves' tools.  Proficiency bonus is doubled for any ability check using either chosen proficiency.  The default +2 bonus to proficiencies has already been added to proficient skills in this sheet.      SNEAK ATTACK: once per turn, deal an extra 1d6 damage using a finesse or ranged weapon to one creature you hit if you have advantage on your attack roll.      THIEVES' CANT: like a language, you're familiar with jargon code, and secret signs used by thieves to convey simple messages.",
+        width=41)
+    for number, items in enumerate(wrap_text, start=1):
+        can.drawString(415, 405 - int(number) * 10, items)
+if CharClass == "Sorcerer":
+    wrap_text = textwrap.wrap(
+        "SORCEROUS ORIGIN: choose Draconic bloodline or wild magic (see PHB pg 102-103).      SPELLCASTING:  You know 4 cantrips.  You can prepare 2 level 1 spells.  You have 2 level 1 spell slots.     SORCERER CANTRIPS: Chill Touch, Eldritch Blast, Mage Hand, Minor Illusion, Poison Spray, Prestidigitation, True Strike.   SORCERER LEVEL 1 SPELLS: Charm Person, Comprehend Languages, Expeditious Retreat, Hellish Rebuke, Illusory Script, Protection from Evil and Good, Unseen Servant",
+        width=41)
+    for number, items in enumerate(wrap_text, start=1):
+        can.drawString(415, 405 - int(number) * 10, items)
+if CharClass == "Warlock":
+    wrap_text = textwrap.wrap(
+        "OTHERWORLDLY PATRON: choose an otherworldly patron as the source of your power; the Archfey, the Fiend, or the Great Old One (details in PHB pgs 107-110).     SPELLCASTING:  You know 2 cantrips (Eldritch Blast highly recommended).  You know 2 level 1 spells (can change spells on level up). You have 1 level 1 spell slots. WARLOCK CANTRIPS: Chill Touch, Eldritch Blast, Mage Hand, Minor Illusion, Poison Spray, Prestidigitation, True Strike.    WARLOCK LEVEL 1 SPELLS:  Charm Person, Comprehend Languages, Expeditious Retreat, Hellish Rebuke, Illusory Script, Protection from Evil and Good, Unseen Servant.",
+        width=41)
+    for number, items in enumerate(wrap_text, start=1):
+        can.drawString(415, 405 - int(number) * 10, items)
+if CharClass == "Wizard":
+    wrap_text = textwrap.wrap(
+        "ARCANE RECOVERY:  Once per day when finishing a short rest, recover expended spell slots of combined level = 1/2 your wizard level rounded up.  No spell slots > level 5 can be recovered).    SPELLCASTING:   You know 3 cantrips.  You can prepare X level 1 spells (X = INT modifier + wizard level or 1 if X would be less than 1).  You have 2 level 1 spell slots.       WIZARD CANTRIPS: Acid Splash, Chill Touch, Dancing Lights, Fire Bolt, Light, Mage Hand, Mending, Message, Minor Illusion, Poison Spray, Prestidigitation, Ray of Frost, Shocking Grasp, True Strike.    WIZARD LEVEL 1 SPELLS:  Alarm, Burning Hands, Charm Person, Color Spray, Comprehend Languages, Detect Magic, Disguise Self, Expeditious Retreat, False Life, Feather Fall, Find Familiar, Floating Disk, Fog Cloud, Grease, Hideous Laughter, identify, Illusory Script, Jump, Longstrider, Mage Armor, Magic Missile, Protection from Evil and Good, Shield ,Silent Image, Sleep, Thunderwave, Unseen Servant",
+        width=41)
+    for number, items in enumerate(wrap_text, start=1):
+        can.drawString(415, 405 - int(number) * 10, items)
 
-   if items in WeaponsStrBased:
-       WeaponDmgMod = CharMods["Strength"]
-   if items in WeaponsDexBased:
-       WeaponDmgMod = CharMods["Dexterity"]
-   if items in WeaponsFinesse:
-       if CharMods["Strength"] > CharMods["Dexterity"]:
-           WeaponDmgMod = CharMods["Strength"]
-       else:
-           WeaponDmgMod = CharMods["Dexterity"]
+# Search through inventory, add weapons to list of attack options along with hit modifier, damage modifier, and damage bonus
+for number, items in enumerate(WeaponsOwned, start=1):
+    can.drawString(225, 408 - int(number) * 20, items)  # Attacks
+    WeaponDmg = WeaponsOwned[items]
+    WeaponDmg = WeaponDmg[:-1]
+    WeaponDmgType = WeaponsOwned[items]
+    WeaponDmgType = WeaponDmgType[-1]
 
-   ProficiencyBonus = 0
-   if items in CharProficiencies:
-       ProficiencyBonus = 2
-   can.drawString(301,408 - int(number)*20, format(WeaponDmgMod+ProficiencyBonus, '+.00f'))  # Hit
-   can.drawString(331,408 - int(number)*20, WeaponDmg+format(WeaponDmgMod, '+.00f')+" "+WeaponDmgType)  # Damage
+    if items in WeaponsStrBased:
+        WeaponDmgMod = CharMods["Strength"]
+    if items in WeaponsDexBased:
+        WeaponDmgMod = CharMods["Dexterity"]
+    if items in WeaponsFinesse:
+        if CharMods["Strength"] > CharMods["Dexterity"]:
+            WeaponDmgMod = CharMods["Strength"]
+        else:
+            WeaponDmgMod = CharMods["Dexterity"]
 
+    ProficiencyBonus = 0
+    if items in CharProficiencies:
+        ProficiencyBonus = 2
+    can.drawString(301, 408 - int(number) * 20, format(WeaponDmgMod + ProficiencyBonus, '+.00f'))  # Hit
+    can.drawString(331, 408 - int(number) * 20,
+                   WeaponDmg + format(WeaponDmgMod, '+.00f') + " " + WeaponDmgType)  # Damage
 
-can.setFont('Helvetica',18)
-can.drawString(236, 632, str(ArmorClass)) #Armor Class
-can.setFont('Helvetica',8)
+can.setFont('Helvetica', 18)
+can.drawString(236, 632, str(ArmorClass))  # Armor Class
+can.setFont('Helvetica', 8)
 
-#List Equipment
-for number,items in enumerate(Equips, start=1):
-   can.drawString(274, 199 - int(number)*10, items)  # equipment
+# List Equipment
+for number, items in enumerate(Equips, start=1):
+    can.drawString(274, 199 - int(number) * 10, items)  # equipment
 
-#clean up punctuation from proficiencies list before printing to PDF
+# clean up punctuation from proficiencies list before printing to PDF
 CharLanguages = str(CharLanguages)
-CharLanguages = CharLanguages.replace('[','')
-CharLanguages = CharLanguages.replace(']','')
-CharLanguages = CharLanguages.replace("'","")
+CharLanguages = CharLanguages.replace('[', '')
+CharLanguages = CharLanguages.replace(']', '')
+CharLanguages = CharLanguages.replace("'", "")
 CharProficiencies = str(CharProficiencies)
-CharProficiencies = CharProficiencies.replace('[','')
-CharProficiencies = CharProficiencies.replace(']','')
-CharProficiencies = CharProficiencies.replace("'","")
+CharProficiencies = CharProficiencies.replace('[', '')
+CharProficiencies = CharProficiencies.replace(']', '')
+CharProficiencies = CharProficiencies.replace("'", "")
 if '20 Darts' in CharProficiencies:
-   CharProficiencies = CharProficiencies.replace("20 Darts","Dart")
+    CharProficiencies = CharProficiencies.replace("20 Darts", "Dart")
 
-can.setFont('Helvetica',7)
+can.setFont('Helvetica', 7)
 
-wrap_text = textwrap.wrap("Languages: "+(CharLanguages+ "  Weapon/Armor: "+CharProficiencies), width=46)
-for number,items in enumerate(wrap_text, start=1):
-   can.drawString(37, 167 - int(number)*9, items)  # Flaws
-#for number,items in enumerate(CharLanguages, start=1):
-   #can.drawString(36, 169 - int(number)*12, items)  # Languages
+wrap_text = textwrap.wrap("LANGUAGES: " + (CharLanguages + "    WEAPON/ARMOR: " + CharProficiencies), width=46)
+for number, items in enumerate(wrap_text, start=1):
+    can.drawString(37, 167 - int(number) * 9, items)  # Flaws
+# for number,items in enumerate(CharLanguages, start=1):
+# can.drawString(36, 169 - int(number)*12, items)  # Languages
 
 
 can.save()
 can2.save()
 
-#move to the beginning of the StringIO buffer
+# move to the beginning of the StringIO buffer
 packet.seek(0)
 new_pdf = PdfFileReader(packet)
-
 
 packet2.seek(0)
 new_pdf2 = PdfFileReader(packet2)
@@ -1396,10 +1549,10 @@ page2 = existing_pdf.getPage(1)
 page2.mergePage(new_pdf2.getPage(0))
 output.addPage(page2)
 # finally, write "output" to a real file
-NewFileName = "@NewChar_"+CharName+".pdf"
+NewFileName = "@NewChar_" + CharName + ".pdf"
 
 outputStream = open(NewFileName, "wb")
 output.write(outputStream)
 outputStream.close()
 
-print("New character "+CharName+" the "+CharClass+" created")
+print("New character " + CharName + " the " + CharClass + " created")
