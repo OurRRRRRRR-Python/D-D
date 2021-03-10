@@ -25,15 +25,17 @@ def StatRoller():
 # Create lists of various things
 CharRaces = ["Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Half Orc", "Halfling", "Half Orc", "Human", "Tiefling"]
 CharBackgrounds = (
-"Acolyte", "Anthropologist", "Archaeologist", "Adopted", "Black Fist Double Agent", "Caravan Specialist", "Charlatan",
-"City Watch", "Clan Crafter", "Cloistered Scholar", "Cormanthor Refugee", "Courtier", "Criminal", "Dragon Casualty",
-"Earthspur Miner", "Entertainer", "Faction Agent", "Far Traveler", "Folk Hero", "Gate Urchin", "Gladiator",
-"Guild Artisan", "Guild Merchant", "Harborfolk", "Haunted One", "Hermit", "Hillsfar Merchant", "Hillsfar Smuggler",
-"House Agent", "Inheritor", "Initiate", "Inquisitor", "Investigator", "Iron Route Bandit", "Knight",
-"Knight of the Order", "Mercenary Veteran", "Mulmaster Aristocrat", "Noble", "Outlander", "Phlan Insurgent",
-"Phlan Refugee", "Pirate", "Sage", "Sailor", "Secret Identity", "Shade Fanatic", "Soldier", "Spy", "Stojanow Prisoner",
-"Ticklebelly Nomad", "Trade Sheriff", "Urban Bounty Hunter", "Urchin", "Uthgardt Tribe Member", "Vizier",
-"Waterdhavian Noble")
+    "Acolyte", "Anthropologist", "Archaeologist", "Adopted", "Black Fist Double Agent", "Caravan Specialist",
+    "Charlatan",
+    "City Watch", "Clan Crafter", "Cloistered Scholar", "Cormanthor Refugee", "Courtier", "Criminal", "Dragon Casualty",
+    "Earthspur Miner", "Entertainer", "Faction Agent", "Far Traveler", "Folk Hero", "Gate Urchin", "Gladiator",
+    "Guild Artisan", "Guild Merchant", "Harborfolk", "Haunted One", "Hermit", "Hillsfar Merchant", "Hillsfar Smuggler",
+    "House Agent", "Inheritor", "Initiate", "Inquisitor", "Investigator", "Iron Route Bandit", "Knight",
+    "Knight of the Order", "Mercenary Veteran", "Mulmaster Aristocrat", "Noble", "Outlander", "Phlan Insurgent",
+    "Phlan Refugee", "Pirate", "Sage", "Sailor", "Secret Identity", "Shade Fanatic", "Soldier", "Spy",
+    "Stojanow Prisoner",
+    "Ticklebelly Nomad", "Trade Sheriff", "Urban Bounty Hunter", "Urchin", "Uthgardt Tribe Member", "Vizier",
+    "Waterdhavian Noble")
 CharBackgroundsLanguages = {"Acolyte": "Any x2", "Anthropologist": "Any x2", "Archaeologist": "Any x1",
                             "Adopted": "Any x2", "Black Fist Double Agent": "None", "Caravan Specialist": "Any x1",
                             "Charlatan": "None", "City Watch": "Any x2", "Clan Crafter": "Any x1",
@@ -53,13 +55,190 @@ CharBackgroundsLanguages = {"Acolyte": "Any x2", "Anthropologist": "Any x2", "Ar
                             "Soldier": "None", "Spy": "None", "Stojanow Prisoner": "None", "Ticklebelly Nomad": "Giant",
                             "Trade Sheriff": "Elvish", "Urban Bounty Hunter": "None", "Urchin": "None",
                             "Uthgardt Tribe Member": "Any x1", "Vizier": "None", "Waterdhavian Noble": "Any x1"}
+
+CharBackgroundsTools = {"Clan Crafter": "1 type of artisan's tools of your choice",
+                        "Cormanthor Refugee": "1 type of artisan's tools of your choice",
+                        "Guild Artisan": "1 type of artisan's tools of your choice",
+                        "Phlan Refugee": "1 type of artisan's tools of your choice",
+                        "Mulmaster Aristocrat": "1 type of artisan's tools of your choice or a musical instrument",
+                        "Vizier": "1 type of artisan's tools of your choice or a musical instrument",
+                        "Inquisitor": "1 type of artisan's tools of your choice or thieves' tools",
+                        "Folk Hero": "1 type of artisan's tools of your choice and operation of a land vehicle",
+                        "Phlan Insurgent": "1 type of artisan's tools of your choice and operation of a land vehicle",
+                        "Uthgardt Tribe Member": "1 type of artisan's tools of your choice or a musical instrument",
+                        "Archaeologist": "cartographer's tools OR navigator's tools",
+                        "Knight of the Order": "1 type of a gaming set of your choice or a musical instrument",
+                        "Waterdhavian Noble": "1 type of a gaming set of your choice or a musical instrument",
+                        "Far Traveler": "1 type of a gaming set of your choice or a musical instrument",
+                        "Urban Bounty Hunter": "Choose 2:gaming set of your choice, a musical instrument, thieves' tools",
+                        "Black Fist Double Agent": "A disguise kit AND (1 type of artisan's tools of your choice OR a gaming set)",
+                        "Charlatan": "Disguise kit,forgery kit",
+                        "Secret Identity": "Disguise kit,forgery kit",
+                        "Entertainer": "Disguise kit,a musical instrument of your choice",
+                        "Urchin": "Disguise kit,thieves' tools",
+                        "Gladiator": "Disguise kit, an unusual weapon of your choice ",
+                        "Hillsfar Smuggler": "Forgery kit",
+                        "Shade Fanatic": "Forgery kit",
+                        "Knight": "1 type of a gaming set of your choice",
+                        "Noble": "1 type of a gaming set of your choice",
+                        "Inheritor": "1 type of a gaming set of your choice, a musical instrument of your choice",
+                        "Criminal": "1 type of a gaming set of your choice, thieves' tools",
+                        "Spy": "1 type of a gaming set of your choice, thieves' tools",
+                        "Stojanow Prisoner": "1 type of a gaming set of your choice, thieves' tools",
+                        "Initiate": "1 type of a gaming set of your choice and operation of a land vehicle",
+                        "Iron Route Bandit": "1 type of a gaming set of your choice and operation of a land vehicle",
+                        "Mercenary Veteran": "1 type of a gaming set of your choice and operation of a land vehicle",
+                        "Soldier": "1 type of a gaming set of your choice and operation of a land vehicle",
+                        "Harborfolk": "1 type of a gaming set of your choice and operation of a water-based vehicle",
+                        "Hermit": "Herbalism kit",
+                        "Ticklebelly Nomad": "Herbalism kit",
+                        "Outlander": "a musical instrument",
+                        "Gate Urchin": "a musical instrument of your choice, thieves' tools",
+                        "Guild Merchant": "navigator's tools",
+                        "Pirate": "navigator's tools, operation of a water-based vehicle",
+                        "Sailor": "navigator's tools, operation of a water-based vehicle",
+                        "Acolyte": "",
+                        "Anthropologist": "",
+                        "Adopted": "",
+                        "City Watch": "",
+                        "Cloistered Scholar": "",
+                        "Courtier": "",
+                        "Earthspur Miner": "",
+                        "Faction Agent": "",
+                        "Haunted One": "",
+                        "Investigator": "",
+                        "Sage": "",
+                        "Dragon Casualty": "Special proficiency (Read info on Dragon Casualty background)",
+                        "House Agent": "Special proficiency (Read info on House Agent background)",
+                        "Trade Sheriff": "Thieves' tools",
+                        "Caravan Specialist": "operation of a land vehicle",
+                        "Hillsfar Merchant": "operation of a land vehicle, operation of a water-based vehicle"}
+
+CharBackgroundsEquipment = {
+    "Clan Crafter": "A set of artisan's tools with which you are proficient, a maker's mark chisel used to mark your handiwork with the symbol of the clan of crafters you learned your skill from, a set of traveler's clothes, a pouch with 5gp, a gem worth 10gp",
+    "Cormanthor Refugee": "A two-person tent, artisan's tools, a holy symbol, a set of traveler's clothes, a belt pouch with 5 gp",
+    "Guild Artisan": "A set of artisan's tools (one of your choice), a letter of introduction from your guild, a set of traveler's clothes, a belt pouch with 15gp",
+    "Phlan Refugee": "A set of artisan’s tools (one of your choice), a token of the life you once knew, a set of traveler’s clothes, a belt pouch with 15 gp",
+    "Mulmaster Aristocrat": "One set of artisan’s tools or musical instrument, a set of fine clothes, a purse with 10 gp.",
+    "Vizier": "A set of artisan’s tools or a musical instrument (one of your choice), a scroll of your god’s teachings, a vizier’s cartouche, a set of fine clothes, a pouch with 25 gp",
+    "Inquisitor": "A holy symbol (your badge of office), a book of canon law, a set of manacles, a set of common clothes, a belt pouch with 10 gp",
+    "Folk Hero": "A set of artisan's tools (one of your choice), a shovel, an iron pot, a set of common clothes, a belt pouch with 10gp",
+    "Phlan Insurgent": "A bag of caltrops (20), a small trinket that connects you to the life you once had before the occupation of Phlan, a healer’s kit, a set of dark common clothes that includes a cloak and hood, a belt pouch with 5 gp.",
+    "Uthgardt Tribe Member": "A hunting trap, a totemic token or set of tattoos marking your loyalty to Uthgar and your tribal totem, a set of traveler's clothes, a pouch with 10gp",
+    "Archaeologist": "A wooden case containing a map to a ruin or dungeon, a bullseye lantern, a miner's pick, a set of traveler's clothes, a shovel, a two-person tent, a trinket found at a dig site, a pouch with 25gp",
+    "Knight of the Order": "A set of traveler's clothes, a signet, banner, or seal representing your place or rank in the order, a pouch with 10gp",
+    "Waterdhavian Noble": "A set of fine clothes, a signet ring or brooch, a scroll of pedigree, a skin of fine zzar or wine, a purse containing 20gp",
+    "Far Traveler": "One set of traveler's clothes, any one musical instrument or gaming set you are proficient with, poorly wrought maps from your homeland that depict where you are in Faerûn, a piece of jewelry worth 10 gp in the style of your homeland's craftsmanship, a pouch with 5 gp",
+    "Urban Bounty Hunter": "A set of clothes appropriate to your duties, a pouch with 20 gp",
+    "Black Fist Double Agent": "Disguise kit, common clothes, a Tears of Virulence emblem, a writ of free agency signed by the Lord Regent, a set of artisan’s tools or gaming set you are proficient with, a pouch with 15 gp (payment for services rendered).",
+    "Charlatan": "A set of fine clothes, a disguise kit, tools of the con of your choice (ten stoppered bottles filled with colored liquid, a set of weighted dice, a deck of marked cards, or a signet ring of an imaginary duke), a belt pouch with 15 gp",
+    "Secret Identity": "A disguise kit, a forgery kit, a set of common clothes, a belt pouch with 5 gp",
+    "Entertainer": "A musical instrument (one of your choice), the favor of an admirer (love letter, lock of hair, or trinket), costume clothes, a belt pouch with 15 gp",
+    "Urchin": "A small knife, a map of the city you grew up in, a pet mouse, a token to remember your parents by, a set of common clothes, a belt pouch with 10 gp",
+    "Gladiator": "An inexpensive but unusual weapon, such as a trident or net (one of your choice), the favor of an admirer (love letter, lock of hair, or trinket), costume clothes, a belt pouch with 15 gp",
+    "Hillsfar Smuggler": "A forgery kit, a set of common clothes, a belt pouch with 5 gp",
+    "Shade Fanatic": "A forgery kit, a transparent cylinder of shadow that has no opening, a signet ring, a set of fine clothes, 15 gp.",
+    "Knight": "A set of fine clothes, a signet ring, a scroll of pedigree, a purse with 25 gp",
+    "Noble": "A set of fine clothes, a signet ring, a scroll of pedigree, a purse with 25 gp",
+    "Inheritor": "Your inheritance, a set of traveler's clothes, the tool you choose for this background's tool proficiency (gaming set or musical instrument), a pouch with 15 gp",
+    "Criminal": "A crowbar, a set of dark common clothes including a hood, a belt pouch with 15 gp",
+    "Spy": "A crowbar, a set of dark common clothes including a hood, a belt pouch with 15 gp",
+    "Stojanow Prisoner": "A small knife, a set of common clothes, a trinket from the life you stayed behind to defend, a belt pouch with 10 gp ",
+    "Initiate": "A simple puzzle box, a scroll containing the basic teachings of the five gods, a gaming set, a set of common clothes, a belt pouch with 15gp, any cartouches you have earned on previous campaigns",
+    "Iron Route Bandit": "A set of dark common clothes, pack saddle, burglar’s pack and a belt pouch with 5 gp",
+    "Mercenary Veteran": "A uniform of your company (traveler's clothes in quality), an insignia of your rank, a gaming set of your choice, a pouch with the remainder of your last wages (10 gp).",
+    "Soldier": "An insignia of rank, a trophy taken from a fallen enemy (a dagger, broken blade, or piece of a banner), a bone dice set or playing card set, a set of common clothes, a belt pouch with 10 gp",
+    "Harborfolk": "Fishing tackle, dice set, playing card set, or Three-Dragon Ante set, a set of common clothes, rowboat, a belt pouch with 5 gp",
+    "Hermit": "A scroll case stuffed full of notes from your studies or prayers, a winter blanket, a set of common clothes, an herbalism kit, 5 gp",
+    "Ticklebelly Nomad": "Herbalism kit, a small article of jewelry that is distinct to your tribe, a hunting trap, a set of common clothes, a belt pouch with 5 gp.",
+    "Outlander": "A staff, a hunting trap, a trophy from an animal you killed, a set of traveler's clothes, a belt pouch with 10 gp",
+    "Gate Urchin": "A battered alms box, a musical instrument, a cast-off military jacket, cap, or scarf, a set of common clothes, a belt pouch, 10 gp",
+    "Guild Merchant": "A set of artisan's tools (one of your choice) or a mule and cart, a letter of introduction from your guild, a set of traveler's clothes, a belt pouch with 15 gp",
+    "Pirate": "A belaying pin (club), silk rope (50 feet), a lucky charm such as a rabbit foot or a small stone with a hole in the center (or you may roll for a random trinket on the Trinkets table in chapter 5), a set of common clothes, a belt pouch with 10 gp",
+    "Sailor": "A belaying pin (club), silk rope (50 feet), a lucky charm such as a rabbit foot or a small stone with a hole in the center (or you may roll for a random trinket on the Trinkets table in chapter 5), a set of common clothes, a belt pouch with 10 gp",
+    "Acolyte": "A holy symbol (a gift to you when you entered the priesthood), a prayer book or prayer wheel, 5 sticks of incense, vestments, a set of common clothes, a belt pouch with 15 gp",
+    "Anthropologist": "A leather-bound diary, a bottle of ink, an ink pen, a set of traveler's clothes, one trinket of special significance, a pouch with 10 gp",
+    "Adopted": "A set of common clothes matching the style worn by your current family, something of a trinket left from your birth parents (cannot be worth more than 5gp) and pouch with 10gp",
+    "City Watch": "A uniform in the style of your unit and indicative of your rank, a horn with which to summon help, a set of manacles, a pouch with 10 gp",
+    "Cloistered Scholar": "The scholar's robes of your cloister, a writing kit (small pouch with a quill, ink, folded parchment, a small penknife), a borrowed book on the subject of your current study, a pouch with 10 gp",
+    "Courtier": "A set of fine clothes, a pouch with 5 gp",
+    "Earthspur Miner": "A shovel or a miner’s pick, a block and tackle, a 5e climber’s kit, a set of common clothes, a belt pouch with 5 gp",
+    "Faction Agent": "Badge or emblem of your faction, a copy of a seminal faction text (or code-book for a covert faction), a set of common clothes, a pouch with 15 gp",
+    "Haunted One": "Monster hunter's pack, a set of common clothes, one trinket of special significance (choose one or roll on the Gothic Trinkets table)",
+    "Investigator": "A uniform in the style of your unit and indicative of your rank, a horn with which to summon help, a set of manacles, a pouch with 10 gp",
+    "Sage": "A bottle of black ink, a quill, a small knife, a letter from a dead colleague posing a question you have not yet been able to answer, a set of common clothes, a belt pouch with 10 gp",
+    "Dragon Casualty": "A dagger, tattered rags, a loaf of moldy bread, a small cast-off scale belonging to Vorgansharax — the Maimed Virulence, a pouch with 5 gp of various coins (salvaged during your escape from Phlan).",
+    "House Agent": "A set of fine clothes, house signet ring, identification papers, a purse with 20 gp.",
+    "Trade Sheriff": "Thieves’ tools, a gray cloak, Sheriff’s insignia (badge) a set of fine clothes, 17 gp",
+    "Caravan Specialist": "Thieves’ tools, a gray cloak, Sheriff’s insignia (badge) a set of fine clothes, 17 gp",
+    "Hillsfar Merchant": "A fine set of clothes, a signet ring, a letter of introduction from your family’s trading house, a purse with 25 gp.", }
+
+CharBackgroundsFeatures = {
+    "Clan Crafter": "Respect of the Stout Folk",
+    "Cormanthor Refugee": "Shelter of the Elven Clergy",
+    "Guild Artisan": "Guild Business",
+    "Phlan Refugee": "Phlan Survivor",
+    "Mulmaster Aristocrat": "Highborn",
+    "Vizier": "Voice of Authority",
+    "Inquisitor": "Right of Entry",
+    "Folk Hero": "Defining event, Rustic Hospitality",
+    "Phlan Insurgent": "Guerrilla",
+    "Uthgardt Tribe Member": "Barbarian Tribes of Faerûn",
+    "Archaeologist": "Dust Digger, Historical knowledge",
+    "Knight of the Order": "Knightly regard, choose specific order (if desired)",
+    "Waterdhavian Noble": "Kept in Style",
+    "Far Traveler": "All eyes on you",
+    "Urban Bounty Hunter": "Ear to the ground",
+    "Black Fist Double Agent": "Double Agent",
+    "Charlatan": "False Identity",
+    "Secret Identity": "Secret Identity",
+    "Entertainer": "By popular demand",
+    "Urchin": "City Secrets",
+    "Gladiator": "By popular demand",
+    "Hillsfar Smuggler": "Secret Passage",
+    "Shade Fanatic": "Secret Society",
+    "Knight": "Retainers",
+    "Noble": "Position of Privilege",
+    "Inheritor": "Inheritance",
+    "Criminal": "Criminal Contact",
+    "Spy": "Spy Contact",
+    "Stojanow Prisoner": "ex-convict",
+    "Initiate": "Trial of the Five Gods",
+    "Iron Route Bandit": "Black-Market Breeder",
+    "Mercenary Veteran": "Mercenary Life",
+    "Soldier": "Military rank",
+    "Harborfolk": "Harborfolk",
+    "Hermit": "Discovery",
+    "Ticklebelly Nomad": "At Home in the Wild",
+    "Outlander": "Wanderer",
+    "Gate Urchin": "Red Plume and Mage Guild Contacts",
+    "Guild Merchant": "guild membership",
+    "Pirate": "bad reputation",
+    "Sailor": "ship's passage",
+    "Acolyte": "shelter of the faithful",
+    "Anthropologist": "cultural chameleon",
+    "Adopted": "Trust Issues",
+    "City Watch": "Watcher's Eye",
+    "Cloistered Scholar": "library access",
+    "Courtier": "Court Functionary",
+    "Earthspur Miner": "Deep miner",
+    "Faction Agent": "Safe Haven",
+    "Haunted One": "Heart of Darkness",
+    "Investigator": "Watcher's Eye",
+    "Sage": "Researcher",
+    "Dragon Casualty": "Dragonscarred",
+    "House Agent": "House Connections.  Also see 'House Tool Proficiencies' and 'House Agent Role'",
+    "Trade Sheriff": "Investigative Services",
+    "Caravan Specialist": "Wagonmaster",
+    "Hillsfar Merchant": "Factor OR Trade Contact"}
+
 CharGenders = ("Male", "Female")
 CharLanguagesFull = (
-"Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon", "Druidic",
-"Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Dwarvish", "Elvish", "Giant", "Gnomish",
-"Goblin", "Halfling", "Orc")
+    "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon", "Druidic",
+    "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Dwarvish", "Elvish", "Giant", "Gnomish",
+    "Goblin", "Halfling", "Orc")
 CharLanguagesExotic = (
-"Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon", "Druidic")
+    "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon", "Druidic")
 CharLanguagesStandard = ("Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc")
 
 # List of Weapons that can be attacked with - used to populate attack section later
@@ -244,20 +423,20 @@ else:
 
 # Defining the base height, #  of sides for height dice, base weight, and # of sides for weight dice of character by race and gender in the nested dictionary
 CharPhysique = {
-    'Human_Male': {'BaseHeight_inch': 58, "HeightModDice": 10, "BaseWeight_lb": 120, "WeightModDice": 4},
-    'Human_Female': {'BaseHeight_inch': 53, "HeightModDice": 10, "BaseWeight_lb": 85, "WeightModDice": 4},
+    'Human_Male': {'BaseHeight_inch': 59, "HeightModDice": 10, "BaseWeight_lb": 120, "WeightModDice": 4},
+    'Human_Female': {'BaseHeight_inch': 54, "HeightModDice": 10, "BaseWeight_lb": 85, "WeightModDice": 4},
     'Dwarf_Male': {'BaseHeight_inch': 45, "HeightModDice": 4, "BaseWeight_lb": 130, "WeightModDice": 6},
     'Dwarf_Female': {'BaseHeight_inch': 43, "HeightModDice": 4, "BaseWeight_lb": 100, "WeightModDice": 6},
-    'Elf_Male': {'BaseHeight_inch': 53, "HeightModDice": 6, "BaseWeight_lb": 85, "WeightModDice": 6},
-    'Elf_Female': {'BaseHeight_inch': 53, "HeightModDice": 6, "BaseWeight_lb": 80, "WeightModDice": 6},
+    'Elf_Male': {'BaseHeight_inch': 57, "HeightModDice": 10, "BaseWeight_lb": 90, "WeightModDice": 4},
+    'Elf_Female': {'BaseHeight_inch': 52, "HeightModDice": 10, "BaseWeight_lb": 75, "WeightModDice": 4},
     'Gnome_Male': {'BaseHeight_inch': 36, "HeightModDice": 4, "BaseWeight_lb": 40, "WeightModDice": 1},
     'Gnome_Female': {'BaseHeight_inch': 36, "HeightModDice": 4, "BaseWeight_lb": 35, "WeightModDice": 1},
     'Halfling_Male': {'BaseHeight_inch': 32, "HeightModDice": 4, "BaseWeight_lb": 30, "WeightModDice": 1},
     'Halfling_Female': {'BaseHeight_inch': 30, "HeightModDice": 4, "BaseWeight_lb": 25, "WeightModDice": 1},
-    'Half-Elf_Male': {'BaseHeight_inch': 55, "HeightModDice": 8, "BaseWeight_lb": 120, "WeightModDice": 4},
-    'Half-Elf_Female': {'BaseHeight_inch': 53, "HeightModDice": 8, "BaseWeight_lb": 100, "WeightModDice": 4},
-    'Half Orc_Male': {'BaseHeight_inch': 58, "HeightModDice": 12, "BaseWeight_lb": 150, "WeightModDice": 6},
-    'Half Orc_Female': {'BaseHeight_inch': 53, "HeightModDice": 12, "BaseWeight_lb": 110, "WeightModDice": 6},
+    'Half-Elf_Male': {'BaseHeight_inch': 58, "HeightModDice": 10, "BaseWeight_lb": 105, "WeightModDice": 4},
+    'Half-Elf_Female': {'BaseHeight_inch': 53, "HeightModDice": 10, "BaseWeight_lb": 80, "WeightModDice": 4},
+    'Half Orc_Male': {'BaseHeight_inch': 61, "HeightModDice": 10, "BaseWeight_lb": 150, "WeightModDice": 6},
+    'Half Orc_Female': {'BaseHeight_inch': 56, "HeightModDice": 10, "BaseWeight_lb": 110, "WeightModDice": 6},
     'Tiefling_Male': {'BaseHeight_inch': 62, "HeightModDice": 8, "BaseWeight_lb": 110, "WeightModDice": 4},
     'Tiefling_Female': {'BaseHeight_inch': 60, "HeightModDice": 8, "BaseWeight_lb": 90, "WeightModDice": 4},
     'Dragonborn_Male': {'BaseHeight_inch': 66, "HeightModDice": 8, "BaseWeight_lb": 175, "WeightModDice": 6},
@@ -518,127 +697,126 @@ Skillsbonus = {"Acrobatics": 0, "Animal Handling": 0, "Arcana": 0, "Athletics": 
                "Insight": 0, "Intimidation": 0, "Investigation": 0, "Medicine": 0, "Nature": 0, "Perception": 0,
                "Performance": 0, "Persuasion": 0, "Religion": 0, "Sleight of Hand": 0, "Stealth": 0, "Survival": 0}
 
-print(CharBackground)
 if CharBackground == "Acolyte":
-	Backgroundskills = [6, 14]
+    Backgroundskills = [6, 14]
 if CharBackground == "Anthropologist":
-	Backgroundskills = [13, 4, 16]
+    Backgroundskills = [13, 4, 16]
 if CharBackground == "Archaeologist":
-	Backgroundskills = [6, 14]
+    Backgroundskills = [6, 14]
 if CharBackground == "Adopted":
-	Backgroundskills = [5, 17]
+    Backgroundskills = [5, 17]
 if CharBackground == "Black Fist Double Agent":
-	Backgroundskills = [4, 6]
+    Backgroundskills = [4, 6]
 if CharBackground == "Caravan Specialist":
-	Backgroundskills = [1, 17]
+    Backgroundskills = [1, 17]
 if CharBackground == "Charlatan":
-	Backgroundskills = [4, 15]
+    Backgroundskills = [4, 15]
 if CharBackground == "City Watch":
-	Backgroundskills = [3, 6]
+    Backgroundskills = [3, 6]
 if CharBackground == "Clan Crafter":
-	Backgroundskills = [5, 6]
+    Backgroundskills = [5, 6]
 if CharBackground == "Cloistered Scholar":
     Backgroundskills = [5]
     Backgroundskills.extend(random.sample([2, 10, 14], 1))
 if CharBackground == "Cormanthor Refugee":
-	Backgroundskills = [10, 17]
+    Backgroundskills = [10, 17]
 if CharBackground == "Courtier":
-	Backgroundskills = [6, 13]
+    Backgroundskills = [6, 13]
 if CharBackground == "Criminal":
-	Backgroundskills = [4, 16]
+    Backgroundskills = [4, 16]
 if CharBackground == "Dragon Casualty":
-	Backgroundskills = [7, 17]
+    Backgroundskills = [7, 17]
 if CharBackground == "Earthspur Miner":
-	Backgroundskills = [3, 17]
+    Backgroundskills = [3, 17]
 if CharBackground == "Entertainer":
-	Backgroundskills = [0, 12]
+    Backgroundskills = [0, 12]
 if CharBackground == "Faction Agent":
     Backgroundskills = [6]
     Backgroundskills.extend(random.sample((2, 5, 8, 10, 14, 1, 9, 11, 17, 4, 7, 12, 13), 1))
 if CharBackground == "Far Traveler":
-	Backgroundskills = [6, 11]
+    Backgroundskills = [6, 11]
 if CharBackground == "Folk Hero":
     Backgroundskills = [1, 17]
 if CharBackground == "Gate Urchin":
-	Backgroundskills = [4, 15]
+    Backgroundskills = [4, 15]
 if CharBackground == "Gladiator":
-	Backgroundskills = [0, 12]
+    Backgroundskills = [0, 12]
 if CharBackground == "Guild Artisan":
-	Backgroundskills = [6, 13]
+    Backgroundskills = [6, 13]
 if CharBackground == "Guild Merchant":
-	Backgroundskills = [6, 13]
+    Backgroundskills = [6, 13]
 if CharBackground == "Harborfolk":
-	Backgroundskills = [3, 15]
+    Backgroundskills = [3, 15]
 if CharBackground == "Haunted One":
     Backgroundskills = []
     Backgroundskills.extend(random.sample((2, 8, 14, 17), 2))
 if CharBackground == "Hermit":
-	Backgroundskills = [9, 14]
+    Backgroundskills = [9, 14]
 if CharBackground == "Hillsfar Merchant":
-	Backgroundskills = [6, 13]
+    Backgroundskills = [6, 13]
 if CharBackground == "Hillsfar Smuggler":
-	Backgroundskills = [11, 16]
+    Backgroundskills = [11, 16]
 if CharBackground == "House Agent":
-	Backgroundskills = [8, 13]
+    Backgroundskills = [8, 13]
 if CharBackground == "Inheritor":
     Backgroundskills = [17]
     Backgroundskills.extend(random.sample((2, 5, 14), 1))
 if CharBackground == "Initiate":
-	Backgroundskills = [3, 7]
+    Backgroundskills = [3, 7]
 if CharBackground == "Inquisitor":
-	Backgroundskills = [8, 14]
+    Backgroundskills = [8, 14]
 if CharBackground == "Investigator":
-	Backgroundskills = [6, 8]
+    Backgroundskills = [6, 8]
 if CharBackground == "Iron Route Bandit":
     Backgroundskills = [1, 16]
 if CharBackground == "Knight":
-	Backgroundskills = [5, 13]
+    Backgroundskills = [5, 13]
 if CharBackground == "Knight of the Order":
     Backgroundskills = [13]
     Backgroundskills.extend(random.sample((2, 5, 10, 14), 1))
 if CharBackground == "Mercenary Veteran":
-	Backgroundskills = [3, 13]
+    Backgroundskills = [3, 13]
 if CharBackground == "Mulmaster Aristocrat":
-	Backgroundskills = [4, 12]
+    Backgroundskills = [4, 12]
 if CharBackground == "Noble":
-	Backgroundskills = [5, 13]
+    Backgroundskills = [5, 13]
 if CharBackground == "Outlander":
-	Backgroundskills = [3, 17]
+    Backgroundskills = [3, 17]
 if CharBackground == "Phlan Insurgent":
-	Backgroundskills = [16, 17]
+    Backgroundskills = [16, 17]
 if CharBackground == "Phlan Refugees":
-	Backgroundskills = [3, 6]
+    Backgroundskills = [3, 6]
 if CharBackground == "Pirate":
-	Backgroundskills = [3, 11]
+    Backgroundskills = [3, 11]
 if CharBackground == "Sage":
-	Backgroundskills = [2, 5]
+    Backgroundskills = [2, 5]
 if CharBackground == "Sailor":
-	Backgroundskills = [3, 11]
+    Backgroundskills = [3, 11]
 if CharBackground == "Secret Identity":
-	Backgroundskills = [4, 16]
+    Backgroundskills = [4, 16]
 if CharBackground == "Shade Fanatic":
-	Backgroundskills = [4, 7]
+    Backgroundskills = [4, 7]
 if CharBackground == "Soldier":
-	Backgroundskills = [3, 7]
+    Backgroundskills = [3, 7]
 if CharBackground == "Spy":
-	Backgroundskills = [4, 16]
+    Backgroundskills = [4, 16]
 if CharBackground == "Stojanow Prisoner":
-	Backgroundskills = [4, 11]
+    Backgroundskills = [4, 11]
 if CharBackground == "Ticklebelly Nomad":
-	Backgroundskills = [1, 10]
+    Backgroundskills = [1, 10]
 if CharBackground == "Trade Sheriff":
-	Backgroundskills = [8, 13]
+    Backgroundskills = [8, 13]
 if CharBackground == "Urban Bounty Hunter":
     Backgroundskills = []
     Backgroundskills.extend(random.sample((4, 6, 13, 16), 2))
 if CharBackground == "Urchin":
-	Backgroundskills = [15, 16]
+    Backgroundskills = [15, 16]
 if CharBackground == "Uthgardt Tribe Member":
-	Backgroundskills = [3, 17]
+    Backgroundskills = [3, 17]
 if CharBackground == "Vizier":
-	Backgroundskills = [5, 14]
+    Backgroundskills = [5, 14]
 if CharBackground == "Waterdhavian Noble":
-	Backgroundskills = [5, 13]
+    Backgroundskills = [5, 13]
 
 Skillpool = [x for x in Skillpool if x not in Backgroundskills]
 
@@ -668,6 +846,7 @@ for x in Backgroundskills:
 
 for skillsa in ChosenSkills:
     Skillsbonus[AllSkills[skillsa]] += 2
+
 
 # Determine Skills Bonus END
 #################
@@ -1528,73 +1707,96 @@ elif "Wooden Shield" in Equips:
 
 if CharClass == "Barbarian":
     wrap_text = textwrap.wrap(
-        "Two rages per long rest at level 1. RAGE: \"If not wearing heavy armor, for one minute you have advantage on Strength checks and Strength Saving throws.  You have resistance (receive half damage rounded down) to bludgeoning, piercing and slashing damage.  When you make a melee weapon attack using Strength, add +2 to damage roll\" (increases with level - see PHB).          UNARMORED DEFENSE:  AC = 10 + Dex mod + Con mod if not wearing body armor.  AC is not calculated this way in this sheet - adjust if desired.",
+        "Two rages per long rest at level 1. RAGE: \"If not wearing heavy armor, for one minute you have advantage on "
+        "Strength checks and Strength Saving throws.  You have resistance (receive half damage rounded down) to "
+        "bludgeoning, piercing and slashing damage.  When you make a melee weapon attack using Strength, add +2 to "
+        "damage roll\" (increases with level - see PHB).          UNARMORED DEFENSE:  AC = 10 + Dex mod + Con mod if "
+        "not wearing body armor.  AC is not calculated this way in this sheet - adjust if desired.  "
+        "FEATURE FROM BACKGROUND:    " + str(CharBackgroundsFeatures.get(CharBackground)),
         width=41)
     for number, items in enumerate(wrap_text, start=1):
         can.drawString(415, 405 - int(number) * 10, items)
 if CharClass == "Bard":
     wrap_text = textwrap.wrap(
-        "BARDIC INSPIRATION: X times per day (X = CHA modifier or 1 if X would be less than 1), you can use a bonus action to choose one creature other than yourself within 60 feet who can hear you to gain a d6 to be added to one ability check, attack roll, or saving throw in the next 10 minutes (can wait until after D20 roll, but before DM says whether roll succeeds).    SPELLCASTING: You know two cantrips and four level 1 spells. You have two level 1 spell slots.  BARD CANTRIPS:  Dancing Lights, Light, Mage Hand, Mending, Message, Minor Illusion, Prestidigitation, True Strike, Vicious Mockery.    BARD LEVEL 1 SPELLS: Animal Friendship, Bane, Charm Person, Comprehend Languages, Cure Wounds, Detect Magic, Disguise Self, Faerie Fire, Feather Fall, Healing Word, Heroism, Hideous Laughter, Identify, Illusory Script, Longstrider, Silent Image, Sleep, Speak with Animals, Thunderwave, Unseen Servant",
+        "BARDIC INSPIRATION: X times per day (X = CHA modifier or 1 if X would be less than 1), you can use a bonus "
+        "action to choose one creature other than yourself within 60 feet who can hear you to gain a d6 to be added to "
+        "one ability check, attack roll, or saving throw in the next 10 minutes (can wait until after D20 roll, but "
+        "before DM says whether roll succeeds).    SPELLCASTING: You know two cantrips and four level 1 spells. You have"
+        " two level 1 spell slots.  BARD CANTRIPS:  Dancing Lights, Light, Mage Hand, Mending, Message, Minor Illusion, "
+        "Prestidigitation, True Strike, Vicious Mockery.    BARD LEVEL 1 SPELLS: Animal Friendship, Bane, Charm Person,"
+        " Comprehend Languages, Cure Wounds, Detect Magic, Disguise Self, Faerie Fire, Feather Fall, Healing Word, "
+        "Heroism, Hideous Laughter, Identify, Illusory Script, Longstrider, Silent Image, Sleep, Speak with Animals, "
+        "Thunderwave, Unseen Servant.  FEATURE FROM BACKGROUND:    " + str(CharBackgroundsFeatures.get(CharBackground)),
         width=41)
     for number, items in enumerate(wrap_text, start=1):
         can.drawString(415, 405 - int(number) * 10, items)
 if CharClass == "Cleric":
     wrap_text = textwrap.wrap(
-        "SPELLCASTING: You know 3 cantrips.  You can prepare X level 1 spells (X = CHA modifier or 1 if X would be less than 1).  You have 2 level 1 spell slots.  DIVINE DOMAIN: You are part of one Divine Domain;  choose from the domains: Knowledge, Life, Light, Nature, Tempest, Trickery, or War.  Life and Light domains are recommended for new players.  Read PHB pgs 59-63 for cleric domains.   CLERIC CANTRIPS: Guidance, Light, Mending, Resistance, Sacred Flame, Spare the Dying, and Thaumaturgy.    CLERIC LEVEL 1 SPELLS:  Bane, Bless, Command, Create or Destroy Water, Cure Wounds, Detect Evil and Good, Detect Magic, Detect Poison and Disease, Guiding Bolt, Healing Word, Inflict Wounds, Protection from Evil and Good, Purify Food and Drink, Sanctuary, Shield of Faith.",
+        "SPELLCASTING: You know 3 cantrips.  You can prepare X level 1 spells (X = CHA modifier or 1 if X would be less than 1).  You have 2 level 1 spell slots.  DIVINE DOMAIN: You are part of one Divine Domain;  choose from the domains: Knowledge, Life, Light, Nature, Tempest, Trickery, or War.  Life and Light domains are recommended for new players.  Read PHB pgs 59-63 for cleric domains.   CLERIC CANTRIPS: Guidance, Light, Mending, Resistance, Sacred Flame, Spare the Dying, and Thaumaturgy.    CLERIC LEVEL 1 SPELLS:  Bane, Bless, Command, Create or Destroy Water, Cure Wounds, Detect Evil and Good, Detect Magic, Detect Poison and Disease, Guiding Bolt, Healing Word, Inflict Wounds, Protection from Evil and Good, Purify Food and Drink, Sanctuary, Shield of Faith.  FEATURE FROM BACKGROUND:    " + str(
+            CharBackgroundsFeatures.get(CharBackground)),
         width=41)
     for number, items in enumerate(wrap_text, start=1):
         can.drawString(415, 405 - int(number) * 10, items)
 if CharClass == "Druid":
     wrap_text = textwrap.wrap(
-        "SPELLCASTING: You know 2 cantrips.  You can prepare X level 1 spells (X = WIS modifier + Druid level or 1 if X would be less than 1).  You have 2 level 1 spell slots.   DRUIDIC LANGUAGE: You know the druidic language.  Read PHB pg 66 for druid language info.  DRUID CANTRIPS: Druidcraft, Guidance, Mending, Poison Spray, Produce Flame, Resistance, Shillelagh.    DRUID LEVEL 1 SPELLS: Animal Friendship, Charm Person, Create or Destroy Water, Cure Wounds, Detect Magic,Detect Poison and Disease, Entangle, Faerie Fire, Fog Cloud, Goodberry, Healing Word, Jump, Longstrider, Purify Food and Drink, Speak with Animals, Thunderwave.",
+        "SPELLCASTING: You know 2 cantrips.  You can prepare X level 1 spells (X = WIS modifier + Druid level or 1 if X would be less than 1).  You have 2 level 1 spell slots.   DRUIDIC LANGUAGE: You know the druidic language.  Read PHB pg 66 for druid language info.  DRUID CANTRIPS: Druidcraft, Guidance, Mending, Poison Spray, Produce Flame, Resistance, Shillelagh.    DRUID LEVEL 1 SPELLS: Animal Friendship, Charm Person, Create or Destroy Water, Cure Wounds, Detect Magic,Detect Poison and Disease, Entangle, Faerie Fire, Fog Cloud, Goodberry, Healing Word, Jump, Longstrider, Purify Food and Drink, Speak with Animals, Thunderwave.  FEATURE FROM BACKGROUND:    " + str(
+            CharBackgroundsFeatures.get(CharBackground)),
         width=41)
     for number, items in enumerate(wrap_text, start=1):
         can.drawString(415, 405 - int(number) * 10, items)
 if CharClass == "Fighter":
     wrap_text = textwrap.wrap(
-        "FIGHTING STYLE: choose 1 of Archery, Defense, Dueling, Great weapon fighting, protection, two-weapon fighting.  See PHB pg 72 for fighting style info.      SECOND WIND:  Once per short or long rest - On your turn, use a bonus action to regain hit points equal to 1d10 + fighter level.",
+        "FIGHTING STYLE: choose 1 of Archery, Defense, Dueling, Great weapon fighting, protection, two-weapon fighting.  See PHB pg 72 for fighting style info.      SECOND WIND:  Once per short or long rest - On your turn, use a bonus action to regain hit points equal to 1d10 + fighter level.  FEATURE FROM BACKGROUND:    " + str(
+            CharBackgroundsFeatures.get(CharBackground)),
         width=41)
     for number, items in enumerate(wrap_text, start=1):
         can.drawString(415, 405 - int(number) * 10, items)
 if CharClass == "Monk":
     wrap_text = textwrap.wrap(
-        "UNARMORED DEFENSE:  if no shield or armor, AC = 10 + Dex mod + Wis mod.  AC is not calculated this way in this sheet - adjust if desired.       MARTIAL ARTS: While unarmed or weilding monk weapons (Shortsword, club, dagger, handaxe, javelin, light hammer, mace, quarterstaff, sickle, spear), you can optionally use dex instead of str for attack and damage rolls, you can roll a d4 in place of the normal damage die (useful only with unarmed strikes at level 1).  You can also make one unarmed strike as a bonus action.",
+        "UNARMORED DEFENSE:  if no shield or armor, AC = 10 + Dex mod + Wis mod.  AC is not calculated this way in this sheet - adjust if desired.       MARTIAL ARTS: While unarmed or weilding monk weapons (Shortsword, club, dagger, handaxe, javelin, light hammer, mace, quarterstaff, sickle, spear), you can optionally use dex instead of str for attack and damage rolls, you can roll a d4 in place of the normal damage die (useful only with unarmed strikes at level 1).  You can also make one unarmed strike as a bonus action.  FEATURE FROM BACKGROUND:    " + str(
+            CharBackgroundsFeatures.get(CharBackground)),
         width=41)
     for number, items in enumerate(wrap_text, start=1):
         can.drawString(415, 405 - int(number) * 10, items)
 if CharClass == "Paladin":
     wrap_text = textwrap.wrap(
-        "DIVINE SENSE: You an use Divine Sense X times per long rest (X = CHA modifier + 1):  As an action, open your awareness to detect powerful good or evil forces.  Until the end of your next turn, you know the location of any celestial, fiend or undead within 60 feet of you that is not behind total cover.  You know the type of detected presences, but not the identity of the beings.        LAY ON HANDS:  As an action, restore health to self or target using special \"lay on hands HP pool\" (Max HP in pool: paladin level x 5 HP, refills after long rest).  Alternatively, spend from pool 5 HP per ailment to remove disease or poison from one or more targets. ",
+        "DIVINE SENSE: You an use Divine Sense X times per long rest (X = CHA modifier + 1):  As an action, open your awareness to detect powerful good or evil forces.  Until the end of your next turn, you know the location of any celestial, fiend or undead within 60 feet of you that is not behind total cover.  You know the type of detected presences, but not the identity of the beings.        LAY ON HANDS:  As an action, restore health to self or target using special \"lay on hands HP pool\" (Max HP in pool: paladin level x 5 HP, refills after long rest).  Alternatively, spend from pool 5 HP per ailment to remove disease or poison from one or more targets.  FEATURE FROM BACKGROUND:    " + str(
+            CharBackgroundsFeatures.get(CharBackground)),
         width=41)
     for number, items in enumerate(wrap_text, start=1):
         can.drawString(415, 405 - int(number) * 10, items)
 if CharClass == "Ranger":
     wrap_text = textwrap.wrap(
-        "FAVORED ENEMY: Choose a type of favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, or undead. Alternatively, you can select two races of humanoid (such as gnolls and orcs) as favored enemies.  You have advantage on Wisdom (Survival) checks to track your favored enemies as well as on Intelligence checks to recall info about them.  Also gain one language of your choice spoken by your favored enemies if they speak one.     NATURAL EXPLORER: Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, swamp, or the Underdark.  When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you’re proficient in. While traveling for an hour or more in your favoredterrain, you gain the following benefits: Difficult terrain doesn’t slow your group’s travel. Your group can’t become lost except by magical means. Even when you are engaged in another activity while traveling (such as foraging, navigating, or tracking), you remain alert to danger. If you are traveling alone, you can move stealthily ata normal pace.• When you forage, you find twice as much food as younormally would.• While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.",
+        "FAVORED ENEMY: Choose a type of favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, or undead. Alternatively, you can select two races of humanoid (such as gnolls and orcs) as favored enemies.  You have advantage on Wisdom (Survival) checks to track your favored enemies as well as on Intelligence checks to recall info about them.  Also gain one language of your choice spoken by your favored enemies if they speak one.     NATURAL EXPLORER: Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, swamp, or the Underdark.  When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you’re proficient in. While traveling for an hour or more in your favoredterrain, you gain the following benefits: Difficult terrain doesn’t slow your group’s travel. Your group can’t become lost except by magical means. Even when you are engaged in another activity while traveling (such as foraging, navigating, or tracking), you remain alert to danger. If you are traveling alone, you can move stealthily ata normal pace.• When you forage, you find twice as much food as you normally would.• While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.  FEATURE FROM BACKGROUND:    " + str(
+            CharBackgroundsFeatures.get(CharBackground)),
         width=41)
     for number, items in enumerate(wrap_text, start=1):
         can.drawString(415, 405 - int(number) * 10, items)
 if CharClass == "Rogue":
     wrap_text = textwrap.wrap(
-        "EXPERTISE:  choose two skill proficiencies or one skill proficiency and proficiency with thieves' tools.  Proficiency bonus is doubled for any ability check using either chosen proficiency.  The default +2 bonus to proficiencies has already been added to proficient skills in this sheet.      SNEAK ATTACK: once per turn, deal an extra 1d6 damage using a finesse or ranged weapon to one creature you hit if you have advantage on your attack roll.      THIEVES' CANT: like a language, you're familiar with jargon code, and secret signs used by thieves to convey simple messages.",
+        "EXPERTISE:  choose two skill proficiencies or one skill proficiency and proficiency with thieves' tools.  Proficiency bonus is doubled for any ability check using either chosen proficiency.  The default +2 bonus to proficiencies has already been added to proficient skills in this sheet.      SNEAK ATTACK: once per turn, deal an extra 1d6 damage using a finesse or ranged weapon to one creature you hit if you have advantage on your attack roll.      THIEVES' CANT: like a language, you're familiar with jargon code, and secret signs used by thieves to convey simple messages.  FEATURE FROM BACKGROUND:    " + str(
+            CharBackgroundsFeatures.get(CharBackground)),
         width=41)
     for number, items in enumerate(wrap_text, start=1):
         can.drawString(415, 405 - int(number) * 10, items)
 if CharClass == "Sorcerer":
     wrap_text = textwrap.wrap(
-        "SORCEROUS ORIGIN: choose Draconic bloodline or wild magic (see PHB pg 102-103).      SPELLCASTING:  You know 4 cantrips.  You can prepare 2 level 1 spells.  You have 2 level 1 spell slots.     SORCERER CANTRIPS: Chill Touch, Eldritch Blast, Mage Hand, Minor Illusion, Poison Spray, Prestidigitation, True Strike.   SORCERER LEVEL 1 SPELLS: Charm Person, Comprehend Languages, Expeditious Retreat, Hellish Rebuke, Illusory Script, Protection from Evil and Good, Unseen Servant",
+        "SORCEROUS ORIGIN: choose Draconic bloodline or wild magic (see PHB pg 102-103).      SPELLCASTING:  You know 4 cantrips.  You can prepare 2 level 1 spells.  You have 2 level 1 spell slots.     SORCERER CANTRIPS: Chill Touch, Eldritch Blast, Mage Hand, Minor Illusion, Poison Spray, Prestidigitation, True Strike.   SORCERER LEVEL 1 SPELLS: Charm Person, Comprehend Languages, Expeditious Retreat, Hellish Rebuke, Illusory Script, Protection from Evil and Good, Unseen Servant.  FEATURE FROM BACKGROUND:    " + str(
+            CharBackgroundsFeatures.get(CharBackground)),
         width=41)
     for number, items in enumerate(wrap_text, start=1):
         can.drawString(415, 405 - int(number) * 10, items)
 if CharClass == "Warlock":
     wrap_text = textwrap.wrap(
-        "OTHERWORLDLY PATRON: choose an otherworldly patron as the source of your power; the Archfey, the Fiend, or the Great Old One (details in PHB pgs 107-110).     SPELLCASTING:  You know 2 cantrips (Eldritch Blast highly recommended).  You know 2 level 1 spells (can change spells on level up). You have 1 level 1 spell slots. WARLOCK CANTRIPS: Chill Touch, Eldritch Blast, Mage Hand, Minor Illusion, Poison Spray, Prestidigitation, True Strike.    WARLOCK LEVEL 1 SPELLS:  Charm Person, Comprehend Languages, Expeditious Retreat, Hellish Rebuke, Illusory Script, Protection from Evil and Good, Unseen Servant.",
+        "OTHERWORLDLY PATRON: choose an otherworldly patron as the source of your power; the Archfey, the Fiend, or the Great Old One (details in PHB pgs 107-110).     SPELLCASTING:  You know 2 cantrips (Eldritch Blast highly recommended).  You know 2 level 1 spells (can change spells on level up). You have 1 level 1 spell slots. WARLOCK CANTRIPS: Chill Touch, Eldritch Blast, Mage Hand, Minor Illusion, Poison Spray, Prestidigitation, True Strike.    WARLOCK LEVEL 1 SPELLS:  Charm Person, Comprehend Languages, Expeditious Retreat, Hellish Rebuke, Illusory Script, Protection from Evil and Good, Unseen Servant.  FEATURE FROM BACKGROUND:    " + str(
+            CharBackgroundsFeatures.get(CharBackground)),
         width=41)
     for number, items in enumerate(wrap_text, start=1):
         can.drawString(415, 405 - int(number) * 10, items)
 if CharClass == "Wizard":
     wrap_text = textwrap.wrap(
-        "ARCANE RECOVERY:  Once per day when finishing a short rest, recover expended spell slots of combined level = 1/2 your wizard level rounded up.  No spell slots > level 5 can be recovered).    SPELLCASTING:   You know 3 cantrips.  You can prepare X level 1 spells (X = INT modifier + wizard level or 1 if X would be less than 1).  You have 2 level 1 spell slots.       WIZARD CANTRIPS: Acid Splash, Chill Touch, Dancing Lights, Fire Bolt, Light, Mage Hand, Mending, Message, Minor Illusion, Poison Spray, Prestidigitation, Ray of Frost, Shocking Grasp, True Strike.    WIZARD LEVEL 1 SPELLS:  Alarm, Burning Hands, Charm Person, Color Spray, Comprehend Languages, Detect Magic, Disguise Self, Expeditious Retreat, False Life, Feather Fall, Find Familiar, Floating Disk, Fog Cloud, Grease, Hideous Laughter, identify, Illusory Script, Jump, Longstrider, Mage Armor, Magic Missile, Protection from Evil and Good, Shield ,Silent Image, Sleep, Thunderwave, Unseen Servant",
+        "ARCANE RECOVERY:  Once per day when finishing a short rest, recover expended spell slots of combined level = 1/2 your wizard level rounded up.  No spell slots > level 5 can be recovered).    SPELLCASTING:   You know 3 cantrips.  You can prepare X level 1 spells (X = INT modifier + wizard level or 1 if X would be less than 1).  You have 2 level 1 spell slots.       WIZARD CANTRIPS: Acid Splash, Chill Touch, Dancing Lights, Fire Bolt, Light, Mage Hand, Mending, Message, Minor Illusion, Poison Spray, Prestidigitation, Ray of Frost, Shocking Grasp, True Strike.    WIZARD LEVEL 1 SPELLS:  Alarm, Burning Hands, Charm Person, Color Spray, Comprehend Languages, Detect Magic, Disguise Self, Expeditious Retreat, False Life, Feather Fall, Find Familiar, Floating Disk, Fog Cloud, Grease, Hideous Laughter, identify, Illusory Script, Jump, Longstrider, Mage Armor, Magic Missile, Protection from Evil and Good, Shield ,Silent Image, Sleep, Thunderwave, Unseen Servant.  FEATURE FROM BACKGROUND:    " + str(
+            CharBackgroundsFeatures.get(CharBackground)),
         width=41)
     for number, items in enumerate(wrap_text, start=1):
         can.drawString(415, 405 - int(number) * 10, items)
@@ -1628,10 +1830,25 @@ can.setFont('Helvetica', 18)
 can.drawString(236, 632, str(ArmorClass))  # Armor Class
 can.setFont('Helvetica', 8)
 
-# List Equipment
-for number, items in enumerate(Equips, start=1):
+# Append Background equipment, then list all equipment
+
+BackgroundEquips = (str(CharBackgroundsEquipment.get(CharBackground)).split(", "))
+Equips.extend(BackgroundEquips)
+
+EquipsString = str(Equips)
+EquipsString = EquipsString.replace('[', '')
+EquipsString = EquipsString.replace(']', '')
+EquipsString = EquipsString.replace("'", "")
+EquipsString = EquipsString.replace('"', '')
+
+wrap_text = textwrap.wrap(EquipsString, width=30)
+for number, items in enumerate(wrap_text, start=1):
     can.drawString(274, 199 - int(number) * 10, items)  # equipment
 
+"""
+for number, items in enumerate(Equips, start=1):
+    can.drawString(274, 199 - int(number) * 10, items)  # equipment
+"""
 # clean up punctuation from proficiencies list before printing to PDF
 CharLanguages = str(CharLanguages)
 CharLanguages = CharLanguages.replace('[', '')
@@ -1644,11 +1861,17 @@ CharProficiencies = CharProficiencies.replace("'", "")
 if '20 Darts' in CharProficiencies:
     CharProficiencies = CharProficiencies.replace("20 Darts", "Dart")
 
-can.setFont('Helvetica', 7)
-
-wrap_text = textwrap.wrap("LANGUAGES: " + (CharLanguages + "    WEAPON/ARMOR: " + CharProficiencies), width=43)
-for number, items in enumerate(wrap_text, start=1):
-    can.drawString(37, 167 - int(number) * 9, items)  # Flaws
+can.setFont('Helvetica', 6)
+if CharBackgroundsTools.get(CharBackground) == "":
+    wrap_text = textwrap.wrap("LANGUAGES: " + (CharLanguages + "    WEAPON/ARMOR: " + CharProficiencies), width=50)
+    for number, items in enumerate(wrap_text, start=1):
+        can.drawString(37, 167 - int(number) * 8, items)  # Flaws
+else:
+    wrap_text = textwrap.wrap("LANGUAGES: " + (
+                CharLanguages + "    WEAPON/ARMOR: " + CharProficiencies + "    TOOLS: " + str(
+            CharBackgroundsTools.get(CharBackground))), width=50)
+    for number, items in enumerate(wrap_text, start=1):
+        can.drawString(37, 167 - int(number) * 8, items)  # Flaws
 # for number,items in enumerate(CharLanguages, start=1):
 # can.drawString(36, 169 - int(number)*12, items)  # Languages
 
@@ -1681,4 +1904,6 @@ outputStream = open(NewFileName, "wb")
 output.write(outputStream)
 outputStream.close()
 
-print("New character " + CharName + " the " + CharClass + " created")
+print("New character " + CharName + " created")
+print(CharClass)
+print(CharBackground)
