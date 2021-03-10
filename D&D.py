@@ -518,6 +518,130 @@ Skillsbonus = {"Acrobatics": 0, "Animal Handling": 0, "Arcana": 0, "Athletics": 
                "Insight": 0, "Intimidation": 0, "Investigation": 0, "Medicine": 0, "Nature": 0, "Perception": 0,
                "Performance": 0, "Persuasion": 0, "Religion": 0, "Sleight of Hand": 0, "Stealth": 0, "Survival": 0}
 
+print(CharBackground)
+if CharBackground == "Acolyte":
+	Backgroundskills = [6, 14]
+if CharBackground == "Anthropologist":
+	Backgroundskills = [13, 4, 16]
+if CharBackground == "Archaeologist":
+	Backgroundskills = [6, 14]
+if CharBackground == "Adopted":
+	Backgroundskills = [5, 17]
+if CharBackground == "Black Fist Double Agent":
+	Backgroundskills = [4, 6]
+if CharBackground == "Caravan Specialist":
+	Backgroundskills = [1, 17]
+if CharBackground == "Charlatan":
+	Backgroundskills = [4, 15]
+if CharBackground == "City Watch":
+	Backgroundskills = [3, 6]
+if CharBackground == "Clan Crafter":
+	Backgroundskills = [5, 6]
+if CharBackground == "Cloistered Scholar":
+    Backgroundskills = [5]
+    Backgroundskills.extend(random.sample([2, 10, 14], 1))
+if CharBackground == "Cormanthor Refugee":
+	Backgroundskills = [10, 17]
+if CharBackground == "Courtier":
+	Backgroundskills = [6, 13]
+if CharBackground == "Criminal":
+	Backgroundskills = [4, 16]
+if CharBackground == "Dragon Casualty":
+	Backgroundskills = [7, 17]
+if CharBackground == "Earthspur Miner":
+	Backgroundskills = [3, 17]
+if CharBackground == "Entertainer":
+	Backgroundskills = [0, 12]
+if CharBackground == "Faction Agent":
+    Backgroundskills = [6]
+    Backgroundskills.extend(random.sample((2, 5, 8, 10, 14, 1, 9, 11, 17, 4, 7, 12, 13), 1))
+if CharBackground == "Far Traveler":
+	Backgroundskills = [6, 11]
+if CharBackground == "Folk Hero":
+    Backgroundskills = [1, 17]
+if CharBackground == "Gate Urchin":
+	Backgroundskills = [4, 15]
+if CharBackground == "Gladiator":
+	Backgroundskills = [0, 12]
+if CharBackground == "Guild Artisan":
+	Backgroundskills = [6, 13]
+if CharBackground == "Guild Merchant":
+	Backgroundskills = [6, 13]
+if CharBackground == "Harborfolk":
+	Backgroundskills = [3, 15]
+if CharBackground == "Haunted One":
+    Backgroundskills = []
+    Backgroundskills.extend(random.sample((2, 8, 14, 17), 2))
+if CharBackground == "Hermit":
+	Backgroundskills = [9, 14]
+if CharBackground == "Hillsfar Merchant":
+	Backgroundskills = [6, 13]
+if CharBackground == "Hillsfar Smuggler":
+	Backgroundskills = [11, 16]
+if CharBackground == "House Agent":
+	Backgroundskills = [8, 13]
+if CharBackground == "Inheritor":
+    Backgroundskills = [17]
+    Backgroundskills.extend(random.sample((2, 5, 14), 1))
+if CharBackground == "Initiate":
+	Backgroundskills = [3, 7]
+if CharBackground == "Inquisitor":
+	Backgroundskills = [8, 14]
+if CharBackground == "Investigator":
+	Backgroundskills = [6, 8]
+if CharBackground == "Iron Route Bandit":
+    Backgroundskills = [1, 16]
+if CharBackground == "Knight":
+	Backgroundskills = [5, 13]
+if CharBackground == "Knight of the Order":
+    Backgroundskills = [13]
+    Backgroundskills.extend(random.sample((2, 5, 10, 14), 1))
+if CharBackground == "Mercenary Veteran":
+	Backgroundskills = [3, 13]
+if CharBackground == "Mulmaster Aristocrat":
+	Backgroundskills = [4, 12]
+if CharBackground == "Noble":
+	Backgroundskills = [5, 13]
+if CharBackground == "Outlander":
+	Backgroundskills = [3, 17]
+if CharBackground == "Phlan Insurgent":
+	Backgroundskills = [16, 17]
+if CharBackground == "Phlan Refugees":
+	Backgroundskills = [3, 6]
+if CharBackground == "Pirate":
+	Backgroundskills = [3, 11]
+if CharBackground == "Sage":
+	Backgroundskills = [2, 5]
+if CharBackground == "Sailor":
+	Backgroundskills = [3, 11]
+if CharBackground == "Secret Identity":
+	Backgroundskills = [4, 16]
+if CharBackground == "Shade Fanatic":
+	Backgroundskills = [4, 7]
+if CharBackground == "Soldier":
+	Backgroundskills = [3, 7]
+if CharBackground == "Spy":
+	Backgroundskills = [4, 16]
+if CharBackground == "Stojanow Prisoner":
+	Backgroundskills = [4, 11]
+if CharBackground == "Ticklebelly Nomad":
+	Backgroundskills = [1, 10]
+if CharBackground == "Trade Sheriff":
+	Backgroundskills = [8, 13]
+if CharBackground == "Urban Bounty Hunter":
+    Backgroundskills = []
+    Backgroundskills.extend(random.sample((4, 6, 13, 16), 2))
+if CharBackground == "Urchin":
+	Backgroundskills = [15, 16]
+if CharBackground == "Uthgardt Tribe Member":
+	Backgroundskills = [3, 17]
+if CharBackground == "Vizier":
+	Backgroundskills = [5, 14]
+if CharBackground == "Waterdhavian Noble":
+	Backgroundskills = [5, 13]
+
+Skillpool = [x for x in Skillpool if x not in Backgroundskills]
+
 # Want to make a separate Skills like.  Trying to copy from CharMods list
 Skillsbonus["Acrobatics"] += CharMods["Dexterity"]
 Skillsbonus["Animal Handling"] += CharMods["Wisdom"]
@@ -539,9 +663,11 @@ Skillsbonus["Stealth"] += CharMods["Dexterity"]
 Skillsbonus["Survival"] += CharMods["Wisdom"]
 
 ChosenSkills = random.sample(Skillpool, Skillnumber)
+for x in Backgroundskills:
+    ChosenSkills.append(x)
+
 for skillsa in ChosenSkills:
     Skillsbonus[AllSkills[skillsa]] += 2
-
 
 # Determine Skills Bonus END
 #################
