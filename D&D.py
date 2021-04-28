@@ -1898,12 +1898,13 @@ page2 = existing_pdf.getPage(1)
 page2.mergePage(new_pdf2.getPage(0))
 output.addPage(page2)
 # finally, write "output" to a real file
-NewFileName = "@NewChar_" + CharName + ".pdf"
+#NewFileName = "@NewChar_" + CharName + ".pdf"
+NewFileName = "@NewChar.pdf"
 
 outputStream = open(NewFileName, "wb")
 output.write(outputStream)
 outputStream.close()
 
 print("New character " + CharName + " created")
-print(CharClass)
-print(CharBackground)
+#print(CharClass)
+#print(CharBackground)
